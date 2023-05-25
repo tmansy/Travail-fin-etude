@@ -8,6 +8,8 @@ import { NotFoundComponent } from './pages/public/not-found/not-found.component'
 import { TournamentComponent } from './pages/public/tournament/tournament.component';
 import { ShopComponent } from './pages/public/shop/shop.component';
 import { ContactPageComponent } from './pages/public/contact-page/contact-page.component';
+import { ConnectionComponent } from './pages/public/connection/connection.component';
+import { RegisterComponent } from './pages/public/register/register.component';
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: "shop", component: ShopComponent },
   { path: "tournament", component: TournamentComponent },
   { path: "contact", component: ContactPageComponent },
+  { path: "connection", component: ConnectionComponent },
+  { path: "register", component: RegisterComponent },
   { path: "**", pathMatch: 'full', component: NotFoundComponent }
 ];
 

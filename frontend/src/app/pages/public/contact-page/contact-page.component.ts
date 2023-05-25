@@ -29,13 +29,18 @@ export class ContactPageComponent implements OnInit {
 
   public sendMail(){
     this.loading = true;
-    this.api.postSendMail(this.formGroup.value).then(() => {
-      this.formGroup.reset();
+    if(this.formGroup.valid) {
+      this.api.postSendMail(this.formGroup.value).then(() => {
+        this.formGroup.reset();
+        this.loading = false;
+        this.api.success('Le mail a bien été envoyé.');
+      }).catch(() => {
+        this.api.error('Le mail n\'a pas pu être envoyé.');
+      })
+    }
+    else {
       this.loading = false;
-      this.api.success('Le mail a bien été envoyé.');
-    }).catch(() => {
-      this.api.error('Le mail n\'a pas pu être envoyé.');
-    })
+      this.api.error('Veuillez compléter le formulaire');
+    }
   }
-
 }

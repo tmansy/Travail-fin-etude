@@ -1,0 +1,37 @@
+<div class=" d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card bg-white">
+                    <div [formGroup]="formGroup" class="card-body p-5">
+                        <div class="mb-3">
+                            <h2 class="fw-bold mb-2 text-uppercase ">Requiem for a noob</h2>
+                            <p class=" mb-3">Remplisser vos informations</p>
+                            <div class="p-field mb-3">
+                                <input type="email" class="form-control" formControlName="lastname" placeholder="Nom" required pInputText>
+                            </div>
+                            <div class="p-field mb-3">
+                                <input type="password" class="form-control" formControlName="firstname" placeholder="Prénom" required pInputText>
+                            </div>
+                            <div class="p-field mb-3">
+                                <input type="password" class="form-control" formControlName="username" placeholder="Nom d'utilisateur" required pInputText>
+                            </div>
+                            <div class="p-field mb-3">
+                                <input type="password" class="form-control" formControlName="email" placeholder="Adresse mail" required pInputText>
+                            </div>
+                            <div class="p-field mb-3">
+                                <input type="password" class="form-control" formControlName="password" placeholder="Mot de passe" required pInputText>
+                            </div>
+                            <div class="text-center">
+                                <p-button class="text-center" styleClass="p-button-warning" label="S'inscrire" [loading]="loading" (click)="register()"></p-button>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="mb-0  text-center">Déjà membre ? <a routerLink="/connection" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="text-primary fw-bold">Se connecter</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

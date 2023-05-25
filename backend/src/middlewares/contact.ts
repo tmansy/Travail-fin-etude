@@ -18,7 +18,7 @@ export const ContactControllers = {
                     },
                     To: [
                         {
-                            Email: 'theo.mansy@gmail.com',
+                            Email: 'theo.mansy@inforius.be',
                         }
                     ],
                     Subject: "Questions R4N",
@@ -35,7 +35,7 @@ export const ContactControllers = {
             res.locals.response = "Le mail a bien été envoyé";
             next();
         }).catch((err) => {
-            next(err);
+            next(new Error(err));
         })
     },
 }

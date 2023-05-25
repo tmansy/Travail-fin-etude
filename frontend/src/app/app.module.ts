@@ -27,6 +27,8 @@ import { ApiService } from './_services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConnectionComponent } from './pages/public/connection/connection.component';
+import { RegisterComponent } from './pages/public/register/register.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TournamentComponent,
     ShopComponent,
     ContactPageComponent,
+    ConnectionComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
