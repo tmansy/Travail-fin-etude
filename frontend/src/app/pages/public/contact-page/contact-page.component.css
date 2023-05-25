@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap');
+
+.font{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.margin-container{
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+
+.question{
+    color: #fff;
+    text-align: center;
+}
+
+.nous-trouver{
+    background-color: #f3bc30;
+    height: 10em;
+    padding-left: 15%;
+    padding-top: 1%;
+}
+
+a{
+    font-size: 1.2em;
+    color : #000; 
+    text-decoration: none;
+}
+
+a:hover{
+    color : #fff;
+    cursor: pointer;
+}
+
+.form{
+    color: #fff;
+}

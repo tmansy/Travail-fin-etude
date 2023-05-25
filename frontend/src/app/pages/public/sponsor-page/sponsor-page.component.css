@@ -1,0 +1,29 @@
+#sponsor-page{
+    color: white;
+    text-align: center;
+}
+
+.col-sm{
+    margin-top: 3em;
+    margin-bottom: 5em;
+    overflow: hidden;
+}
+
+.imgHover{
+    transition: 0.2s;
+}
+
+.imgHover:hover{
+    cursor: pointer;
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2); 
+}
+
+span{
+    opacity: 0;
+}
+
+p-dialog {
+    background-color: #17161A;
+}

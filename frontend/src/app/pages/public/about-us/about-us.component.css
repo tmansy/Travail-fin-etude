@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap');
+
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+  
+h1 {
+    font-size: 1.75rem;
+    margin: 0 0 0.75rem 0;
+}
+  
+.container {
+    display: flex;
+    height: 20em;
+    width: 75%;
+}
+  
+.left-half {
+    flex: 1;
+}
+  
+.right-half {
+    flex: 1;
+}
+
+.about-us_img{
+    width: 100%;
+    height: 100%;
+}
+
+.vertical-text{
+    writing-mode: vertical-lr;
+    white-space: nowrap;
+    text-orientation: upright;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.container_chiffres{
+    height: 120px;
+}
+
+.chiffres{
+    background-color: #f3bc30;
+    padding: 1rem;
+    justify-content: flex-start;
+}
+
+.container_margin{
+    margin-bottom: 2em;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}

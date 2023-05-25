@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap');
+
+.img-wrapper {
+  position: relative;
+  margin-top: 5em;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.img-overlay:before {
+  content: ' ';
+  display: block;
+  height: 90%;
+}
+
+.title{
+  font-size: 2em;
+  text-decoration: underline;
+  color: #fff;
+  text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
+}
+
+.paragraphe{
+  color: #fff;
+}
+
+.team{
+  font-size: 3em;
+  background-color: #f3bc30;
+}
+
+.teamCardStyle{
+  background-color : #17161A; 
+  color: white;
+  height: 100%;
+}
+
+.teamCarousel{
+  width: 60%;
+  margin: auto;
+}
+
+.wrapper{
+  overflow: hidden;
+}
+
+.firstDiv{
+  float: left;
+}
+
+.lol-logo{
+  width: 120px;
+}
+
+.lol-logo:hover{
+  opacity: 1;
+}
+
+.active{
+  opacity: 1;
+}
+
+.tft-logo{
+  width: 75px;
+}
+
+.tft-logo:hover{
+  opacity: 1;
+}
+
+a{
+  cursor: pointer;
+}
+
+.font{
+  font-family: 'Montserrat', sans-serif;
+}

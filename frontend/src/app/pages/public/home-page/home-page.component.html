@@ -1,0 +1,60 @@
+<div class="container-fluid font">
+    <div class="img-wrapper">
+        <img src="../../assets/img/banniere.jpg" style="width:1000px; height:auto" class="d-block mx-auto img-thumbnail img-responsive" alt="bannière r4n">
+        <div class="img-overlay mb-2">
+            <button routerLink="about-us" pButton pRipple type="button" label="Découvrir l'association" class="p-button-rounded p-button-secondary" icon="pi pi-arrow-right" iconPos="right"></button>
+        </div>
+    </div>
+    <div class="container">
+        <p class="title fw-bold mt-3 text-center">Requiem for a noob, association d'esport amateur</p>
+        <p class="paragraphe fs-4 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed posuere leo. Mauris nulla neque, tincidunt in faucibus nec, bibendum aliquet neque. Nulla vel ligula sodales, facilisis est non, pharetra ligula. Nulla quis lacus nunc. Nam semper imperdiet tincidunt. Maecenas mattis ullamcorper dui, eu mollis ex iaculis eu. Morbi hendrerit ipsum in elit feugiat rutrum. Phasellus dapibus rutrum aliquet. Maecenas id dolor cursus, ullamcorper turpis et, aliquam enim. Integer ac magna auctor, gravida diam nec, venenatis nisl. Duis sollicitudin sem purus, non ultricies leo consectetur ac. Vestibulum ac neque ut eros euismod vulputate ac a lectus. Curabitur tellus enim, tristique eu turpis in, commodo aliquam felis.</p>
+    </div>
+    <div class="team fw-bold mt-5 pb-3 mb-5">
+        <div class="wrapper">
+            <div class="firstDiv">
+                <div class="ps-4">Equipes</div>
+                <div class="mt-3 gameLogo">
+                    <a (click)="isLolTeamVisible = true" [ngStyle]="{'opacity' : isLolTeamVisible == true ? '1' : '0.5'}">
+                        <img alt="Logo de League of Legends" [src]="lolLogoPath" class="lol-logo">
+                    </a>
+                    <a (click)="isLolTeamVisible = false" [ngStyle]="{'opacity' : isLolTeamVisible == false ? '1' : '0.5'}">
+                        <img alt="Logo de League of Legends" [src]="tftLogoPath" class="tft-logo">
+                    </a>
+                </div>     
+            </div>
+            <div class="mt-3" *ngIf="isLolTeamVisible">
+                <p-carousel [value]="teams" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="5000" styleClass="teamCarousel" [showIndicators]="false">
+                    <ng-template let-teams pTemplate="item">
+                        <p-card header="{{teams.name}}" styleClass="teamCardStyle">
+                            <ng-template pTemplate="header">
+                                <img alt="Présentation des teams LoL" [src]="teams.logo">
+                            </ng-template> 
+                                <div>
+                                    <b>Capitaine : </b>{{teams.captain}}<br/>
+                                    {{teams.description}}
+                                </div>
+                            <ng-template pTemplate="footer">
+                                <button pButton pRipple type="button" label="Découvrir la team" class="p-button-rounded p-button-secondary"></button>
+                            </ng-template>
+                        </p-card>
+                    </ng-template>
+                </p-carousel>
+            </div>
+            <div class="mt-3" *ngIf="isLolTeamVisible == false">
+                <p-carousel [value]="tftplayers" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="5000" styleClass="teamCarousel" [showIndicators]="false">
+                    <ng-template let-tftPlayers pTemplate="item">
+                        <p-card header="{{tftPlayers.user.username}}" styleClass="teamCardStyle">
+                            <ng-template pTemplate="header">
+                                <img alt="Présentation des joueurs TFT" [src]="tftPlayers.img">
+                            </ng-template> 
+                                <p>{{tftPlayers.description}}</p>
+                            <ng-template pTemplate="footer">
+                                <button pButton pRipple type="button" label="Découvrir le joueur" class="p-button-rounded p-button-secondary"></button>
+                            </ng-template>
+                        </p-card>
+                    </ng-template>
+                </p-carousel>
+            </div>
+        </div>  
+    </div>  
+</div>

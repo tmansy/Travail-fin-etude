@@ -1,0 +1,30 @@
+#footer{
+    background-color: #000000;
+    padding: 30px;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+#brand{
+    height: 6.5em;
+}
+#explanationText{
+    padding-left: 3em;
+}
+#explanationText a{
+    color: white;
+    text-decoration: none;
+}
+#explanationText a:hover{
+    color: #f3bc30;
+}
+
+fa-icon{
+    font-size: 2.2em;
+    color : white;
+}
+fa-icon:hover{
+    color : #f3bc30;
+    cursor: pointer;
+}

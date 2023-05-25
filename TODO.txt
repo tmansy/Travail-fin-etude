@@ -1,0 +1,5 @@
+TO DO:
+
+- Faire tourner le projet sur mon pc portable
+- Envoyer un mail via le formulaire de contact
+- Faire des messages d'erreurs

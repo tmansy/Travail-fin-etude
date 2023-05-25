@@ -1,0 +1,46 @@
+{
+    "openapi": "3.0.0",
+    "servers": [
+        {
+            "description": "Serveur de développement",
+            "url": "http://localhost:5555/api/v1"
+        },
+        {
+            "description": "Serveur d'acceptance",
+            "url": "https://api.r4n-acc.be/api/v1"
+        },
+        {
+            "description": "Serveur de production",
+            "url": "https://api.r4n.be/api/v1"
+        }
+    ],
+    "info": {
+        "description": "Documentation of the R4N's API",
+        "version": "",
+        "title": "R4N API",
+        "contact": {
+            "email": "theo.mansy@inforius.be"
+        }
+    },
+    "tags": [],
+    "paths": {},
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "responses": {
+            "UnauthorizedError": {
+                "description": "Access token is missing or invalid"
+            },
+            "Forbidden": {
+                "description": "Forbidden"
+            }
+        },
+        "parameters": {},
+        "schemas": {}
+    }
+}

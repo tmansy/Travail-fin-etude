@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light py-3 stroke">
+    <div class="container-fluid">
+        <a class="navbar-brand position-absolute top-100 start-0 translate-middle-y" href="#">
+            <img routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" src="../../assets/img/r4n_logo.png" alt="r4n logo" class="mw-100 mh-100"/>
+        </a>
+        <button class="navbar-toggler ms-auto" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+            &#9776;
+        </button>
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse text-center">
+            <ul class="navbar-nav mb-lg mx-auto" id="navbarSupportedContent">
+                <li class="nav-item">
+                    <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav_hover fw-bold px-3" href="#" (click)="isMenuCollapsed = true">ACCUEIL</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav_hover fw-bold px-3" href="#" (click)="isMenuCollapsed = true">QUI SOMMES-NOUS ?</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="tournament" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [ngClass]="{}" class="nav-link nav_hover fw-bold px-3" href="#" (click)="isMenuCollapsed = true">TOURNOIS</a>
+                </li>
+                <li class="nav-item">
+                     <a routerLink="sponsors" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav_hover fw-bold px-3" href="#" (click)="isMenuCollapsed = true">SPONSORS</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav_hover fw-bold px-3" href="#" (click)="isMenuCollapsed = true">CONTACT</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mb-lg align-items-center">
+                <li class="nav-item shop-item" [ngClass]="{'shop': screenWidth > 990}">
+                    <a class = "nav-link fw-bold border-2 border-dark shop-item2" [ngClass]="{'border': screenWidth > 990, 'shop-text': screenWidth > 990, 'nav_hover': screenWidth < 990}" routerLink="shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" href="#" (click)="isMenuCollapsed = true"><i class="pi pi-shopping-bag"></i> SHOP</a>
+                </li>
+            </ul>        
+        </div> 
+    </div>
+</nav>

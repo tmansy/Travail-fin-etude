@@ -1,0 +1,67 @@
+.navbar{
+    font-family: "Friz Quadrata Regular";
+    background-color: #f3bc30 !important;
+}
+
+.navbar-brand{
+    height: 8em;
+}
+
+.shop{
+  background-color: #fff;
+  background: linear-gradient(to left, #fff 50%, #000 50%) right;
+  background-size: 200%;
+  transition: .3s ease-out;
+}
+
+.shop:hover{
+  background-position: left;
+  color: #fff;
+}
+
+.shop-text:hover{
+  color: #fff;
+}
+
+.nav_hover,
+.nav_hover:after,
+.nav_hover:before {
+  transition: all .4s;
+}
+
+.nav_hover:hover {
+    color: #000;
+}
+
+nav.stroke .nav_hover{
+  position: relative;
+}
+
+nav.stroke .nav_hover:after{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: #000;
+  height: 2.5px;
+}
+
+nav.stroke .nav_hover:hover:after {
+  width: 100%;
+}
+
+@media screen and (max-width: 990px){
+
+  nav.stroke .nav_hover:hover:after{
+    width: 37%;
+  }
+
+  .shop{
+    width: 20%;
+    margin-top: 10px;
+  }
+}
