@@ -1,5 +1,3 @@
-import * as async from 'async';
-import * as _ from 'underscore';
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from 'express';
 

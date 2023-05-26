@@ -31,6 +31,7 @@ import { ConnectionComponent } from './pages/public/connection/connection.compon
 import { RegisterComponent } from './pages/public/register/register.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './_interceptor/auth.interceptor';
+import { PrivateComponent } from './pages/private/private/private.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AuthInterceptor } from './_interceptor/auth.interceptor';
     ContactPageComponent,
     ConnectionComponent,
     RegisterComponent,
+    PrivateComponent,
   ],
   imports: [
     BrowserModule,

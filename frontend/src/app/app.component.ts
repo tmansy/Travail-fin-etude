@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  public title = 'Requiem for a noob';
+  public hideNavbarFooter: any;
+
+  constructor(private router: Router) {}
+  
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if(event instanceof NavigationEnd) {
+        const currentUrl = event.url;
+        this.hideNavbarFooter = currentUrl === '/private';
+      }
+    });
+  }
 }

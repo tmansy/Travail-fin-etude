@@ -11,5 +11,15 @@ export default [
         methods: [
             ConnectionControllers.login,
         ]
+    },
+    { 
+        name: 'signup',
+        description: 'Sign up on the website',
+        method: Methods.POST,
+        route: '/signup',
+        hasToken: false,
+        methods: [
+            ConnectionControllers.signup,
+        ]
     }
 ]

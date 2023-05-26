@@ -27,6 +27,10 @@ export class ApiService {
     return this.request.post('/login', data);
   }
 
+  postSignup(data: any) {
+    return this.request.post('/signup', data);
+  }
+
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);
 }

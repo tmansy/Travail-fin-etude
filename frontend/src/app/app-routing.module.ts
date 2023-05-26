@@ -10,6 +10,7 @@ import { ShopComponent } from './pages/public/shop/shop.component';
 import { ContactPageComponent } from './pages/public/contact-page/contact-page.component';
 import { ConnectionComponent } from './pages/public/connection/connection.component';
 import { RegisterComponent } from './pages/public/register/register.component';
+import { PrivateComponent } from './pages/private/private/private.component';
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: "contact", component: ContactPageComponent },
   { path: "connection", component: ConnectionComponent },
   { path: "register", component: RegisterComponent },
+  { path: "private", component: PrivateComponent },
   { path: "**", pathMatch: 'full', component: NotFoundComponent }
 ];
 

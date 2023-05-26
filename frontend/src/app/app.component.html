@@ -1,6 +1,6 @@
 <div class="content">
-  <app-navbar></app-navbar>
+  <app-navbar *ngIf="!hideNavbarFooter"></app-navbar>
   <router-outlet></router-outlet>
   <p-toast appendTo="body" key="general" position="bottom-right"></p-toast>
-  <app-footer></app-footer>
+  <app-footer *ngIf="!hideNavbarFooter"></app-footer>
 </div>
