@@ -36,6 +36,7 @@
     "express-rate-limit": "^6.7.0",
     "express-session": "^1.17.3",
     "html2json": "^1.0.2",
+    "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "node-mailjet": "^3.3.7",
     "node-xlsx": "^0.21.0",

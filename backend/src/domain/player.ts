@@ -2,6 +2,7 @@ import { User } from "./user";
 
 
 export class Player extends User {
+    public id: number;
     public game: string;
     public rank: string;
     public role: string;

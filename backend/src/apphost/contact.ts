@@ -7,8 +7,7 @@ export default [
         description: 'send contact mail',
         method: Methods.POST,
         route : '/sendMail',
-        token: false,
-        basic: true,
+        hasToken: false,
         methods: [
             ContactControllers.sendMail,
         ]

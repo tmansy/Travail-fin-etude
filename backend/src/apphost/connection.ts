@@ -7,8 +7,7 @@ export default [
         description: 'Account login with username/mail and password',
         method: Methods.POST,
         route : '/login',
-        token: false,
-        basic: true,
+        hasToken: false,
         methods: [
             ConnectionControllers.login,
         ]

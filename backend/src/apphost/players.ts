@@ -7,8 +7,7 @@ export default [
         description: 'Get all TFT players',
         method: Methods.GET,
         route : '/tftplayers',
-        token: false,
-        basic: true,
+        hasToken: false,
         methods: [
             PlayersControllers.getTFTPlayers,
         ]

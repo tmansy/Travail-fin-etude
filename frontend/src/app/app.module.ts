@@ -29,6 +29,8 @@ import { MessageService } from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnectionComponent } from './pages/public/connection/connection.component';
 import { RegisterComponent } from './pages/public/register/register.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './_interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,12 @@ import { RegisterComponent } from './pages/public/register/register.component';
   providers: [
     RequestService,
     ApiService,
-    MessageService
+    MessageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })

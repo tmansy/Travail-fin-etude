@@ -51,10 +51,9 @@ new SuperRouter({
     url_acc: 'https://api.r4n-acc.be',
     url_prod: 'https://api.r4n.be',
     addMiddlewares: (route: any, middlewares) => {
-        // if(route.token) {
-        //     middlewares.unshift(AuthControllers.account);
-        //     middlewares.unshift(AuthControllers.token);
-        // }
+        if(route.hasToken) {
+            middlewares.unshift(AuthControllers.token);
+        }
         middlewares.unshift(SuperStart);
         middlewares.push(SuperSocket);
         middlewares.push(SuperErrorHandler);

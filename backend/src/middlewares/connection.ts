@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import async from 'async';
 import bcrypt from 'bcrypt';
 import { User } from "../domain/user";
+import jwt from 'jsonwebtoken';
 
 export const ConnectionControllers = {
     login: (req: Request, res: Response, next: NextFunction) => {
@@ -18,9 +19,13 @@ export const ConnectionControllers = {
                 }).then((instance: User) => {
                     if(instance) {
                         const hashedPassword = instance.password;
-                        const passwordMatch = bcrypt.compareSync(password, hashedPassword)
+                        const passwordMatch = bcrypt.compareSync(password, hashedPassword);
                         if(passwordMatch) {
-                            res.locals.response = instance;
+                            const token = jwt.sign({ userId: instance.id }, `${process.env.SECRET_KEY}`, { expiresIn: '24h' });
+                            res.locals.response = {
+                                user: instance,
+                                token: token,
+                            };
                             callback();
                         }
                         else {
