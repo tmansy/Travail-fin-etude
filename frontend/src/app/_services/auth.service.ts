@@ -9,20 +9,28 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  setToken(token: string) {
+    return localStorage.setItem('token', token);
+  }
+
   isTokenValid(): boolean {
     const token = this.getToken();
 
     if (token) {
-      const decodedToken: any = jwt_decode(token);
-      const expirationDate = new Date(decodedToken.exp * 1000);
+      try {
+        const decodedToken: any = jwt_decode(token);
+        const currentTimestamp = Math.floor(Date.now() / 1000);
 
-      if (expirationDate < new Date()) {
-        return false;
+        if (decodedToken.exp < currentTimestamp) {
+          return false; // Token expiré
+        }
+
+        return true; // Token valide
+      } catch (error) {
+        return false; // Erreur de décodage du token
       }
-
-      return true;
     }
 
-    return false;
+    return false; // Pas de token disponible
   }
 }

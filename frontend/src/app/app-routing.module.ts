@@ -10,7 +10,10 @@ import { ShopComponent } from './pages/public/shop/shop.component';
 import { ContactPageComponent } from './pages/public/contact-page/contact-page.component';
 import { ConnectionComponent } from './pages/public/connection/connection.component';
 import { RegisterComponent } from './pages/public/register/register.component';
-import { PrivateComponent } from './pages/private/private/private.component';
+import { PrivateComponent } from './pages/private/private.component';
+import { MyspaceComponent } from './pages/private/myspace/myspace.component';
+import { TeamsComponent } from './pages/private/teams/teams.component';
+// import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
@@ -22,7 +25,20 @@ const routes: Routes = [
   { path: "contact", component: ContactPageComponent },
   { path: "connection", component: ConnectionComponent },
   { path: "register", component: RegisterComponent },
-  { path: "private", component: PrivateComponent },
+  { 
+    path: "private", 
+    component: PrivateComponent,
+    children: [
+      {
+        path: 'myspace',
+        component: MyspaceComponent,
+      },
+      {
+        path: 'teams',
+        component: TeamsComponent,
+      }
+    ] 
+  },
   { path: "**", pathMatch: 'full', component: NotFoundComponent }
 ];
 

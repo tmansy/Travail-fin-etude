@@ -16,7 +16,7 @@ export class AppComponent {
     this.router.events.subscribe((event) => {
       if(event instanceof NavigationEnd) {
         const currentUrl = event.url;
-        this.hideNavbarFooter = currentUrl === '/private';
+        this.hideNavbarFooter = currentUrl === '/private/myspace' || currentUrl === '/private/teams';
       }
     });
   }

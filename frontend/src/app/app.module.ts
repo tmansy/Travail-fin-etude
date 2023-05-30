@@ -31,7 +31,10 @@ import { ConnectionComponent } from './pages/public/connection/connection.compon
 import { RegisterComponent } from './pages/public/register/register.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './_interceptor/auth.interceptor';
-import { PrivateComponent } from './pages/private/private/private.component';
+import { PrivateComponent } from './pages/private/private.component';
+import { MyspaceComponent } from './pages/private/myspace/myspace.component';
+import { TeamsComponent } from './pages/private/teams/teams.component';
+// import { OAuthService } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,8 @@ import { PrivateComponent } from './pages/private/private/private.component';
     ConnectionComponent,
     RegisterComponent,
     PrivateComponent,
+    MyspaceComponent,
+    TeamsComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,4 +84,6 @@ import { PrivateComponent } from './pages/private/private/private.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+ 
+}

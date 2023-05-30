@@ -1,10 +1,9 @@
 TO DO:
 
-- Faire tourner le projet sur mon pc portable
 - Corriger la navbar
 - Envoyer des mails pour réinitialiser le mdp
 - Enregistrer les informations de connexion
-- Bouton se connecter / s'inscrire 
-- Faire une vérification des champs inscription
 - Mail de confirmation de compte
 - Mettre des sécurités avec des rôles
+- Se connecter par mail
+- SSO GUARD en front

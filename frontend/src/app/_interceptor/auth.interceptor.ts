@@ -11,15 +11,14 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = this.authService.getToken();
 
     if (token && this.authService.isTokenValid()) {
+      console.log('Token bon');
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
-    } else {
-      console.log('Token pas bon');
     }
-
+    
     return next.handle(request);
   }
 }

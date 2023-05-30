@@ -1,29 +1,31 @@
-<div class=" d-flex justify-content-center align-items-center">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
-                <div class="card bg-white">
-                    <div [formGroup]="formGroup" class="card-body p-5">
-                        <div class="mb-3">
-                            <h2 class="fw-bold mb-2 text-uppercase ">Requiem for a noob</h2>
-                            <p class=" mb-3">Entrez vos identifiants</p>
-                            <div class="p-field mb-3">
-                                <input type="email" class="form-control" formControlName="username" placeholder="Nom d'utilisateur ou adresse email" required pInputText>
+<div class="font">
+    <div class="custom-bg-dark d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="card bg-white">
+                        <div [formGroup]="formGroup" class="card-body p-5">
+                            <div class="mb-3">
+                                <h3 class="fw-bold mb-2 text-uppercase font">Requiem for a noob</h3>
+                                <p class=" mb-3">Entrez vos identifiants</p>
+                                <div class="p-field mb-3">
+                                    <input type="email" class="form-control" formControlName="username" placeholder="Nom d'utilisateur ou adresse email" required pInputText>
+                                </div>
+                                <div class="p-field mb-3">
+                                    <input type="password" class="form-control" formControlName="password" placeholder="Mot de passe" required pInputText>
+                                </div>
+                                <p class="small"><a class="text-primary" href="forget-password.html">Mot de passe oublié ?</a></p>
+                                <div class="text-center">
+                                    <p-button class="text-center w-100" styleClass="p-button-warning" label="Se connecter" [loading]="loading" (click)="login()"></p-button>
+                                </div>
                             </div>
-                            <div class="p-field mb-3">
-                                <input type="password" class="form-control" formControlName="password" placeholder="Mot de passe" required pInputText>
+                            <div>
+                                <p class="mb-0 text-center">Pas encore membre ? <a routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="text-primary fw-bold">S'inscrire</a></p>
                             </div>
-                            <p class="small"><a class="text-primary" href="forget-password.html">Mot de passe oublié ?</a></p>
-                            <div class="text-center">
-                                <p-button class="text-center w-100" styleClass="p-button-warning" label="Se connecter" [loading]="loading" (click)="login()"></p-button>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="mb-0  text-center">Pas encore membre ? <a routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="text-primary fw-bold">S'inscrire</a></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div>  

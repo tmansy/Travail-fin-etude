@@ -59,6 +59,10 @@ new SuperRouter({
         middlewares.push(SuperErrorHandler);
         middlewares.push(SuperStop);
     },
+}).addParam({
+    name: 'focus',
+    type: 'number',
+    description: 'it\'s an id',
 }).scan().build();
 
 const port = 5555;

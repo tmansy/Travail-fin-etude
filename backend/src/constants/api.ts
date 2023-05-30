@@ -4,3 +4,7 @@ export enum Methods {
     GET = 'get',
     DELETE = 'delete',
 }
+
+export enum Params {
+    FOCUS = ':focus',
+}

@@ -1,21 +1,22 @@
-<div id="sponsor-page" class="container">
-  <p style="margin-top: 3em; margin-bottom: 2em;" class="paragraphe fs-4 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed posuere leo. Mauris nulla neque, tincidunt in faucibus nec, bibendum aliquet neque. Nulla vel ligula sodales, facilisis est non, pharetra ligula. Nulla quis lacus nunc. Nam semper imperdiet tincidunt. Maecenas mattis ullamcorper dui, eu mollis ex iaculis eu. Morbi hendrerit ipsum in elit feugiat rutrum. Phasellus dapibus rutrum aliquet. Maecenas id dolor cursus, ullamcorper turpis et, aliquam enim. Integer ac magna auctor, gravida diam nec, venenatis nisl. Duis sollicitudin sem purus, non ultricies leo consectetur ac. Vestibulum ac neque ut eros euismod vulputate ac a lectus. Curabitur tellus enim, tristique eu turpis in, commodo aliquam felis.</p>
-  <div class="row">
-    <div *ngFor="let sponsor of sponsors" class="imgHover col-2 col-sm">
-      <div>
-        <p-image (click)="showModalDialog(sponsor)" src="{{sponsor.logo}}" alt="Image" width="250"></p-image>
+<div class="custom-bg-dark pt-5 pb-5">
+  <div id="sponsor-page" class="container">
+    <p style="margin-top: 3em; margin-bottom: 2em;" class="paragraphe fs-4 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed posuere leo. Mauris nulla neque, tincidunt in faucibus nec, bibendum aliquet neque. Nulla vel ligula sodales, facilisis est non, pharetra ligula. Nulla quis lacus nunc. Nam semper imperdiet tincidunt. Maecenas mattis ullamcorper dui, eu mollis ex iaculis eu. Morbi hendrerit ipsum in elit feugiat rutrum. Phasellus dapibus rutrum aliquet. Maecenas id dolor cursus, ullamcorper turpis et, aliquam enim. Integer ac magna auctor, gravida diam nec, venenatis nisl. Duis sollicitudin sem purus, non ultricies leo consectetur ac. Vestibulum ac neque ut eros euismod vulputate ac a lectus. Curabitur tellus enim, tristique eu turpis in, commodo aliquam felis.</p>
+    <div class="row">
+      <div *ngFor="let sponsor of sponsors" class="imgHover col-2 col-sm">
+        <div>
+          <p-image (click)="showModalDialog(sponsor)" src="{{sponsor.logo}}" alt="Image" width="250"></p-image>
+        </div>
       </div>
-    </div>
-  </div>  
-  <p-dialog [(visible)]="displayModal" [breakpoints]="{ '960px': '75vw' }" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
-    <div class="d-flex justify-content-center mb-4">
-      <h3 class="text-center">{{this.modalHeaderText}}</h3>
-    </div>
-    <p-image src="{{this.modalBanner}}" alt="Image de bannière" width="750"></p-image>
-    <p class="mt-4">{{this.modalBodyText}}<br></p>
-    <p>
-      <a href="{{this.modalUrl}}" target="_blank">Visiter le site web</a>
-    </p>
-  </p-dialog>
-  
+    </div>  
+    <p-dialog [(visible)]="displayModal" [breakpoints]="{ '960px': '75vw' }" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
+      <div class="d-flex justify-content-center mb-4">
+        <h3 class="text-center">{{this.modalHeaderText}}</h3>
+      </div>
+      <p-image src="{{this.modalBanner}}" alt="Image de bannière" width="750"></p-image>
+      <p class="mt-4">{{this.modalBodyText}}<br></p>
+      <p>
+        <a href="{{this.modalUrl}}" target="_blank">Visiter le site web</a>
+      </p>
+    </p-dialog>
+  </div>
 </div>
