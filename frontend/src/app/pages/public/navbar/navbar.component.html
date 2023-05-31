@@ -6,7 +6,7 @@
         <button class="navbar-toggler ms-auto" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
             &#9776;
         </button>
-        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse w-100">
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse w-100 margin-navbar">
             <ul class="navbar-nav mb-lg w-100 justify-content-center" id="navbarSupportedContent">
                 <li class="nav-item">
                     <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav_hover fw-bold px-3" href="#" (click)="isMenuCollapsed = true">ACCUEIL</a>

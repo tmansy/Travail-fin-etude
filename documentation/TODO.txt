@@ -7,3 +7,4 @@ TO DO:
 - Mettre des sécurités avec des rôles
 - Se connecter par mail
 - SSO GUARD en front
+- navbar responsive

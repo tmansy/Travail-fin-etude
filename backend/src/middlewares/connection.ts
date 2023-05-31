@@ -78,7 +78,7 @@ export const ConnectionControllers = {
                         ]
                     }
                 }).then((instances) => {
-                    if(instances) {
+                    if(instances.length > 0) {
                         res.locals.response = "false";
                         next();
                     }
