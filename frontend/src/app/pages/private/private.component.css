@@ -22,3 +22,11 @@ a:visited {
   font-family: 'Montserrat', sans-serif;
 }
 
+.left-section {
+  flex: 1;
+}
+
+.right-section {
+  flex: 5;
+}
+

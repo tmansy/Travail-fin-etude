@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/_services/api.service';
 import { AuthService } from '../../../_services/auth.service';
+import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
   selector: 'app-connection',
@@ -16,7 +17,7 @@ export class ConnectionComponent implements OnInit {
     password: new FormControl(),
   })
 
-  constructor(private router: Router, private api: ApiService, private authService: AuthService) { }
+  constructor(private router: Router, private api: ApiService, private authService: AuthService, private accountService: AccountService) { }
 
   ngOnInit(): void {
   }
@@ -30,8 +31,8 @@ export class ConnectionComponent implements OnInit {
           this.api.error('Le login ou le mot de passe n\'est pas correct.');
         }
         else {
-          console.log(res);
           this.authService.setToken(res.token);
+          this.accountService.user = res.user;
           localStorage.setItem('userId', res.user.id);
           this.api.success('Félications vous êtes connecté.');
           this.router.navigateByUrl('/private/myspace');

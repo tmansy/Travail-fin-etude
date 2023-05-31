@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/_services/account.service';
 import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
@@ -9,13 +10,9 @@ import { ApiService } from 'src/app/_services/api.service';
 export class PrivateComponent implements OnInit {
   public user: any;
 
-  constructor(private api: ApiService) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.api.getUser(localStorage.getItem('userId')).then((res) => {
-      this.user = res;
-    }).catch((err) => {
-      this.api.error(err);
-    })
+    this.user = this.accountService.user;
   }
 }

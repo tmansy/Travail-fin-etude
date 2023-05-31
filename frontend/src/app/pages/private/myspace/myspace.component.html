@@ -1,1 +1,42 @@
-<p>myspace works!</p>
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <h2 class="fw-bolder">Mon profil</h2>
+    <p-button label="Faire une demande d'affiliation"></p-button>
+</div>
+<hr class="title-line">
+<div *ngIf="loaded; else noloaded;">
+    <div class="row mt-3 mb-3" [formGroup]="formGroup">
+        <div class="col-6">
+            <label class="input-label">Titre</label>
+            <p-dropdown [options]="titleLabel" styleClass="w-100" formControlName="title" placeholder="Sélectionnez un titre"></p-dropdown>
+        </div>
+        <div class="col-6">
+            <label class="input-label">Nom de famille</label>
+            <input type="text" class="w-100" formControlName="lastname" placeholder="Nom" pInputText>
+        </div>
+        <div class="col-6 pt-3">
+            <label class="input-label">Prénom</label>
+            <input type="text" class="w-100" formControlName="firstname" placeholder="Prénom" pInputText>
+        </div>
+        <div class="col-6 pt-3">
+            <label class="input-label">Nom d'utilisateur</label>
+            <input type="text" class="w-100" formControlName="username" placeholder="Nom d'utilisateur" pInputText>
+        </div>
+        <div class="col-6 pt-3">
+            <label class="input-label">Numéro de téléphone</label>
+            <input type="text" class="w-100" formControlName="phoneNumber" placeholder="Numéro de téléphone" pInputText>
+        </div>
+        <div class="col-6 pt-3">
+            <label class="input-label">Date d'anniversaire</label>
+            <p-calendar styleClass="w-100" formControlName="birthdate" placeholder="Date d'anniversaire" ></p-calendar>
+        </div>
+    </div>
+    <div>
+        <p-button label="Sauvegarder" (click)="save()" styleClass="p-button-success"></p-button>
+    </div>
+</div>
+
+<ng-template #noloaded>
+    <div class="loader">
+        <img src="../../../../assets/img/loader.gif">
+    </div>
+</ng-template>

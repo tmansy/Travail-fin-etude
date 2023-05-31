@@ -13,6 +13,9 @@ import { CardModule } from 'primeng/card';
 import { StyleClassModule } from 'primeng/styleclass';
 import { ImageModule } from 'primeng/image';
 import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
 import { SponsorPageComponent } from './pages/public/sponsor-page/sponsor-page.component';
 import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -62,6 +65,9 @@ import { TeamsComponent } from './pages/private/teams/teams.component';
     FontAwesomeModule,
     CarouselModule,
     ButtonModule,
+    DropdownModule,
+    InputTextModule,
+    CalendarModule,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     CardModule,
