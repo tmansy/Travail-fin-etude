@@ -16,15 +16,19 @@ export class ConnectionComponent implements OnInit {
   public formGroup = new FormGroup({
     username: new FormControl(),
     password: new FormControl(),
+    checked: new FormControl(),
   })
 
   constructor(private router: Router, private api: ApiService, private authService: AuthService, private accountService: AccountService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    this.formGroup.patchValue({
-      username: this.cookieService.get('username'),
-      password: this.cookieService.get('password'),
-    })
+    if(this.cookieService.get('checked') === 'true') {
+      this.formGroup.patchValue({
+        username: this.cookieService.get('username'),
+        password: this.cookieService.get('password'),
+        checked: true,
+      })
+    } 
   }
 
   public login() {
@@ -39,6 +43,13 @@ export class ConnectionComponent implements OnInit {
           this.authService.setToken(res.token);
           this.accountService.user = res.user;
           localStorage.setItem('userId', res.user.id);
+          const checked = this.formGroup.get('checked')?.value;
+          if(checked == true) {
+            this.cookieService.set('checked', 'true');
+          }
+          else {
+            this.cookieService.set('checked', 'false');
+          }
           this.api.success('Félications vous êtes connecté.');
           this.router.navigateByUrl('/private/myspace');
         }

@@ -13,6 +13,7 @@ import { CardModule } from 'primeng/card';
 import { StyleClassModule } from 'primeng/styleclass';
 import { ImageModule } from 'primeng/image';
 import { ToastModule } from 'primeng/toast';
+import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
@@ -37,7 +38,6 @@ import { AuthInterceptor } from './_interceptor/auth.interceptor';
 import { PrivateComponent } from './pages/private/private.component';
 import { MyspaceComponent } from './pages/private/myspace/myspace.component';
 import { TeamsComponent } from './pages/private/teams/teams.component';
-// import { OAuthService } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -67,6 +67,7 @@ import { TeamsComponent } from './pages/private/teams/teams.component';
     ButtonModule,
     DropdownModule,
     InputTextModule,
+    CheckboxModule,
     CalendarModule,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),

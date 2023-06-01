@@ -14,6 +14,9 @@
                                 <div class="p-field mb-3">
                                     <input type="password" class="form-control" formControlName="password" placeholder="Mot de passe" required pInputText>
                                 </div>
+                                <div class="mb-3">
+                                    <p-checkbox [binary]="true" label="Retenir mes informations" formControlName="checked"></p-checkbox>
+                                </div>
                                 <p class="small"><a class="text-primary" href="forget-password.html">Mot de passe oublié ?</a></p>
                                 <div class="text-center">
                                     <p-button class="text-center w-100" styleClass="p-button-warning" label="Se connecter" [loading]="loading" (click)="login()"></p-button>
