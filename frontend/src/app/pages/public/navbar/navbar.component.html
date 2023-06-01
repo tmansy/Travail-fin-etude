@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light py-3 stroke">
     <div class="container-fluid">
-        <a class="navbar-brand position-absolute top-100 start-0 translate-middle-y" href="#">
+        <a class="navbar-brand" href="#">
             <img routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" src="../../assets/img/r4n_logo.png" alt="r4n logo" class="mw-100 mh-100"/>
         </a>
         <button class="navbar-toggler ms-auto" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
             &#9776;
         </button>
-        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse w-100 margin-navbar">
-            <ul class="navbar-nav mb-lg w-100 justify-content-center" id="navbarSupportedContent">
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse w-100 d-flex space">
+            <ul class="navbar-nav mb-lg w-100" id="navbarSupportedContent">
                 <li class="nav-item">
                     <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav_hover fw-bold px-3" href="#" (click)="isMenuCollapsed = true">ACCUEIL</a>
                 </li>

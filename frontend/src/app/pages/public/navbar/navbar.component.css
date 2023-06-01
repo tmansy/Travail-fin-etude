@@ -1,6 +1,14 @@
 .navbar{
     font-family: "Friz Quadrata Regular";
-    background-color: #f3bc30 !important;
+    background: linear-gradient(to bottom, #f3bc30 40%,#17161a 40%) !important;
+}
+
+.container-fluid {
+  align-items: start;
+}
+
+.space {
+  white-space: nowrap;
 }
 
 .navbar-brand{

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/_services/api.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('', Validators.pattern(/^(?=.*[A-Z]).{8,}$/)),
   })
 
-  constructor(private router: Router, private api: ApiService) { }
+  constructor(private router: Router, private api: ApiService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +33,12 @@ export class RegisterComponent implements OnInit {
           this.api.error("Nom d'utilisateur ou adresse mail déjà utilisée.")
         }
         else {
+          const username = this.formGroup.get('username')?.value;
+          const password = this.formGroup.get('password')?.value;
+          if(username !== undefined && username !== null && password !== undefined && password !== null) {
+            this.cookieService.set('username', username);
+            this.cookieService.set('password', password);
+          }
           this.api.success('Félicitations vous êtes inscrit. Vous pouvez maintenant vous connecter.');
           this.router.navigateByUrl(`/connection`);
         }

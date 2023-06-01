@@ -35,6 +35,10 @@ export class ApiService {
     return this.request.get(`/users/${userId}`);
   }
 
+  putUser(userId: any, data: any) {
+    return this.request.put(`/users/${userId}`, data);
+  }
+
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/_services/api.service';
 import { AuthService } from '../../../_services/auth.service';
 import { AccountService } from 'src/app/_services/account.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-connection',
@@ -17,9 +18,13 @@ export class ConnectionComponent implements OnInit {
     password: new FormControl(),
   })
 
-  constructor(private router: Router, private api: ApiService, private authService: AuthService, private accountService: AccountService) { }
+  constructor(private router: Router, private api: ApiService, private authService: AuthService, private accountService: AccountService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
+    this.formGroup.patchValue({
+      username: this.cookieService.get('username'),
+      password: this.cookieService.get('password'),
+    })
   }
 
   public login() {
