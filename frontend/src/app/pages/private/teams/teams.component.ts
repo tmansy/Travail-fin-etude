@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AccountService } from 'src/app/_services/account.service';
 import { ApiService } from 'src/app/_services/api.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogTeamsComponent } from '../dialog/dialog-teams/dialog-teams.component';
 
 @Component({
   selector: 'app-teams',
@@ -13,17 +14,27 @@ export class TeamsComponent implements OnInit {
   public teams: any;
   public loaded = false;
 
-  constructor(private accountService: AccountService, private api: ApiService) { }
+  constructor(private api: ApiService, private dialog: DialogService) { }
 
   ngOnInit(): void {
-    this.user = this.accountService.user;
+    const userString = localStorage.getItem('user');
+    if (userString !== null) {
+      const user = JSON.parse(userString);
+      this.user = user;
+    }
     this.loaded = true;
-
-
     this.api.getTeamsByPlayer(this.user.id).then((res: any) => {
       this.teams = res;
     })
-
   }
 
+  public teamsDialog() {
+    this.dialog.open(DialogTeamsComponent, {
+      header: "Création d'une nouvelle équipe",
+      styleClass: 'custom-dialog',
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    })
+  }
+  
 }

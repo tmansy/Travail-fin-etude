@@ -13,3 +13,12 @@
 .hover-effect:hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* ajustez les valeurs selon vos préférences */
 }
+
+.custom-dialog {
+    width: 500px;
+}
+
+.custom-dialog .p-dialog-header {
+    background-color: #fab710;
+}
+  

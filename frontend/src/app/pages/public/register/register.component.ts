@@ -33,12 +33,6 @@ export class RegisterComponent implements OnInit {
           this.api.error("Nom d'utilisateur ou adresse mail déjà utilisée.")
         }
         else {
-          const username = this.formGroup.get('username')?.value;
-          const password = this.formGroup.get('password')?.value;
-          if(username !== undefined && username !== null && password !== undefined && password !== null) {
-            this.cookieService.set('username', username);
-            this.cookieService.set('password', password);
-          }
           this.api.success('Félicitations vous êtes inscrit. Vous pouvez maintenant vous connecter.');
           this.router.navigateByUrl(`/connection`);
         }

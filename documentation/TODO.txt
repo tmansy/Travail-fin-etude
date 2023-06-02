@@ -9,3 +9,6 @@ TO DO:
 - SSO GUARD en front
 - navbar responsive
 - Quid des joueurs tft ?
+- Token admin
+- Onglet administrateur qui mets roleId à 2 dans user et qui l'inscrit en player 
+- Faire apparaître ou non une équipe

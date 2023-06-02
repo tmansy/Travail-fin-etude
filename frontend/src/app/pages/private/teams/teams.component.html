@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center mt-3">
     <h2 class="fw-bolder">Mon équipe</h2>
-    <p-button label="Créer une équipe" *ngIf="this.user.roleId == 2" styleClass="p-button-warning"></p-button>
+    <p-button label="Créer une équipe" *ngIf="this.user.roleId == 2" styleClass="p-button-warning" (onClick)="teamsDialog()"></p-button>
 </div>
 <hr class="title-line">
 <div class="container">
@@ -10,7 +10,7 @@
                 <p-card header="{{team.team.name}}">
                     <img src="../../../../assets/img/r4n_logo_sm.png" alt="image r4n">
                     <ng-template pTemplate="footer">
-                        <p-button label="Entrer" styleClass="p-button-warning fw-bold"></p-button>
+                        <p-button label="Entrer" styleClass="p-button-warning"></p-button>
                     </ng-template>
                 </p-card>
             </div> 

@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/_services/api.service';
 import { AuthService } from '../../../_services/auth.service';
-import { AccountService } from 'src/app/_services/account.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -19,7 +18,7 @@ export class ConnectionComponent implements OnInit {
     checked: new FormControl(),
   })
 
-  constructor(private router: Router, private api: ApiService, private authService: AuthService, private accountService: AccountService, private cookieService: CookieService) { }
+  constructor(private router: Router, private api: ApiService, private authService: AuthService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     if(this.cookieService.get('checked') === 'true') {
@@ -41,14 +40,20 @@ export class ConnectionComponent implements OnInit {
         }
         else {
           this.authService.setToken(res.token);
-          this.accountService.user = res.user;
           localStorage.setItem('userId', res.user.id);
+          localStorage.setItem('user', JSON.stringify(res.user));
           const checked = this.formGroup.get('checked')?.value;
+          const username = this.formGroup.get('username')?.value;
+          const password = this.formGroup.get('password')?.value;
           if(checked == true) {
             this.cookieService.set('checked', 'true');
+            this.cookieService.set('username', username);
+            this.cookieService.set('password', password);
           }
           else {
             this.cookieService.set('checked', 'false');
+            this.cookieService.delete('username');
+            this.cookieService.delete('password');
           }
           this.api.success('Félications vous êtes connecté.');
           this.router.navigateByUrl('/private/myspace');

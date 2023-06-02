@@ -16,9 +16,11 @@ import { ToastModule } from 'primeng/toast';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
 import { SponsorPageComponent } from './pages/public/sponsor-page/sponsor-page.component';
 import { DialogModule } from 'primeng/dialog';
+import { DialogService } from 'primeng/dynamicdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutUsComponent } from './pages/public/about-us/about-us.component';
 import { TeamPresentationComponent } from './pages/public/team-presentation/team-presentation.component';
@@ -38,6 +40,7 @@ import { AuthInterceptor } from './_interceptor/auth.interceptor';
 import { PrivateComponent } from './pages/private/private.component';
 import { MyspaceComponent } from './pages/private/myspace/myspace.component';
 import { TeamsComponent } from './pages/private/teams/teams.component';
+import { DialogTeamsComponent } from './pages/private/dialog/dialog-teams/dialog-teams.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,7 @@ import { TeamsComponent } from './pages/private/teams/teams.component';
     PrivateComponent,
     MyspaceComponent,
     TeamsComponent,
+    DialogTeamsComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,7 @@ import { TeamsComponent } from './pages/private/teams/teams.component';
     DropdownModule,
     InputTextModule,
     CheckboxModule,
+    FileUploadModule,
     CalendarModule,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
@@ -82,6 +87,7 @@ import { TeamsComponent } from './pages/private/teams/teams.component';
   providers: [
     RequestService,
     ApiService,
+    DialogService,
     MessageService,
     {
       provide: HTTP_INTERCEPTORS,

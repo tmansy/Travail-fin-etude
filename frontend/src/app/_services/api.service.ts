@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RequestService } from './request.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +42,10 @@ export class ApiService {
 
   getTeamsByPlayer(userId: any) {
     return this.request.get(`/teams_by_player/${userId}`);
+  }
+
+  postNewTeam(data: any) {
+    return this.request.post(`/create_team`, data);
   }
 
   success = (txt: string, duration?: number) => this.request.success(txt, duration);

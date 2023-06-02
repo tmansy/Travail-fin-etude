@@ -25,7 +25,12 @@ export class MyspaceComponent implements OnInit {
   constructor(private api: ApiService, private accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.user = this.accountService.user;
+    const userString = localStorage.getItem('user');
+    if (userString !== null) {
+      const user = JSON.parse(userString);
+      this.user = user;
+    }
+
     this.loaded = true;
     const formValues: any = {
       title: this.user.title,
