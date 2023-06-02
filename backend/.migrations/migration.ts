@@ -270,17 +270,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        // (callback) => {
-        //     db["Teams"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
+        (callback) => {
+            db["Teams"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
         // (callback) => {
         //     db["Tournaments"].sync({
         //         alter: true,
@@ -303,6 +303,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
+        (callback) => {
+            db["Players_Teams"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
         (callback) => {
             db.root_sequelize.query('SET FOREIGN_KEY_CHECKS = 1;')
             .then(() => {

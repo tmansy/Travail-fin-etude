@@ -39,6 +39,10 @@ export class ApiService {
     return this.request.put(`/users/${userId}`, data);
   }
 
+  getTeamsByPlayer(userId: any) {
+    return this.request.get(`/teams_by_player/${userId}`);
+  }
+
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);
 }

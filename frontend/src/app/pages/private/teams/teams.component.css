@@ -1,0 +1,15 @@
+.title-line {
+    width: 100%;
+    height: 2px;
+    background-color: #21b2f5;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hover-effect:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* ajustez les valeurs selon vos préférences */
+}

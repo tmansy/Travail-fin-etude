@@ -8,3 +8,4 @@ TO DO:
 - Se connecter par mail
 - SSO GUARD en front
 - navbar responsive
+- Quid des joueurs tft ?
