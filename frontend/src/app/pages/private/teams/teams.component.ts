@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ApiService } from 'src/app/_services/api.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DialogTeamsComponent } from '../dialog/dialog-teams/dialog-teams.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-teams',
@@ -14,7 +15,7 @@ export class TeamsComponent implements OnInit {
   public teams: any;
   public loaded = false;
 
-  constructor(private api: ApiService, private dialog: DialogService) { }
+  constructor(public router: Router, private api: ApiService, private dialog: DialogService) { }
 
   ngOnInit(): void {
     const userString = localStorage.getItem('user');
@@ -35,6 +36,10 @@ export class TeamsComponent implements OnInit {
     }).onClose.subscribe(() => {
       this.ngOnInit();
     })
+  }
+
+  public goTo(team: any) {
+    this.router.navigateByUrl(`/myteam/${team.team.id}/settings`);
   }
   
 }

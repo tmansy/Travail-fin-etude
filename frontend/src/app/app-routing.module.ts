@@ -13,18 +13,49 @@ import { RegisterComponent } from './pages/public/register/register.component';
 import { PrivateComponent } from './pages/private/private.component';
 import { MyspaceComponent } from './pages/private/myspace/myspace.component';
 import { TeamsComponent } from './pages/private/teams/teams.component';
+import { MyteamComponent } from './pages/private/myteam/myteam.component';
+import { SettingsComponent } from './pages/private/myteam/settings/settings.component';
+import { PlayersComponent } from './pages/private/myteam/players/players.component';
+import { TrainingsComponent } from './pages/private/myteam/trainings/trainings.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
-  { path: "", component: HomePageComponent },
-  { path: "about-us", component: AboutUsComponent },
-  { path: "sponsors", component: SponsorPageComponent },
-  { path: "team-presentation", component: TeamPresentationComponent },
-  { path: "shop", component: ShopComponent },
-  { path: "tournament", component: TournamentComponent },
-  { path: "contact", component: ContactPageComponent },
-  { path: "connection", component: ConnectionComponent },
-  { path: "register", component: RegisterComponent },
+  { 
+    path: "", 
+    component: HomePageComponent 
+  },
+  { 
+    path: "about-us", 
+    component: AboutUsComponent 
+  },
+  { 
+    path: "sponsors", 
+    component: SponsorPageComponent 
+  },
+  { 
+    path: "team-presentation", 
+    component: TeamPresentationComponent 
+  },
+  { 
+    path: "shop", 
+    component: ShopComponent 
+  },
+  { 
+    path: "tournament", 
+    component: TournamentComponent 
+  },
+  { 
+    path: "contact", 
+    component: ContactPageComponent 
+  },
+  { 
+    path: "connection", 
+    component: ConnectionComponent 
+  },
+  { 
+    path: "register", 
+    component: RegisterComponent 
+  },
   { 
     path: "private", 
     component: PrivateComponent,
@@ -39,7 +70,29 @@ const routes: Routes = [
       }
     ] 
   },
-  { path: "**", pathMatch: 'full', component: NotFoundComponent }
+  {
+    path: "myteam/:teamId",
+    component: MyteamComponent,
+    children: [
+      {
+        path: 'settings',
+        component: SettingsComponent,
+      },
+      {
+        path: 'players',
+        component: PlayersComponent,
+      },
+      {
+        path: 'trainings',
+        component: TrainingsComponent,
+      }
+    ]
+  },
+  { 
+    path: "**", 
+    pathMatch: 'full', 
+    component: NotFoundComponent 
+  }
 ];
 
 @NgModule({

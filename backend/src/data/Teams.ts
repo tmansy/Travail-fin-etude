@@ -15,7 +15,7 @@ export default class Teams extends GenericModel implements SuperModel {
             comment: 'Nom de la team',
         },
         logo: {
-            type: DataTypes.TEXT(),
+            type: DataTypes.TEXT('long'),
             comment: 'Logo de la team'
         },
         description: {
@@ -25,6 +25,11 @@ export default class Teams extends GenericModel implements SuperModel {
         captain: {
             type: DataTypes.STRING(255),
             comment: 'Capitaine actuel de la team',
+        },
+        display: {
+            type: DataTypes.TINYINT(),
+            defaultValue: 0,
+            Comment: 'Est-ce qu\'il faut afficher l\'équipe sur la page d\'accueil ?',
         }
     }
 }

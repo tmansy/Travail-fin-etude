@@ -41,6 +41,10 @@ import { PrivateComponent } from './pages/private/private.component';
 import { MyspaceComponent } from './pages/private/myspace/myspace.component';
 import { TeamsComponent } from './pages/private/teams/teams.component';
 import { DialogTeamsComponent } from './pages/private/dialog/dialog-teams/dialog-teams.component';
+import { MyteamComponent } from './pages/private/myteam/myteam.component';
+import { SettingsComponent } from './pages/private/myteam/settings/settings.component';
+import { PlayersComponent } from './pages/private/myteam/players/players.component';
+import { TrainingsComponent } from './pages/private/myteam/trainings/trainings.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +65,10 @@ import { DialogTeamsComponent } from './pages/private/dialog/dialog-teams/dialog
     MyspaceComponent,
     TeamsComponent,
     DialogTeamsComponent,
+    MyteamComponent,
+    SettingsComponent,
+    PlayersComponent,
+    TrainingsComponent,
   ],
   imports: [
     BrowserModule,

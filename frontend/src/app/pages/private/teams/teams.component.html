@@ -10,7 +10,7 @@
                 <p-card header="{{team.team.name}}">
                     <img src="../../../../assets/img/r4n_logo_sm.png" alt="image r4n">
                     <ng-template pTemplate="footer">
-                        <p-button label="Entrer" styleClass="p-button-warning"></p-button>
+                        <p-button label="Entrer" styleClass="p-button-warning" (onClick)="goTo(team)"></p-button>
                     </ng-template>
                 </p-card>
             </div> 

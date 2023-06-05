@@ -17,6 +17,9 @@ export class AppComponent {
       if(event instanceof NavigationEnd) {
         const currentUrl = event.url;
         this.hideNavbarFooter = currentUrl === '/private/myspace' || currentUrl === '/private/teams';
+        if(this.hideNavbarFooter == false) {
+          this.hideNavbarFooter = currentUrl.includes('/myteam/');
+        }
       }
     });
   }
