@@ -44,9 +44,9 @@
                 <div class="mt-3" *ngIf="isLolTeamVisible == false">
                     <p-carousel [value]="tftplayers" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="5000" styleClass="teamCarousel" [showIndicators]="false">
                         <ng-template let-tftPlayers pTemplate="item">
-                            <p-card header="{{tftPlayers.user.username}}" styleClass="teamCardStyle">
+                            <p-card header="{{tftPlayers.username}}" styleClass="teamCardStyle">
                                 <ng-template pTemplate="header">
-                                    <img alt="Présentation des joueurs TFT" [src]="tftPlayers.img">
+                                    <img alt="Présentation des joueurs TFT" [src]="tftPlayers">
                                 </ng-template> 
                                     <p>{{tftPlayers.description}}</p>
                                 <ng-template pTemplate="footer">

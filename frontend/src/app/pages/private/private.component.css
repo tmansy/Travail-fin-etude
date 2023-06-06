@@ -35,3 +35,7 @@ a:visited {
   color: black !important;
 }
 
+.active:hover {
+  background-color: #e2ac21 !important;
+}
+

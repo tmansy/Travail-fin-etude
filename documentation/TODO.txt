@@ -19,3 +19,7 @@ TO DO:
 - Harmoniser la couleur des boutons
 - Brackets-manager
 - Ajoutez un hover à mes bouttons jaunes
+- Supprimer une équipe
+- Mettre l'adresse
+- img des tft players
+- Modification des informations de la page profil

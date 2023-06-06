@@ -37,8 +37,8 @@ export class ApiService {
     return this.request.get(`/users/${userId}`);
   }
 
-  putUser(userId: any, data: any) {
-    return this.request.put(`/users/${userId}`, data);
+  putUserInfos(userId: any, data: any) {
+    return this.request.put(`/user_infos/${userId}`, data);
   }
 
   getTeamsByPlayer(userId: any) {
@@ -51,6 +51,10 @@ export class ApiService {
 
   getTeam(teamId: any) {
     return this.request.get(`/teams/${teamId}`);
+  }
+
+  putTeamInfos(teamId: any, data: any) {
+    return this.request.put(`/teams/${teamId}`, data);
   }
 
   success = (txt: string, duration?: number) => this.request.success(txt, duration);

@@ -61,17 +61,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        // (callback) => {
-        //     db["Users"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },,
+        (callback) => {
+            db["Users"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
         // (callback) => {
         //     db["Cities"].sync({
         //         alter: true,
@@ -183,17 +183,6 @@ const db = new Database('db').scan(thepath);
         //     })
         // },
         // (callback) => {
-        //     db["Players"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
-        // (callback) => {
         //     db["Products_Orders"].sync({
         //         alter: true,
         //         logging: console.log,
@@ -292,28 +281,28 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        // (callback) => {
-        //     db["Trainings"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
-        // (callback) => {
-        //     db["Players_Teams"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
+        (callback) => {
+            db["Trainings"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
+            db["Users_Teams"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
         (callback) => {
             db.root_sequelize.query('SET FOREIGN_KEY_CHECKS = 1;')
             .then(() => {

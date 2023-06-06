@@ -5,7 +5,7 @@ export default class Teams extends GenericModel implements SuperModel {
     name = 'teams';
     alias = 'Teams';
     public = true;
-    hasMany = ['Trainings', 'Teams_Tournaments', 'Players_Teams'];
+    hasMany = ['Trainings', 'Teams_Tournaments', 'Users_Teams'];
     
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 

@@ -13,7 +13,7 @@ export class SettingsComponent implements OnInit {
   public teamId: number | undefined;
   public loaded = false;
   public formGroup = new FormGroup({
-    label: new FormControl(),
+    name: new FormControl(),
     description: new FormControl(),
     logo: new FormControl(),
     checked: new FormControl(),
@@ -31,7 +31,7 @@ export class SettingsComponent implements OnInit {
       this.loaded = true;
       this.team = res;
       const formValues: any = {
-        label: res.name,
+        name: res.name,
         description: res.description,
         checked: res.display == 1 ? true : false,
       }
@@ -40,7 +40,27 @@ export class SettingsComponent implements OnInit {
   }
 
   public save() {
-    console.log(this.formGroup.value);
+    if(this.formGroup.valid) {
+      if(this.formGroup.get('logo')?.value == null) {
+        const formValues: any = {
+          name: this.formGroup.get('name')?.value,
+          description: this.formGroup.get('description')?.value,
+          checked: this.formGroup.get('checked')?.value ? 1 : 0,
+        }
+        this.api.putTeamInfos(this.teamId, formValues).then((res: any) => {
+          this.api.success('Les informations de l\'équipe ont bien été enregistrées.');
+        })
+      }
+      else {
+        this.api.putTeamInfos(this.teamId, this.formGroup.value).then((res: any) => {
+          this.ngOnInit();
+          this.api.success('Les informations de l\'équipe ont bien été enregistrées.');
+        })
+      }
+    } 
+    else {
+      this.api.error('Formulaire invalide');
+    }
   }
 
   public handleImageUpload(event: any) {

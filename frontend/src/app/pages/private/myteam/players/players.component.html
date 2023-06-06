@@ -1,1 +1,15 @@
-<p>players works!</p>
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <h2 class="fw-bolder">Les joueurs de l'équipe</h2>
+    <p-button label="Ajouter un joueur" *ngIf="this.user.roleId == 2" (onClick)="playerDialog()" styleClass="custom-color"></p-button>
+</div>
+<hr class="title-line">
+
+<div *ngIf="loaded; else noloaded">
+
+</div>
+
+<ng-template #noloaded>
+    <div class="loader">
+        <img src="../../../../../assets/img/loader.gif">
+    </div>
+</ng-template>

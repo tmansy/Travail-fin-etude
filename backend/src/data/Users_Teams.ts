@@ -1,10 +1,10 @@
 import { GenericModel, SuperModel } from 'super-rest-api';
 
-export default class Players_Teams extends GenericModel implements SuperModel {
-    name = 'players_teams';
-    alias = 'Players_Teams';
+export default class Users_Teams extends GenericModel implements SuperModel {
+    name = 'users_teams';
+    alias = 'Users_Teams';
     public = true;
-    belongsTo = ['Players', 'Teams'];
+    belongsTo = ['Users', 'Teams'];
     
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 

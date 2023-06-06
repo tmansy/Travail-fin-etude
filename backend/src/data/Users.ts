@@ -6,7 +6,7 @@ export default class Users extends GenericModel implements SuperModel {
     alias = 'Users';
     public = true;
     belongsTo = ['Addresses', 'Roles'];
-    hasMany = ['MembershipRequests', 'News', 'Comments', 'Bills', 'Orders', 'Tournaments', 'Players', 'Trainings'];
+    hasMany = ['MembershipRequests', 'News', 'Comments', 'Bills', 'Orders', 'Tournaments', 'Trainings'];
     
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 
@@ -43,5 +43,25 @@ export default class Users extends GenericModel implements SuperModel {
             type: DataTypes.DATE(),
             comment: 'Date d\'anniversaire de la personne',
         },
+        game: {
+            type: DataTypes.STRING(255),
+            comment: 'Jeu auquel le joueur joue',
+        },
+        rank: {
+            type: DataTypes.STRING(255),
+            comment: 'Classement du joueur sur le jeu'
+        },
+        roleGame: {
+            type: DataTypes.STRING(255),
+            comment: 'Rôle de joueur dans le jeu',
+        },
+        img: {
+            type: DataTypes.TEXT('long'),
+            comment: 'Image du joueur',
+        },
+        description: {
+            type: DataTypes.STRING(255),
+            comment: 'Description du joueur',
+        }
     }
 }

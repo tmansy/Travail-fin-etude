@@ -11,7 +11,7 @@
 }
 
 .hover-effect:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* ajustez les valeurs selon vos préférences */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
 }
 
 .custom-dialog {
@@ -22,3 +22,14 @@
     background-color: #fab710;
 }
   
+.custom-color {
+    background-color: #fab710;
+    color: black;
+    border: none;
+    outline: none;
+}
+
+.custom-color:hover {
+    background-color: #e2ac21 !important;
+    color: black !important;
+}

@@ -22,19 +22,20 @@ export const TeamsControllers = {
                 })
             },
             (callback) => {
-                database['Players'].findAll({
-                    include: [
-                        { model: database['Users'], where: { roleId: 2 } }
-                    ]
+                database['Users'].findAll({
+                    where: {
+                        roleId: 2,
+                    }
                 }).then((instances) => {
+                    console.log(instances);
                     admins.push(...instances);
                     callback();
                 })
             },
             (callback) => {
                 async.each(admins, (admin, nextAdmin) => {
-                    database['Players_Teams'].create({
-                        playerId: admin.id,
+                    database['Users_Teams'].create({
+                        userId: admin.id,
                         teamId: teamId,
                     }).then(() => {
                         nextAdmin();
@@ -48,6 +49,33 @@ export const TeamsControllers = {
         ], (err) => {
             if(err) {
                 next(new Error(err));
+            }
+            else {
+                next();
+            }
+        })
+    },
+
+    putTeamInfos: (req: Request, res: Response, next: NextFunction) => {
+        const database = res.locals.database;
+        const teamId = res.locals.focus;
+        const body = req.body;
+
+        async.waterfall([
+            (callback) => {
+                database['Teams'].update(body, {
+                    where: {
+                        id: teamId,
+                    }
+                }).then(() => {
+                    callback();
+                }).catch((err) => {
+                    callback(err);
+                })
+            }
+        ], (err) => {
+            if(err) {
+                next(err);
             }
             else {
                 next();
