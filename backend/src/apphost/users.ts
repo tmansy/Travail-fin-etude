@@ -54,5 +54,15 @@ export default [
         methods: [
             UsersControllers.getAllPlayersInformationsByteam,
         ]
+    },
+
+    {
+        name: 'putPlayerInfos',
+        description: 'Put all player\'s infos',
+        method: Methods.PUT,
+        route: `/playerInfos/${Params.FOCUS}`,
+        methods: [
+            UsersControllers.putPlayerInfos,
+        ]
     }
 ]

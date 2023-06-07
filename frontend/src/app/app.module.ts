@@ -16,6 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
 import { SponsorPageComponent } from './pages/public/sponsor-page/sponsor-page.component';
@@ -45,6 +46,7 @@ import { MyteamComponent } from './pages/private/myteam/myteam.component';
 import { SettingsComponent } from './pages/private/myteam/settings/settings.component';
 import { PlayersComponent } from './pages/private/myteam/players/players.component';
 import { TrainingsComponent } from './pages/private/myteam/trainings/trainings.component';
+import { DialogPlayerComponent } from './pages/private/dialog/dialog-player/dialog-player.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,7 @@ import { TrainingsComponent } from './pages/private/myteam/trainings/trainings.c
     SettingsComponent,
     PlayersComponent,
     TrainingsComponent,
+    DialogPlayerComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +85,7 @@ import { TrainingsComponent } from './pages/private/myteam/trainings/trainings.c
     CheckboxModule,
     FileUploadModule,
     CalendarModule,
+    TableModule,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     CardModule,

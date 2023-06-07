@@ -37,6 +37,7 @@ export const TeamsControllers = {
                     database['Users_Teams'].create({
                         userId: admin.id,
                         teamId: teamId,
+                        roleTeam: 'Admin',
                     }).then(() => {
                         nextAdmin();
                     }).catch((err) => {

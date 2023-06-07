@@ -12,3 +12,10 @@ html{
 .custom-bg-dark{
     background-color: #17161A;
 }
+.custom-dialog .p-dialog-header{
+    width: 500px;
+}
+
+.custom-dialog .p-dialog-header {
+    background-color: #fab710;
+}

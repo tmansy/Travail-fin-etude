@@ -27,6 +27,8 @@
     color: black;
     border: none;
     outline: none;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .custom-color:hover {

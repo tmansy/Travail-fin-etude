@@ -1,11 +1,30 @@
 <div class="d-flex justify-content-between align-items-center mt-3">
     <h2 class="fw-bolder">Les joueurs de l'équipe</h2>
-    <p-button label="Ajouter un joueur" *ngIf="this.user.roleId == 2" (onClick)="playerDialog()" styleClass="custom-color"></p-button>
+    <p-button label="Ajouter un joueur" *ngIf="this.user.roleId == 2" (onClick)="playerDialog()"></p-button>
 </div>
 <hr class="title-line">
 
 <div *ngIf="loaded; else noloaded">
-
+    <div class="card">
+        <p-table [value]="players" selectionMode="single" [(selection)]="selectedPlayer" dataKey="user.username" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="user.username">Nom d'utilisateur<p-sortIcon field="user.username"></p-sortIcon></th>
+                    <th pSortableColumn="user.rank">Rang <p-sortIcon field="user.rank"></p-sortIcon></th>
+                    <th pSortableColumn="user.roleGame">Rôle dans le jeu <p-sortIcon field="user.roleGame"></p-sortIcon></th>
+                    <th pSortableColumn="user.roleTeam">Rôle dans l'équipe <p-sortIcon field="user.roleTeam"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-player>
+                <tr [pSelectableRow]="player">
+                    <td>{{player.user.username}}</td>
+                    <td>{{player.user.rank}}</td>
+                    <td>{{player.user.roleGame}}</td>
+                    <td>{{player.roleTeam}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </div>
 
 <ng-template #noloaded>

@@ -1,0 +1,18 @@
+<div [formGroup]="formGroup">
+    <div class="p-field mt-3">
+        <label>Nom d'utilisateur</label>
+        <input [attr.disabled]="true" type="text" formControlName="username" class="w-100" pInputText>
+    </div>
+    <div class="p-field mt-3">
+        <p-dropdown appendTo="body" [options]="rankLabel" styleClass="w-100" formControlName="rank" placeholder="Rang"></p-dropdown>
+    </div>
+    <div class="p-field mt-3">
+        <p-dropdown appendTo="body" [options]="roleGameLabel" styleClass="w-100" formControlName="roleGame" placeholder="Rôle dans le jeu"></p-dropdown>
+    </div>
+    <div class="p-field mt-3">
+        <p-dropdown appendTo="body" [options]="roleTeamLabel" styleClass="w-100" formControlName="roleTeam" placeholder="Rôle dans l'équipe"></p-dropdown>
+    </div>
+    <div class="mt-3 d-flex justify-content-end">
+        <p-button label="Enregistrer" (onClick)="save()"></p-button>
+    </div>
+</div>
