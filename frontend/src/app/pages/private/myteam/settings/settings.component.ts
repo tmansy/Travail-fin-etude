@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/_services/api.service';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
+  public user: any;
   public team: any;
   public teamId: number | undefined;
   public loaded = false;
@@ -23,6 +24,12 @@ export class SettingsComponent implements OnInit {
   constructor(private api: ApiService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const userString = localStorage.getItem('user');
+    if (userString !== null) {
+      const user = JSON.parse(userString);
+      this.user = user;
+    }
+    
     this.activatedRoute.parent?.params.subscribe((params) => {
       this.teamId = +params['teamId'];
     })

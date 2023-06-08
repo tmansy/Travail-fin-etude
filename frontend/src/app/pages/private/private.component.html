@@ -12,6 +12,12 @@
         <li class="nav-item">
           <a routerLink="/private/teams" routerLinkActive="active" class="nav-link"><i class="bi bi-people-fill px-2"></i>Mon équipe</a>
         </li>
+        <li>
+          <a routerLink="/private/staff" routerLinkActive="active" class="nav-link"><i class="bi bi-clipboard-pulse px-2"></i>Le staff</a>
+        </li>
+        <li *ngIf="this.user.roleId === 2">
+          <a routerLink="/private/requests" routerLinkActive="active" class="nav-link"><i class="bi bi-hand-index px-2"></i>Les demandes d'affiliation</a>
+        </li>
       </ul>
       <hr>
       <div class="dropdown">

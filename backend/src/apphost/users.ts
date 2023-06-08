@@ -51,6 +51,7 @@ export default [
         description: 'Get all players informations by team',
         method: Methods.GET,
         route: `/players_by_team/${Params.FOCUS}`,
+        hasToken: true,
         methods: [
             UsersControllers.getAllPlayersInformationsByteam,
         ]
@@ -61,8 +62,31 @@ export default [
         description: 'Put all player\'s infos',
         method: Methods.PUT,
         route: `/playerInfos/${Params.FOCUS}`,
+        hasToken: true,
         methods: [
             UsersControllers.putPlayerInfos,
+        ]
+    },
+
+    {
+        name: 'getUsers',
+        description: 'Get all users',
+        method: Methods.GET,
+        route: `/users`,
+        hasToken: true,
+        methods: [
+            UsersControllers.getUsers,
+        ]
+    },
+
+    {
+        name: 'AddPlayerTeam',
+        description: 'Add a user in a team',
+        method: Methods.POST,
+        route: `/add_new_player`,
+        hasToken: true,
+        methods: [
+            UsersControllers.postPlayer,
         ]
     }
 ]

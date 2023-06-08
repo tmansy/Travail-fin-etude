@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ApiService } from 'src/app/_services/api.service';
 import { DialogPlayerComponent } from '../../dialog/dialog-player/dialog-player.component';
+import { DialogNewPlayerComponent } from '../../dialog/dialog-new-player/dialog-new-player.component';
 
 @Component({
   selector: 'app-players',
@@ -37,7 +38,13 @@ export class PlayersComponent implements OnInit {
   }
 
   public playerDialog() {
-
+    this.dialog.open(DialogNewPlayerComponent, {
+      header: "Ajouter un joueur dans l'équipe",
+      styleClass: 'custom-dialog',
+      data: this.teamId,
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    })
   }
 
   public onRowSelect(event: any) {

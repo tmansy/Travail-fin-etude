@@ -24,3 +24,6 @@ TO DO:
 - img des tft players
 - Modification des informations de la page profil
 - Modifier les informations des joueurs seulement pour le capitaine
+- Obliger les informations dans les dialog
+- Revoir les rôles
+- Revoir les icônes

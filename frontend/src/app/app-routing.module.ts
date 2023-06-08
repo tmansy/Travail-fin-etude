@@ -17,6 +17,8 @@ import { MyteamComponent } from './pages/private/myteam/myteam.component';
 import { SettingsComponent } from './pages/private/myteam/settings/settings.component';
 import { PlayersComponent } from './pages/private/myteam/players/players.component';
 import { TrainingsComponent } from './pages/private/myteam/trainings/trainings.component';
+import { StaffComponent } from './pages/private/staff/staff.component';
+import { RequestsComponent } from './pages/private/requests/requests.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -67,6 +69,14 @@ const routes: Routes = [
       {
         path: 'teams',
         component: TeamsComponent,
+      },
+      {
+        path: 'staff',
+        component: StaffComponent,
+      },
+      {
+        path: 'requests',
+        component: RequestsComponent,
       }
     ] 
   },

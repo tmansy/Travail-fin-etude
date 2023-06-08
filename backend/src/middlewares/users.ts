@@ -190,7 +190,7 @@ export const UsersControllers = {
                         roleTeam: { [Op.ne]: 'Admin' }
                     },
                     include: [
-                        { model: database['Users'] },
+                        { model: database['Users'], attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'img', 'description', 'addressId', 'roleId'] },
                     ]
                 }).then((instances) => {
                     if(instances) {
@@ -251,6 +251,77 @@ export const UsersControllers = {
         ], (err) => {
             if(err) {
                 next(err);
+            }
+            else {
+                next();
+            }
+        })
+    },
+
+    getUsers: (req: Request, res: Response, next: NextFunction) => {
+        const database = res.locals.database;
+
+        async.waterfall([
+            (callback) => {
+                database['Users'].findAll({
+                    attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'description', 'addressId', 'roleId'],
+                }).then((instances) => {
+                    if(instances) {
+                        res.locals.response = instances;
+                        callback();
+                    }
+                    else {
+                        callback();
+                    }
+                }).catch((err) => {
+                    callback(err);
+                })
+            }
+        ], (err) => {
+            if(err) {
+                next(err);
+            }
+            else {
+                next();
+            }
+        })
+    },
+
+    postPlayer: (req: Request, res: Response, next: NextFunction) => {
+        const database = res.locals.database;
+        const body = req.body;
+        let userId;
+
+        async.waterfall([
+            (callback) => {
+                database['Users'].findOne({
+                    where: {
+                        username: body.username,
+                    }
+                }).then((instance) => {
+                    if(instance) {
+                        userId = instance.id;
+                        callback();
+                    }
+                }).catch((err) => {
+                    callback(err);
+                })
+            },
+            (callback) => {
+                database['Users_Teams'].create({
+                    roleTeam: body.roleTeam,
+                    userId: userId,
+                    teamId: body.teamId,
+                }).then((instance) => {
+                    res.locals.response = instance;
+                    callback();
+                }).catch((err) => {
+                    callback(err);
+                })
+            }
+        ], (err) => {
+            if(err) {
+                next(new Error(err));
             }
             else {
                 next();

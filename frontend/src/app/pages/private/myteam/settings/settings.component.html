@@ -24,7 +24,7 @@
                 <p-fileUpload styleClass="custom-bg-file" mode="basic" chooseLabel="Choisir une image" accept="image/jpeg,image/png" (onSelect)="handleImageUpload($event)"></p-fileUpload>
             </div>
             <div class="d-flex justify-content-end">
-                <p-button label="Sauvegarder" (click)="save()" styleClass="custom-color"></p-button>
+                <p-button label="Sauvegarder" (click)="save()" [ngClass]="{'p-disabled': this.user.roleId == 1, 'custom-color': true}"></p-button>
             </div>
         </div>
     </div>

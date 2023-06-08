@@ -47,6 +47,9 @@ import { SettingsComponent } from './pages/private/myteam/settings/settings.comp
 import { PlayersComponent } from './pages/private/myteam/players/players.component';
 import { TrainingsComponent } from './pages/private/myteam/trainings/trainings.component';
 import { DialogPlayerComponent } from './pages/private/dialog/dialog-player/dialog-player.component';
+import { DialogNewPlayerComponent } from './pages/private/dialog/dialog-new-player/dialog-new-player.component';
+import { StaffComponent } from './pages/private/staff/staff.component';
+import { RequestsComponent } from './pages/private/requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +75,9 @@ import { DialogPlayerComponent } from './pages/private/dialog/dialog-player/dial
     PlayersComponent,
     TrainingsComponent,
     DialogPlayerComponent,
+    DialogNewPlayerComponent,
+    StaffComponent,
+    RequestsComponent,
   ],
   imports: [
     BrowserModule,

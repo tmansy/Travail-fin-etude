@@ -37,6 +37,10 @@ export class ApiService {
     return this.request.get(`/users/${userId}`);
   }
 
+  getUsers() {
+    return this.request.get('/users');
+  }
+
   putUserInfos(userId: any, data: any) {
     return this.request.put(`/user_infos/${userId}`, data);
   }
@@ -63,6 +67,10 @@ export class ApiService {
 
   putPlayerInfos(userId: any, data: any) {
     return this.request.put(`/playerInfos/${userId}`, data);
+  }
+
+  postPlayer(data: any) {
+    return this.request.post('/add_new_player', data);
   }
 
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
