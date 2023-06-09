@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/_services/api.service';
 })
 export class PrivateComponent implements OnInit {
   public user: any;
+  public roleId: any;
 
   constructor(private router: Router, private api: ApiService) { }
 
@@ -17,6 +18,12 @@ export class PrivateComponent implements OnInit {
     if (userString !== null) {
       const user = JSON.parse(userString);
       this.user = user;
+    }
+
+    const roleIdString = localStorage.getItem('roleId');
+    if (roleIdString !== null) {
+      const roleId = JSON.parse(roleIdString);
+      this.roleId = roleId;
     }
   }
 

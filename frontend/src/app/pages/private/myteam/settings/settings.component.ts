@@ -20,6 +20,7 @@ export class SettingsComponent implements OnInit {
     checked: new FormControl(),
   });
   public selectedImage: string | null = null;
+  public roleId: any;
 
   constructor(private api: ApiService, private activatedRoute: ActivatedRoute) { }
 
@@ -28,6 +29,12 @@ export class SettingsComponent implements OnInit {
     if (userString !== null) {
       const user = JSON.parse(userString);
       this.user = user;
+    }
+
+    const roleIdString = localStorage.getItem('roleId');
+    if (roleIdString !== null) {
+      const roleId = JSON.parse(roleIdString);
+      this.roleId = roleId;
     }
     
     this.activatedRoute.parent?.params.subscribe((params) => {

@@ -27,3 +27,4 @@ TO DO:
 - Obliger les informations dans les dialog
 - Revoir les rôles
 - Revoir les icônes
+- Couleur "Créer une équipe"

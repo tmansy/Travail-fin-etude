@@ -16,7 +16,8 @@ export class ConnectionComponent implements OnInit {
     username: new FormControl(),
     password: new FormControl(),
     checked: new FormControl(),
-  })
+  });
+  public roleIdArray: any[] = [];
 
   constructor(private router: Router, private api: ApiService, private authService: AuthService, private cookieService: CookieService) { }
 
@@ -42,6 +43,8 @@ export class ConnectionComponent implements OnInit {
           this.authService.setToken(res.token);
           localStorage.setItem('userId', res.user.id);
           localStorage.setItem('user', JSON.stringify(res.user));
+          this.getRoles(res.user);
+          localStorage.setItem('roleId', JSON.stringify(this.roleIdArray));
           const checked = this.formGroup.get('checked')?.value;
           const username = this.formGroup.get('username')?.value;
           const password = this.formGroup.get('password')?.value;
@@ -66,6 +69,12 @@ export class ConnectionComponent implements OnInit {
     else {
       this.loading = false;
       this.api.error('Veuillez complétez le formulaire.')
+    }
+  }
+
+  public getRoles(user: any) {
+    for(const userRole of user.users_roles) {
+      this.roleIdArray.push(userRole.roleId);
     }
   }
 }

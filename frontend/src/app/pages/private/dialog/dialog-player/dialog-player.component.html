@@ -16,6 +16,6 @@
         <p-dropdown appendTo="body" [options]="roleTeamLabel" styleClass="w-100" formControlName="roleTeam" placeholder="Rôle dans l'équipe"></p-dropdown>
     </div>
     <div class="mt-3 d-flex justify-content-end">
-        <p-button label="Enregistrer" [ngClass]="{'p-disabled': this.user.roleId == 1, 'custom-color': true}" (onClick)="save()"></p-button>
+        <p-button label="Enregistrer" [ngClass]="{'p-disabled': roleId.includes(1), 'custom-color': true}" (onClick)="save()"></p-button>
     </div>
 </div>

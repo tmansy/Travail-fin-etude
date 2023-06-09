@@ -14,6 +14,7 @@ export class TeamsComponent implements OnInit {
   public user: any;
   public teams: any;
   public loaded = false;
+  public roleId: any;
 
   constructor(public router: Router, private api: ApiService, private dialog: DialogService) { }
 
@@ -23,6 +24,13 @@ export class TeamsComponent implements OnInit {
       const user = JSON.parse(userString);
       this.user = user;
     }
+
+    const roleIdString = localStorage.getItem('roleId');
+    if (roleIdString !== null) {
+      const roleId = JSON.parse(roleIdString);
+      this.roleId = roleId;
+    }
+
     this.loaded = true;
     this.api.getTeamsByPlayer(this.user.id).then((res: any) => {
       this.teams = res;

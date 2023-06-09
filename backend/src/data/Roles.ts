@@ -5,7 +5,7 @@ export default class Roles extends GenericModel implements SuperModel {
     name = 'roles';
     alias = 'Roles';
     public = true;
-    hasMany = ['Users'];
+    hasMany = ['Users_Roles'];
     
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 

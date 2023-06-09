@@ -1,15 +1,95 @@
 <div class="d-flex justify-content-between align-items-center mt-3">
     <h2 class="fw-bolder">Le staff</h2>
-    <p-button label="Ajouter un membre" *ngIf="this.user.roleId == 2" (onClick)="staffDialog()" styleClass="custom-color"></p-button>
+    <p-button label="Ajouter un membre au staff" *ngIf="roleId.includes(2)" (onClick)="staffDialog()" styleClass="custom-color"></p-button>
 </div>
 <hr class="title-line">
 
 <div *ngIf="loaded; else noloaded">
-    <div class="card">
-        <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
-            <ng-template pTemplate="caption">Président</ng-template>
+    <div class="card card-style">
+        <p-table [value]="presidentUsers" [tableStyle]="{ 'min-width': '10rem' }">
+            <ng-template pTemplate="caption">Présidente<fa-icon class="mx-2" [icon]="faCrown"></fa-icon></ng-template>
             <ng-template pTemplate="body" let-user>
-                <tr *ngIf="user.roleId === 3">
+                <tr *ngIf="showPresidentUsers">
+                    <td>{{user.username}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="card card-style mt-5">
+        <p-table [value]="vicePresidentUsers" [tableStyle]="{ 'min-width': '10rem' }">
+            <ng-template pTemplate="caption">Vice-présidents<fa-icon class="mx-2" [icon]="faGavel"></fa-icon></ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr *ngIf="showVicePresidentUsers">
+                    <td>{{user.username}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="card card-style mt-5">
+        <p-table [value]="generalSecretaryUsers" [tableStyle]="{ 'min-width': '10rem' }">
+            <ng-template pTemplate="caption">Secrétaire générale<fa-icon class="mx-2" [icon]="faBookOpenReader"></fa-icon></ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr *ngIf="showGeneralSecretaryUsers">
+                    <td>{{user.username}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="card card-style mt-5">
+        <p-table [value]="treasurerUsers" [tableStyle]="{ 'min-width': '10rem' }">
+            <ng-template pTemplate="caption">Trésorière<fa-icon class="mx-2" [icon]="faSackDollar"></fa-icon></ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr *ngIf="showTreasurerUsers">
+                    <td>{{user.username}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="card card-style mt-5">
+        <p-table [value]="rhUsers" [tableStyle]="{ 'min-width': '10rem' }">
+            <ng-template pTemplate="caption">Ressources humaines<fa-icon class="mx-2" [icon]="faUsers"></fa-icon></ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr *ngIf="showRhUsers">
+                    <td>{{user.username}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="card card-style mt-5">
+        <p-table [value]="marketingUsers" [tableStyle]="{ 'min-width': '10rem' }">
+            <ng-template pTemplate="caption">Responsable communication et marketing<fa-icon class="mx-2" [icon]="faChartLine"></fa-icon></ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr *ngIf="showMarketingUsers">
+                    <td>{{user.username}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="card card-style mt-5">
+        <p-table [value]="partnerUsers" [tableStyle]="{ 'min-width': '10rem' }">
+            <ng-template pTemplate="caption">Responsable partenariats<fa-icon class="mx-2" [icon]="faHandshake"></fa-icon></ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr *ngIf="showPartnerUsers">
+                    <td>{{user.username}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="card card-style mt-5">
+        <p-table [value]="teamUsers" [tableStyle]="{ 'min-width': '10rem' }">
+            <ng-template pTemplate="caption">Responsable des équipes<fa-icon class="mx-2" [icon]="faUsersCog"></fa-icon></ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr *ngIf="showTeamUsers">
+                    <td>{{user.username}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="card card-style mt-5 mb-5">
+        <p-table [value]="managerUsers" [tableStyle]="{ 'min-width': '10rem' }">
+            <ng-template pTemplate="caption">Responsable régie<fa-icon class="mx-2" [icon]="faCogs"></fa-icon></ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr *ngIf="showManagerUsers">
                     <td>{{user.username}}</td>
                 </tr>
             </ng-template>

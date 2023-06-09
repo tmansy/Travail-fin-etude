@@ -23,11 +23,10 @@ export const TeamsControllers = {
             },
             (callback) => {
                 database['Users'].findAll({
-                    where: {
-                        roleId: 2,
-                    }
+                    include: [
+                        { model: database['Users_Roles'], where: { roleId: 2 }}
+                    ]
                 }).then((instances) => {
-                    console.log(instances);
                     admins.push(...instances);
                     callback();
                 })
@@ -64,6 +63,7 @@ export const TeamsControllers = {
 
         async.waterfall([
             (callback) => {
+                body.display = body.checked;
                 database['Teams'].update(body, {
                     where: {
                         id: teamId,

@@ -23,6 +23,9 @@ a:visited {
 }
 
 .left-section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   flex: 1;
 }
 

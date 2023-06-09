@@ -61,17 +61,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        // (callback) => {
-        //     db["Users"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
+        (callback) => {
+            db["Users"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
         // (callback) => {
         //     db["Cities"].sync({
         //         alter: true,
@@ -204,17 +204,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        // (callback) => {
-        //     db["Roles"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
+        (callback) => {
+            db["Roles"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
         // (callback) => {
         //     db["Sponsors_Teams"].sync({
         //         alter: true,
@@ -292,8 +292,19 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
+        // (callback) => {
+        //     db["Users_Teams"].sync({
+        //         alter: true,
+        //         logging: console.log,
+        //     }).then(() => {
+        //         logger.log("Fini");
+        //         callback(null);
+        //     }).catch((err) => {
+        //         logger.error(err);
+        //     })
+        // },
         (callback) => {
-            db["Users_Teams"].sync({
+            db["Users_Roles"].sync({
                 alter: true,
                 logging: console.log,
             }).then(() => {

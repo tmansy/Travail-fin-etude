@@ -50,6 +50,7 @@ import { DialogPlayerComponent } from './pages/private/dialog/dialog-player/dial
 import { DialogNewPlayerComponent } from './pages/private/dialog/dialog-new-player/dialog-new-player.component';
 import { StaffComponent } from './pages/private/staff/staff.component';
 import { RequestsComponent } from './pages/private/requests/requests.component';
+import { DialogNewStaffComponent } from './pages/private/dialog/dialog-new-staff/dialog-new-staff.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { RequestsComponent } from './pages/private/requests/requests.component';
     DialogNewPlayerComponent,
     StaffComponent,
     RequestsComponent,
+    DialogNewStaffComponent,
   ],
   imports: [
     BrowserModule,

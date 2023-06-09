@@ -16,6 +16,7 @@ export class PlayersComponent implements OnInit {
   public players: any;
   public teamId: number | undefined;
   public selectedPlayer: any;
+  public roleId: any;
 
   constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private dialog: DialogService) { }
 
@@ -24,6 +25,12 @@ export class PlayersComponent implements OnInit {
     if(userString !== null) {
       const user = JSON.parse(userString);
       this.user = user;
+    }
+
+    const roleIdString = localStorage.getItem('roleId');
+    if (roleIdString !== null) {
+      const roleId = JSON.parse(roleIdString);
+      this.roleId = roleId;
     }
 
     this.activatedRoute.parent?.params.subscribe((params) => {

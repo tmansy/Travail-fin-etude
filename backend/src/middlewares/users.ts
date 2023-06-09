@@ -115,9 +115,16 @@ export const UsersControllers = {
                 database['Users'].findOne({
                     where: {
                         id: userId,
-                    }
+                    },
+                    include: [
+                        { model: database['Users_Roles'] }
+                    ]
                 }).then((instance) => {
-                    if(instance.roleId == 2) {
+                    const _instance = instance.toJSON();
+                    const hasRoleId2 = _instance.users_roles.some((userRole) => {
+                        return userRole.roleId == 2;
+                    })
+                    if(hasRoleId2) {
                         database['Users_Teams'].findAll({
                             where: {
                                 userId: userId,
@@ -190,7 +197,7 @@ export const UsersControllers = {
                         roleTeam: { [Op.ne]: 'Admin' }
                     },
                     include: [
-                        { model: database['Users'], attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'img', 'description', 'addressId', 'roleId'] },
+                        { model: database['Users'], attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'img', 'description', 'addressId'] },
                     ]
                 }).then((instances) => {
                     if(instances) {
@@ -264,7 +271,10 @@ export const UsersControllers = {
         async.waterfall([
             (callback) => {
                 database['Users'].findAll({
-                    attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'description', 'addressId', 'roleId'],
+                    attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'description', 'addressId'],
+                    include: [
+                        { model: database['Users_Roles'] }
+                    ]
                 }).then((instances) => {
                     if(instances) {
                         res.locals.response = instances;

@@ -5,8 +5,8 @@ export default class Users extends GenericModel implements SuperModel {
     name = 'users';
     alias = 'Users';
     public = true;
-    belongsTo = ['Addresses', 'Roles'];
-    hasMany = ['MembershipRequests', 'News', 'Comments', 'Bills', 'Orders', 'Tournaments', 'Trainings'];
+    belongsTo = ['Addresses'];
+    hasMany = ['MembershipRequests', 'News', 'Comments', 'Bills', 'Orders', 'Tournaments', 'Trainings', 'Users_Roles'];
     
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 

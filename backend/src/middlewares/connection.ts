@@ -19,7 +19,10 @@ export const ConnectionControllers = {
                             { username: username },
                             { email: username }
                         ]
-                    }
+                    },
+                    include: [
+                        { model: database['Users_Roles'] }
+                    ]
                 }).then((instance: User) => {
                     if(instance) {
                         const hashedPassword = instance.password;
@@ -99,10 +102,16 @@ export const ConnectionControllers = {
                     email: body.email,
                     username: body.username,
                     password: hashedPassword,
-                    roleId: 1,
                 }).then((instance) => {
                     res.locals.response = instance;
-                    callback();
+                    database['Users_Roles'].create({
+                        roleId: 1,
+                        userId: instance.id,
+                    }).then(() => {
+                        callback();
+                    }).catch((err) => {
+                        callback(err);
+                    })
                 }).catch((err) => {
                     callback(err);
                 })
