@@ -197,7 +197,7 @@ export const UsersControllers = {
                         roleTeam: { [Op.ne]: 'Admin' }
                     },
                     include: [
-                        { model: database['Users'], attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'img', 'description', 'addressId'] },
+                        { model: database['Users'], attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'img', 'description'] },
                     ]
                 }).then((instances) => {
                     if(instances) {
