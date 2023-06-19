@@ -18,17 +18,6 @@ const db = new Database('db').scan(thepath);
             })
         },
         // (callback) => {
-        //     db["Addresses"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
-        // (callback) => {
         //     db["Bills"].sync({
         //         alter: true,
         //         logging: console.log,
@@ -61,19 +50,8 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        (callback) => {
-            db["Users"].sync({
-                alter: true,
-                logging: console.log,
-            }).then(() => {
-                logger.log("Fini");
-                callback(null);
-            }).catch((err) => {
-                logger.error(err);
-            })
-        },
         // (callback) => {
-        //     db["Cities"].sync({
+        //     db["Users"].sync({
         //         alter: true,
         //         logging: console.log,
         //     }).then(() => {
@@ -94,28 +72,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        // (callback) => {
-        //     db["Countries"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
-        // (callback) => {
-        //     db["MembershipRequests"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
+        (callback) => {
+            db["MembershipRequests"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
         // (callback) => {
         //     db["News"].sync({
         //         alter: true,
@@ -204,17 +171,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        (callback) => {
-            db["Roles"].sync({
-                alter: true,
-                logging: console.log,
-            }).then(() => {
-                logger.log("Fini");
-                callback(null);
-            }).catch((err) => {
-                logger.error(err);
-            })
-        },
+        // (callback) => {
+        //     db["Roles"].sync({
+        //         alter: true,
+        //         logging: console.log,
+        //     }).then(() => {
+        //         logger.log("Fini");
+        //         callback(null);
+        //     }).catch((err) => {
+        //         logger.error(err);
+        //     })
+        // },
         // (callback) => {
         //     db["Sponsors_Teams"].sync({
         //         alter: true,
@@ -303,17 +270,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        (callback) => {
-            db["Users_Roles"].sync({
-                alter: true,
-                logging: console.log,
-            }).then(() => {
-                logger.log("Fini");
-                callback(null);
-            }).catch((err) => {
-                logger.error(err);
-            })
-        },
+        // (callback) => {
+        //     db["Users_Roles"].sync({
+        //         alter: true,
+        //         logging: console.log,
+        //     }).then(() => {
+        //         logger.log("Fini");
+        //         callback(null);
+        //     }).catch((err) => {
+        //         logger.error(err);
+        //     })
+        // },
         (callback) => {
             db.root_sequelize.query('SET FOREIGN_KEY_CHECKS = 1;')
             .then(() => {

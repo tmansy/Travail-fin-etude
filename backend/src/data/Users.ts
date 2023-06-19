@@ -5,7 +5,6 @@ export default class Users extends GenericModel implements SuperModel {
     name = 'users';
     alias = 'Users';
     public = true;
-    belongsTo = ['Addresses'];
     hasMany = ['MembershipRequests', 'News', 'Comments', 'Bills', 'Orders', 'Tournaments', 'Trainings', 'Users_Roles'];
     
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
@@ -62,6 +61,26 @@ export default class Users extends GenericModel implements SuperModel {
         description: {
             type: DataTypes.STRING(255),
             comment: 'Description du joueur',
-        }
+        },
+        street: {
+            type: DataTypes.STRING(255),
+            comment: 'Rue de l\'adresse du joueur',
+        },
+        house_number: {
+            type: DataTypes.STRING(255),
+            comment: 'Numéro de maison de l\'adresse du joueur',
+        },
+        zip_code: {
+            type: DataTypes.STRING(255),
+            comment: 'Code postal de l\'adresse du joueur',
+        },
+        city: {
+            type: DataTypes.STRING(255),
+            comment: 'Ville de l\'adresse du joueur',
+        },
+        country: {
+            type: DataTypes.STRING(255),
+            comment: 'Pays de l\'adresse du joueur',
+        },
     }
 }

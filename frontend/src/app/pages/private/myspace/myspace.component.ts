@@ -56,6 +56,11 @@ export class MyspaceComponent implements OnInit {
       roleGame: this.user.roleGame,
       rank: this.user.rank,
       phone: this.user.phone,
+      street: this.user.street,
+      house_number: this.user.house_number,
+      zip_code: this.user.zip_code,
+      city: this.user.city,
+      country: this.user.country,
     }
 
     if(this.user.birthdate !== null) {
@@ -93,12 +98,23 @@ export class MyspaceComponent implements OnInit {
   }
 
   public openDialog() {
-    this.dialog.open(DialogMembershipRequestsComponent, {
-      header: 'Résumé de la demande de validation',
-      styleClass: 'custom-dialog',
-      data: this.formGroup.value,
-    }).onClose.subscribe(() => {
-      this.ngOnInit();
-    })
+    if(this.formGroup.get('title')?.value && this.formGroup.get('lastname')?.value 
+      && this.formGroup.get('firstname')?.value && this.formGroup.get('username')?.value 
+      && this.formGroup.get('phone')?.value && this.formGroup.get('birthdate')?.value 
+      && this.formGroup.get('street')?.value && this.formGroup.get('house_number')?.value 
+      && this.formGroup.get('zip_code')?.value && this.formGroup.get('city')?.value
+      && this.formGroup.get('country')?.value) {
+      this.dialog.open(DialogMembershipRequestsComponent, {
+        header: 'Résumé de la demande d\'affiliation',
+        styleClass: 'custom-dialog',
+        data: this.formGroup.value,
+      }).onClose.subscribe(() => {
+        this.ngOnInit();
+      })
+    }
+    else {
+      this.api.error('Veuillez remplir vos informations.');
+    }
+    
   }
 }

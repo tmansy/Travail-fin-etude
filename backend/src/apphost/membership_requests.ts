@@ -11,6 +11,17 @@ export default [
         methods: [
             MembershipRequestsControllers.getMembershipRequestByUserId,
         ]
+    },
+
+    {
+        name: 'postMembershipRequest',
+        description: 'post membership request',
+        method: Methods.POST,
+        route: `/membership_request`,
+        hasToken: true,
+        methods: [
+            MembershipRequestsControllers.postMemberShipRequest,
+        ]
     }
 
 ]

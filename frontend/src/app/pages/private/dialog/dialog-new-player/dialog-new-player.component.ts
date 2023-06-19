@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ApiService } from 'src/app/_services/api.service';
 
@@ -20,7 +19,7 @@ export class DialogNewPlayerComponent implements OnInit {
 
   constructor(private api: ApiService, private config: DynamicDialogConfig, private ref: DynamicDialogRef) {
     this.formGroup.get('teamId')?.setValue(this.config.data);
-   }
+  }
 
   ngOnInit(): void {
     this.api.getUsers().then((res: any) => {

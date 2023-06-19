@@ -271,7 +271,7 @@ export const UsersControllers = {
         async.waterfall([
             (callback) => {
                 database['Users'].findAll({
-                    attributes: ['id', 'title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'description', 'addressId'],
+                    attributes: ['id', 'title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'description'],
                     include: [
                         { model: database['Users_Roles'] }
                     ]

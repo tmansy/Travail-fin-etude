@@ -27,5 +27,25 @@ export const MembershipRequestsControllers = {
                 next();
             }
         })
+    },
+
+    postMemberShipRequest: (req: Request, res: Response, next: NextFunction) => {
+        const database = res.locals.focus;
+        const body = req.body;
+
+        async.waterfall([
+            (callback) => {
+                database['MembershipRequests'].create({
+                    
+                })
+            }
+        ], (err) => {
+            if(err) {
+                next(err);
+            }
+            else {
+                next();
+            }
+        })
     }
 }
