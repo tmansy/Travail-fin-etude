@@ -337,5 +337,61 @@ export const UsersControllers = {
                 next();
             }
         })
-    }
+    },
+
+    postStaff: (req: Request, res: Response, next: NextFunction) => {
+        const database = res.locals.database;
+        const body = req.body;
+        let userId;
+        let userRoleId;
+
+        async.waterfall([
+            (callback) => {
+                database['Users'].findOne({
+                    where: {
+                        username: body.username
+                    }
+                }).then((instance) => {
+                    if(instance) {
+                        userId = instance.id;
+                        callback();
+                    }
+                    else {
+                        callback();
+                    }
+                }).catch((err) => {
+                    callback(err);
+                })
+            },
+            (callback) => {
+                if(body.roleAssos == "Président") userRoleId = 3;
+                if(body.roleAssos == "Vice-président") userRoleId = 4;
+                if(body.roleAssos == "Secrétaire général") userRoleId = 5;
+                if(body.roleAssos == "Trésorier") userRoleId = 6;
+                if(body.roleAssos == "Ressources humaines") userRoleId = 7;
+                if(body.roleAssos == "Responsable marketing") userRoleId = 8;
+                if(body.roleAssos == "Responsable partenariat") userRoleId = 9;
+                if(body.roleAssos == "Responsable des équipes") userRoleId = 10;
+                if(body.roleAssos == "Responsable régie") userRoleId = 11;
+
+                database['Users_Roles'].create({
+                    roleId: userRoleId,
+                    userId: userId,
+                }).then((instance) => {
+                    res.locals.response = instance;
+                    callback();
+                }).catch((err) => {
+                    callback(err);
+                })
+            }
+        ], (err) => {
+            if(err) {
+                next(new Error(err));
+            }
+            else {
+                next();
+            }
+        })
+    },
+
 }

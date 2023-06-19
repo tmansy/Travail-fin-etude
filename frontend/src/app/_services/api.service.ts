@@ -73,6 +73,10 @@ export class ApiService {
     return this.request.post('/add_new_player', data);
   }
 
+  postStaff(data: any) {
+    return this.request.post('/add_staff_member', data);
+  }
+
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);
 }

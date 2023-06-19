@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/_services/api.service';
 import { faSackDollar, faCrown, faGavel, faBookOpenReader, faChartLine, faUsers, faHandshake, faUsersCog, faCogs } from '@fortawesome/free-solid-svg-icons'
 import { DialogService } from 'primeng/dynamicdialog';
 import { DialogNewStaffComponent } from '../dialog/dialog-new-staff/dialog-new-staff.component';
+import { DialogDeleteStaffComponent } from '../dialog/dialog-delete-staff/dialog-delete-staff.component';
 
 @Component({
   selector: 'app-staff',
@@ -14,6 +15,16 @@ export class StaffComponent implements OnInit {
   public user: any;
   public loaded = false;
   public roleId: any;
+
+  public selectedPresident: any;
+  public selectedVicePresident: any;
+  public selectedGeneralSecretary: any;
+  public selectedTreasurer: any;
+  public selectedRh: any;
+  public selectedMarketing: any;
+  public selectedPartner: any;
+  public selectedTeam: any;
+  public selectedManager: any;
 
   public faSackDollar = faSackDollar;
   public faCrown = faCrown;
@@ -107,7 +118,6 @@ export class StaffComponent implements OnInit {
       });
       this.showManagerUsers = this.managerUsers.length > 0;
 
-      console.log(this.managerUsers)
     })
 
     this.loaded = true;
@@ -117,6 +127,18 @@ export class StaffComponent implements OnInit {
     this.dialog.open(DialogNewStaffComponent, {
       header: "Ajouter un membre au staff",
       styleClass: 'custom-dialog',
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    })
+  }
+
+  public onRowSelect(event: any, role: number) {
+    event.data.tableRole = role;
+
+    this.dialog.open(DialogDeleteStaffComponent, {
+      header: "Supprimer un membre du staff",
+      styleClass: 'custom-dialog',
+      data: event.data,
     }).onClose.subscribe(() => {
       this.ngOnInit();
     })

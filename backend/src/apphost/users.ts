@@ -88,5 +88,17 @@ export default [
         methods: [
             UsersControllers.postPlayer,
         ]
-    }
+    },
+
+    {
+        name: 'AddNewStaffMember',
+        description: 'Add new staff member',
+        method: Methods.POST,
+        route: `/add_staff_member`,
+        hasToken: true,
+        methods: [
+            UsersControllers.postStaff,
+        ]
+    },
+
 ]

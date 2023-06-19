@@ -1,1 +1,13 @@
-<p>dialog-new-staff works!</p>
+<div [formGroup]="formGroup">
+    <div class="p-field mt-3">
+        <label>Nom d'utilisateur</label>
+        <p-dropdown appendTo="body" [options]="users" styleClass="w-100" formControlName="username" placeholder="Sélectionner un joueur"></p-dropdown>
+    </div>
+    <div class="p-field mt-3">
+        <label>Rôle dans l'association</label>
+        <p-dropdown appendTo="body" [options]="roleAssociationLabel" styleClass="w-100" formControlName="roleAssos" placeholder="Sélectionner un rôle"></p-dropdown>
+    </div>
+    <div class="mt-3 d-flex justify-content-end">
+        <p-button label="Ajouter" (onClick)="save()"></p-button>
+    </div>
+</div>
