@@ -46,7 +46,7 @@ export const UsersControllers = {
                 database['Users'].update(body, {
                     where: {
                         id: userId,
-                    }
+                    },
                 }).then(() => {
                     callback();
                 }).catch((err) => {
@@ -57,7 +57,7 @@ export const UsersControllers = {
                 database['Users'].findOne({
                     where: {
                         id: userId,
-                    }
+                    },
                 }).then((instance) => {
                     res.locals.response = instance;
                     callback();
@@ -271,7 +271,7 @@ export const UsersControllers = {
         async.waterfall([
             (callback) => {
                 database['Users'].findAll({
-                    attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'description', 'addressId'],
+                    attributes: ['id', 'title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'description', 'addressId'],
                     include: [
                         { model: database['Users_Roles'] }
                     ]
@@ -393,5 +393,32 @@ export const UsersControllers = {
             }
         })
     },
+
+    deleteStaff: (req: Request, res: Response, next: NextFunction) => {
+        const database = res.locals.database;
+        const body = req.body;
+
+        async.waterfall([
+            (callback) => {
+                database['Users_Roles'].destroy({
+                    where: {
+                        roleId: body.tableRole,
+                        userId: body.id,
+                    }
+                }).then(() => {
+                    callback();
+                }).catch((err) => {
+                    callback(new Error(err));
+                })
+            }
+        ], (err) => {
+            if(err) {
+                next(err);
+            }
+            else {
+                next();
+            }
+        })
+    }
 
 }

@@ -8,10 +8,10 @@
 
 <div *ngIf="loaded; else noloaded">
     <div class="card card-style">
-        <p-table [value]="presidentUsers" selectionMode="single" [(selection)]="selectedPresident" dataKey="user.username" (onRowSelect)="onRowSelect($event, 3)" [tableStyle]="{ 'min-width': '10rem' }">
+        <p-table [value]="presidentUsers" selectionMode="single" [(selection)]="selectedPresident" dataKey="user" (onRowSelect)="onRowSelect($event, 3)" [tableStyle]="{ 'min-width': '10rem' }">
             <ng-template pTemplate="caption">Présidente<fa-icon class="mx-2" [icon]="faCrown"></fa-icon></ng-template>
             <ng-template pTemplate="body" let-user>
-                <tr *ngIf="showPresidentUsers" [pSelectableRow]="presidentUsers">
+                <tr *ngIf="showPresidentUsers" [pSelectableRow]="user">
                     <td>{{user.username}}</td>
                 </tr>
             </ng-template>
@@ -31,7 +31,7 @@
         <p-table [value]="generalSecretaryUsers" selectionMode="single" [(selection)]="selectedGeneralSecretary" dataKey="user.username" (onRowSelect)="onRowSelect($event, 5)" [tableStyle]="{ 'min-width': '10rem' }">
             <ng-template pTemplate="caption">Secrétaire générale<fa-icon class="mx-2" [icon]="faBookOpenReader"></fa-icon></ng-template>
             <ng-template pTemplate="body" let-user>
-                <tr *ngIf="showGeneralSecretaryUsers">
+                <tr *ngIf="showGeneralSecretaryUsers" [pSelectableRow]="user">
                     <td>{{user.username}}</td>
                 </tr>
             </ng-template>
@@ -41,7 +41,7 @@
         <p-table [value]="treasurerUsers" selectionMode="single" [(selection)]="selectedTreasurer" dataKey="user.username" (onRowSelect)="onRowSelect($event, 6)" [tableStyle]="{ 'min-width': '10rem' }">
             <ng-template pTemplate="caption">Trésorière<fa-icon class="mx-2" [icon]="faSackDollar"></fa-icon></ng-template>
             <ng-template pTemplate="body" let-user>
-                <tr *ngIf="showTreasurerUsers">
+                <tr *ngIf="showTreasurerUsers" [pSelectableRow]="user">
                     <td>{{user.username}}</td>
                 </tr>
             </ng-template>
@@ -51,7 +51,7 @@
         <p-table [value]="rhUsers" selectionMode="single" [(selection)]="selectedRh" dataKey="user.username" (onRowSelect)="onRowSelect($event, 7)" [tableStyle]="{ 'min-width': '10rem' }">
             <ng-template pTemplate="caption">Ressources humaines<fa-icon class="mx-2" [icon]="faUsers"></fa-icon></ng-template>
             <ng-template pTemplate="body" let-user>
-                <tr *ngIf="showRhUsers">
+                <tr *ngIf="showRhUsers" [pSelectableRow]="user">
                     <td>{{user.username}}</td>
                 </tr>
             </ng-template>
@@ -61,7 +61,7 @@
         <p-table [value]="marketingUsers" selectionMode="single" [(selection)]="selectedMarketing" dataKey="user.username" (onRowSelect)="onRowSelect($event, 8)" [tableStyle]="{ 'min-width': '10rem' }">
             <ng-template pTemplate="caption">Responsable communication et marketing<fa-icon class="mx-2" [icon]="faChartLine"></fa-icon></ng-template>
             <ng-template pTemplate="body" let-user>
-                <tr *ngIf="showMarketingUsers">
+                <tr *ngIf="showMarketingUsers" [pSelectableRow]="user">
                     <td>{{user.username}}</td>
                 </tr>
             </ng-template>
@@ -71,7 +71,7 @@
         <p-table [value]="partnerUsers" selectionMode="single" [(selection)]="selectedPartner" dataKey="user.username" (onRowSelect)="onRowSelect($event, 9)" [tableStyle]="{ 'min-width': '10rem' }">
             <ng-template pTemplate="caption">Responsable partenariats<fa-icon class="mx-2" [icon]="faHandshake"></fa-icon></ng-template>
             <ng-template pTemplate="body" let-user>
-                <tr *ngIf="showPartnerUsers">
+                <tr *ngIf="showPartnerUsers" [pSelectableRow]="user">
                     <td>{{user.username}}</td>
                 </tr>
             </ng-template>
@@ -81,7 +81,7 @@
         <p-table [value]="teamUsers" selectionMode="single" [(selection)]="selectedTeam" dataKey="user.username" (onRowSelect)="onRowSelect($event, 10)" [tableStyle]="{ 'min-width': '10rem' }">
             <ng-template pTemplate="caption">Responsable des équipes<fa-icon class="mx-2" [icon]="faUsersCog"></fa-icon></ng-template>
             <ng-template pTemplate="body" let-user>
-                <tr *ngIf="showTeamUsers">
+                <tr *ngIf="showTeamUsers" [pSelectableRow]="user">
                     <td>{{user.username}}</td>
                 </tr>
             </ng-template>
@@ -91,7 +91,7 @@
         <p-table [value]="managerUsers" selectionMode="single" [(selection)]="selectedManager" dataKey="user.username" (onRowSelect)="onRowSelect($event, 11)" [tableStyle]="{ 'min-width': '10rem' }">
             <ng-template pTemplate="caption">Responsable régie<fa-icon class="mx-2" [icon]="faCogs"></fa-icon></ng-template>
             <ng-template pTemplate="body" let-user>
-                <tr *ngIf="showManagerUsers">
+                <tr *ngIf="showManagerUsers" [pSelectableRow]="user">
                     <td>{{user.username}}</td>
                 </tr>
             </ng-template>

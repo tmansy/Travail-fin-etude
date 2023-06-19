@@ -52,6 +52,8 @@ import { StaffComponent } from './pages/private/staff/staff.component';
 import { RequestsComponent } from './pages/private/requests/requests.component';
 import { DialogNewStaffComponent } from './pages/private/dialog/dialog-new-staff/dialog-new-staff.component';
 import { DialogDeleteStaffComponent } from './pages/private/dialog/dialog-delete-staff/dialog-delete-staff.component';
+import { SponsorsComponent } from './pages/private/sponsors/sponsors.component';
+import { DialogMembershipRequestsComponent } from './pages/private/dialog/dialog-membership-requests/dialog-membership-requests.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { DialogDeleteStaffComponent } from './pages/private/dialog/dialog-delete
     RequestsComponent,
     DialogNewStaffComponent,
     DialogDeleteStaffComponent,
+    SponsorsComponent,
+    DialogMembershipRequestsComponent,
   ],
   imports: [
     BrowserModule,

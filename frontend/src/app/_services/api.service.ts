@@ -77,6 +77,14 @@ export class ApiService {
     return this.request.post('/add_staff_member', data);
   }
 
+  deleteStaff(data: any) {
+    return this.request.put(`/delete_staff_member`, data);
+  }
+
+  getRequest(userId: any) {
+    return this.request.get(`/membership_request/${userId}`);
+  }
+
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);
 }

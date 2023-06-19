@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/_services/api.service';
 import { faSackDollar, faCrown, faGavel, faBookOpenReader, faChartLine, faUsers, faHandshake, faUsersCog, faCogs } from '@fortawesome/free-solid-svg-icons'
 import { DialogService } from 'primeng/dynamicdialog';
@@ -136,7 +136,7 @@ export class StaffComponent implements OnInit {
     event.data.tableRole = role;
 
     this.dialog.open(DialogDeleteStaffComponent, {
-      header: "Supprimer un membre du staff",
+      header: `Utilisateur : ${event.data.username}`,
       styleClass: 'custom-dialog',
       data: event.data,
     }).onClose.subscribe(() => {

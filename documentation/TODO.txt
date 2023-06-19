@@ -28,3 +28,5 @@ TO DO:
 - Revoir les rôles
 - Revoir les icônes
 - Couleur "Créer une équipe"
+- Déselection du staff
+- Vérifier les rôles dans son ensemble

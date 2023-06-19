@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
@@ -8,9 +8,9 @@ import { ApiService } from 'src/app/_services/api.service';
   styleUrls: ['./dialog-delete-staff.component.css']
 })
 export class DialogDeleteStaffComponent implements OnInit {
+  public loaded = false;
 
-  constructor(private api: ApiService, private config: DynamicDialogConfig) {
-    console.log(this.config.data);
+  constructor(private api: ApiService, private config: DynamicDialogConfig, private ref: DynamicDialogRef) {
   }
 
   ngOnInit(): void {
@@ -18,7 +18,12 @@ export class DialogDeleteStaffComponent implements OnInit {
   }
 
   public save() {
-
+    this.api.deleteStaff(this.config.data).then((res: any) => {
+      this.ref.close();
+      this.api.success('Le membre a été retiré du staff.');
+    }).catch(() => {
+      this.api.error('Erreur lors de la suppression');
+    })
   }
 
 }

@@ -19,6 +19,7 @@ import { PlayersComponent } from './pages/private/myteam/players/players.compone
 import { TrainingsComponent } from './pages/private/myteam/trainings/trainings.component';
 import { StaffComponent } from './pages/private/staff/staff.component';
 import { RequestsComponent } from './pages/private/requests/requests.component';
+import { SponsorsComponent } from './pages/private/sponsors/sponsors.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -77,6 +78,10 @@ const routes: Routes = [
       {
         path: 'requests',
         component: RequestsComponent,
+      },
+      {
+        path: 'sponsors',
+        component: SponsorsComponent,
       }
     ] 
   },

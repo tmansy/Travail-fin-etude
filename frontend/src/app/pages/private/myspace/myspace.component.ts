@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AccountService } from 'src/app/_services/account.service';
 import { ApiService } from 'src/app/_services/api.service';
 import * as moment from "moment";
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogMembershipRequestsComponent } from '../dialog/dialog-membership-requests/dialog-membership-requests.component';
 
 @Component({
   selector: 'app-myspace',
@@ -11,11 +12,13 @@ import * as moment from "moment";
 })
 export class MyspaceComponent implements OnInit {
   public user: any;
+  public membership_request: any;
   public loaded = false;
   public titleLabel = ['Monsieur', 'Madame'];
   public gameLabel = ['League of Legends', 'Teamfight Tactics'];
   public roleGameLabel = ['Top', 'Jungle', 'Mid', 'Adc', 'Support'];
   public rankLabel = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Master', 'Grand master', 'Challenger'];
+  public countryLabel = ['Belgique', 'France', 'Suisse', 'Canada'];
   public formGroup = new FormGroup({
     title: new FormControl(),
     lastname: new FormControl(),
@@ -26,9 +29,15 @@ export class MyspaceComponent implements OnInit {
     rank: new FormControl(),
     birthdate: new FormControl(),
     phone: new FormControl(),
+    status: new FormControl(),
+    street: new FormControl(),
+    house_number: new FormControl(),
+    zip_code: new FormControl(),
+    city: new FormControl(),
+    country: new FormControl(),
   });
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private dialog: DialogService) { }
 
   ngOnInit(): void {
     const userString = localStorage.getItem('user');
@@ -48,10 +57,27 @@ export class MyspaceComponent implements OnInit {
       rank: this.user.rank,
       phone: this.user.phone,
     }
+
     if(this.user.birthdate !== null) {
       formValues.birthdate = moment(this.user.birthdate).toDate()
     }
-    this.formGroup.patchValue(formValues);
+
+    this.api.getRequest(this.user.id).then((res) => {
+      this.membership_request = res;
+      if(this.membership_request.status == "Accepter") {
+        formValues.status = "Affilié";
+      }
+      else if (this.membership_request.status == "Refuser") {
+        formValues.status = "Refusé";
+      }
+      else {
+        formValues.status = "En attente";
+      }
+      this.formGroup.patchValue(formValues);
+    }).catch(() => {
+      formValues.status = "Non-affilié";
+      this.formGroup.patchValue(formValues);
+    })
   }
 
   public save() {
@@ -64,5 +90,15 @@ export class MyspaceComponent implements OnInit {
     else {
       this.api.error('Formulaire invalide.');
     }
+  }
+
+  public openDialog() {
+    this.dialog.open(DialogMembershipRequestsComponent, {
+      header: 'Résumé de la demande de validation',
+      styleClass: 'custom-dialog',
+      data: this.formGroup.value,
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    })
   }
 }

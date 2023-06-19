@@ -12,10 +12,13 @@
         <li class="nav-item">
           <a routerLink="/private/teams" routerLinkActive="active" class="nav-link"><i class="bi bi-people-fill px-2"></i>Mon équipe</a>
         </li>
-        <li>
+        <li class="nav-item">
           <a routerLink="/private/staff" routerLinkActive="active" class="nav-link"><i class="bi bi-clipboard-pulse px-2"></i>Le staff</a>
         </li>
-        <li *ngIf="roleId.includes(2)">
+        <li *ngIf="roleId.includes(2)" class="nav-item">
+          <a routerLink="/private/sponsors" routerLinkActive="active" class="nav-link"><i class="bi bi-cash px-2"></i>Les sponsors</a>
+        </li>
+        <li *ngIf="roleId.includes(2)" class="nav-item">
           <a routerLink="/private/requests" routerLinkActive="active" class="nav-link"><i class="bi bi-hand-index px-2"></i>Les demandes d'affiliation</a>
         </li>
       </ul>

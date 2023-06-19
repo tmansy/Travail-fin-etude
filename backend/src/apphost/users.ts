@@ -101,4 +101,15 @@ export default [
         ]
     },
 
+    {
+        name: 'DeleteStaffMember',
+        description: 'Delete staff member',
+        method: Methods.PUT,
+        route: `/delete_staff_member`,
+        hasToken: true,
+        methods: [
+            UsersControllers.deleteStaff,
+        ]
+    }
+
 ]

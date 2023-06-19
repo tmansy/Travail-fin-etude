@@ -115,7 +115,7 @@ export const ConnectionControllers = {
                 }).catch((err) => {
                     callback(err);
                 })
-            }
+            },
         ], (err) => {
             if(err) {
                 next(new Error(err));
