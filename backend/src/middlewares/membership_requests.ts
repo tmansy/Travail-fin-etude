@@ -21,7 +21,7 @@ export const MembershipRequestsControllers = {
             },
         ], (err) => {
             if(err)  {
-                next(err);
+                next(new Error(err));
             }
             else {
                 next();
@@ -29,23 +29,49 @@ export const MembershipRequestsControllers = {
         })
     },
 
-    postMemberShipRequest: (req: Request, res: Response, next: NextFunction) => {
+    postMembershipRequest: (req: Request, res: Response, next: NextFunction) => {
         const database = res.locals.focus;
         const body = req.body;
 
         async.waterfall([
             (callback) => {
                 database['MembershipRequests'].create({
-                    
+                    title: body.title,
+                    lastname: body.lastname,
+                    firstname: body.firstname,
+                    username: body.username,
+                    birthdate: body.birthdate,
+                    phone: body.phone,
+                    street: body.street,
+                    houseNumber: body.house_number,
+                    zip_code: body.zip_code,
+                    city: body.city,
+                    country: body.country,
+                    message: body.message,
+                    status: "En attente",
+                }).then((instance) => {
+                    if(instance) {
+                        res.locals.response = instance;
+                        callback();
+                    }
+                    else {
+                        callback();
+                    }
+                }).catch((err) => {
+                    callback(err);
                 })
             }
         ], (err) => {
             if(err) {
-                next(err);
+                next(new Error(err));
             }
             else {
                 next();
             }
         })
+    },
+
+    putMembershipRequest: (req: Request, res: Response, next: NextFunction) => {
+        
     }
 }

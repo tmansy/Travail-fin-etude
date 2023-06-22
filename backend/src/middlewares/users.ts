@@ -23,12 +23,12 @@ export const UsersControllers = {
                         callback();
                     }
                 }).catch((err) => {
-                    next(err);
+                    callback(err);
                 })
             }
         ], (err) => {
             if(err) {
-                next(err);
+                next(new Error(err));
             }
             else {
                 next();
@@ -257,7 +257,7 @@ export const UsersControllers = {
             }
         ], (err) => {
             if(err) {
-                next(err);
+                next(new Error(err));
             }
             else {
                 next();
@@ -289,7 +289,7 @@ export const UsersControllers = {
             }
         ], (err) => {
             if(err) {
-                next(err);
+                next(new Error(err));
             }
             else {
                 next();
@@ -408,12 +408,12 @@ export const UsersControllers = {
                 }).then(() => {
                     callback();
                 }).catch((err) => {
-                    callback(new Error(err));
+                    callback(err);
                 })
             }
         ], (err) => {
             if(err) {
-                next(err);
+                next(new Error(err));
             }
             else {
                 next();

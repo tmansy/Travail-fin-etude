@@ -76,7 +76,7 @@ export const TeamsControllers = {
             }
         ], (err) => {
             if(err) {
-                next(err);
+                next(new Error(err));
             }
             else {
                 next();

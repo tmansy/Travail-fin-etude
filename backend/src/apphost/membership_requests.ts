@@ -20,7 +20,18 @@ export default [
         route: `/membership_request`,
         hasToken: true,
         methods: [
-            MembershipRequestsControllers.postMemberShipRequest,
+            MembershipRequestsControllers.postMembershipRequest,
+        ]
+    },
+
+    {
+        name: 'putMembershipRequest',
+        description: 'put membership request',
+        method: Methods.POST,
+        route: `/membership_request`,
+        hasToken: true,
+        methods: [
+            MembershipRequestsControllers.putMembershipRequest,
         ]
     }
 

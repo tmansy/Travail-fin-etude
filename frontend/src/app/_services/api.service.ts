@@ -85,6 +85,10 @@ export class ApiService {
     return this.request.get(`/membership_request/${userId}`);
   }
 
+  postMembershipRequest(data: any) {
+    return this.request.post('/membership_request', data);
+  }
+
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);
 }

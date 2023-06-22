@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
   selector: 'app-dialog-membership-requests',
@@ -23,7 +24,7 @@ export class DialogMembershipRequestsComponent implements OnInit {
     message: new FormControl(),
   })
   
-  constructor(private config: DynamicDialogConfig) {
+  constructor(private config: DynamicDialogConfig, private api: ApiService) {
     this.formGroup.patchValue(this.config.data);
   }
 
