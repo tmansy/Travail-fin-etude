@@ -1,4 +1,5 @@
-.custom-tab-menu {
+.loader {
     display: flex;
     justify-content: center;
+    align-items: center;
 }

@@ -89,6 +89,14 @@ export class ApiService {
     return this.request.post('/membership_request', data);
   }
 
+  getRequests() {
+    return this.request.get('/membershiprequests');
+  }
+
+  putRequestManagement(requestId: any, data: any) {
+    return this.request.put(`/membershiprequests/${requestId}`, data);
+  }
+ 
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);
 }

@@ -30,7 +30,7 @@ export const MembershipRequestsControllers = {
     },
 
     postMembershipRequest: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.focus;
+        const database = res.locals.database;
         const body = req.body;
 
         async.waterfall([
@@ -48,6 +48,7 @@ export const MembershipRequestsControllers = {
                     city: body.city,
                     country: body.country,
                     message: body.message,
+                    userId: body.userId,
                     status: "En attente",
                 }).then((instance) => {
                     if(instance) {

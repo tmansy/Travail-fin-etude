@@ -3,8 +3,9 @@
     <p-button label="Créer une équipe" *ngIf="roleId.includes(2)" (onClick)="teamsDialog()" styleClass="custom-color"></p-button>
 </div>
 <hr class="title-line">
+
 <div class="container">
-    <div class="row justify-content-center text-center" *ngIf="loaded; else noloaded"style="max-height: calc(100vh - 110px); overflow-y: auto;">
+    <div class="row justify-content-center text-center" *ngIf="loaded; else noloaded" style="max-height: calc(100vh - 110px); overflow-y: auto;">
         <div *ngFor="let team of teams" class="col-md-4 mb-4">
             <div class="border border-1 border-dark hover-effect">
                 <p-card header="{{team.team.name}}">

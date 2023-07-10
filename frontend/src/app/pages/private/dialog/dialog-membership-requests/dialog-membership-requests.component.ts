@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import * as moment from 'moment';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { ApiService } from 'src/app/_services/api.service';
   styleUrls: ['./dialog-membership-requests.component.css']
 })
 export class DialogMembershipRequestsComponent implements OnInit {
+  public user: any;
   public formGroup = new FormGroup({
+    userId: new FormControl(),
     title: new FormControl(),
     lastname: new FormControl(),
     firstname: new FormControl(),
@@ -24,14 +27,29 @@ export class DialogMembershipRequestsComponent implements OnInit {
     message: new FormControl(),
   })
   
-  constructor(private config: DynamicDialogConfig, private api: ApiService) {
+  constructor(private config: DynamicDialogConfig, private api: ApiService, private ref: DynamicDialogRef) {
+    this.config.data.birthdate = moment(this.config.data.birthdate).format("DD-MM-YYYY");
     this.formGroup.patchValue(this.config.data);
   }
 
   ngOnInit(): void {
+    const userString = localStorage.getItem('user');
+    if(userString !== null) {
+      const user = JSON.parse(userString);
+      this.user = user;
+      this.formGroup.get('userId')?.setValue(this.user.id);
+    }
   }
 
   public save() {
-    console.log(this.formGroup.value);
+    if(this.formGroup.valid) {
+      this.api.postMembershipRequest(this.formGroup.value).then((res: any) => {
+        this.ref.close();
+        this.api.success('La demande d\'affiliation a bien été effectuée.');
+      })
+    }
+    else {
+      this.api.error('Formulaire invalide.');
+    }
   }
 }

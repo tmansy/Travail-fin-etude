@@ -69,14 +69,14 @@ export class MyspaceComponent implements OnInit {
 
     this.api.getRequest(this.user.id).then((res) => {
       this.membership_request = res;
-      if(this.membership_request.status == "Accepter") {
+      if(this.membership_request.status == "Acceptée") {
         formValues.status = "Affilié";
       }
-      else if (this.membership_request.status == "Refuser") {
+      else if (this.membership_request.status == "Refusée") {
         formValues.status = "Refusé";
       }
       else {
-        formValues.status = "En attente";
+        formValues.status = "En attente de validation";
       }
       this.formGroup.patchValue(formValues);
     }).catch(() => {

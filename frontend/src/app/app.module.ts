@@ -21,6 +21,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
 import { SponsorPageComponent } from './pages/public/sponsor-page/sponsor-page.component';
 import { DialogModule } from 'primeng/dialog';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { TabViewModule } from 'primeng/tabview';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutUsComponent } from './pages/public/about-us/about-us.component';
@@ -54,6 +56,7 @@ import { DialogNewStaffComponent } from './pages/private/dialog/dialog-new-staff
 import { DialogDeleteStaffComponent } from './pages/private/dialog/dialog-delete-staff/dialog-delete-staff.component';
 import { SponsorsComponent } from './pages/private/sponsors/sponsors.component';
 import { DialogMembershipRequestsComponent } from './pages/private/dialog/dialog-membership-requests/dialog-membership-requests.component';
+import { DialogRequestComponent } from './pages/private/dialog/dialog-request/dialog-request.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +89,7 @@ import { DialogMembershipRequestsComponent } from './pages/private/dialog/dialog
     DialogDeleteStaffComponent,
     SponsorsComponent,
     DialogMembershipRequestsComponent,
+    DialogRequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +102,8 @@ import { DialogMembershipRequestsComponent } from './pages/private/dialog/dialog
     InputTextModule,
     CheckboxModule,
     FileUploadModule,
+    TabMenuModule,
+    TabViewModule,
     CalendarModule,
     TableModule,
     FormsModule,

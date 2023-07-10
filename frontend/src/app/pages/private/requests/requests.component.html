@@ -1,1 +1,77 @@
-<p>requests works!</p>
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <h2 class="fw-bolder">Les demandes d'affiliation</h2>
+</div>
+<hr class="title-line">
+
+<p-tabView>
+    <p-tabPanel header="En attente">
+        <div class="card">
+            <p-table [value]="pendingRequests" selectionMode="single" [(selection)]="selectedRequest" dataKey="user.username" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="user.lastname">Nom<p-sortIcon field="request.lastname"></p-sortIcon></th>
+                        <th pSortableColumn="user.firstname">Prénom<p-sortIcon field="request.firstname"></p-sortIcon></th>
+                        <th pSortableColumn="user.username">Nom d'utilisateur<p-sortIcon field="request.username"></p-sortIcon></th>
+                        <th pSortableColumn="user.createdAt">Date de la demande d'affiliation<p-sortIcon field="request.createdAt"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-request>
+                    <tr [pSelectableRow]="request">
+                        <td>{{request.lastname}}</td>
+                        <td>{{request.firstname}}</td>
+                        <td>{{request.username}}</td>
+                        <td>{{request.createdAt | date:'dd/MM/YYYY à HH:mm:ss'}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Validée">
+        <div class="card">
+            <p-table [value]="acceptedRequests" selectionMode="single" [(selection)]="selectedRequest" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="lastname">Nom<p-sortIcon field="lastname"></p-sortIcon></th>
+                        <th pSortableColumn="firstname">Prénom<p-sortIcon field="firstname"></p-sortIcon></th>
+                        <th pSortableColumn="username">Nom d'utilisateur<p-sortIcon field="username"></p-sortIcon></th>
+                        <th pSortableColumn="createdAt">Date de la demande d'affiliation<p-sortIcon field="createdAt"></p-sortIcon></th>
+                        <th pSortableColumn="updatedAt">Date d'acceptation<p-sortIcon field="updatedAt"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-request>
+                    <tr [pSelectableRow]="request">
+                        <td>{{request.lastname}}</td>
+                        <td>{{request.firstname}}</td>
+                        <td>{{request.username}}</td>
+                        <td>{{request.createdAt | date:'dd/MM/YYYY à HH:mm:ss'}}</td>
+                        <td>{{request.updatedAt | date:'dd/MM/YYYY à HH:mm:ss'}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Refusée">
+        <div class="card">
+            <p-table [value]="refusedRequests" selectionMode="single" [(selection)]="selectedRequest" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="lastname">Nom<p-sortIcon field="lastname"></p-sortIcon></th>
+                        <th pSortableColumn="firstname">Prénom<p-sortIcon field="request.firstname"></p-sortIcon></th>
+                        <th pSortableColumn="username">Nom d'utilisateur<p-sortIcon field="request.username"></p-sortIcon></th>
+                        <th pSortableColumn="createdAt">Date de la demande d'affiliation<p-sortIcon field="request.createdAt"></p-sortIcon></th>
+                        <th pSortableColumn="updatedAt">Date de refus<p-sortIcon field="request.updatedAt"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-request>
+                    <tr [pSelectableRow]="request">
+                        <td>{{request.lastname}}</td>
+                        <td>{{request.firstname}}</td>
+                        <td>{{request.username}}</td>
+                        <td>{{request.createdAt | date:'dd/MM/YYYY à HH:mm:ss'}}</td>
+                        <td>{{request.updatedAt | date:'dd/MM/YYYY à HH:mm:ss'}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-tabPanel>
+</p-tabView>
