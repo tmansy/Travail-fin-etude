@@ -42,6 +42,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './_interceptor/auth.interceptor';
 import { PrivateComponent } from './pages/private/private.component';
 import { MyspaceComponent } from './pages/private/myspace/myspace.component';
+import { DataViewModule } from 'primeng/dataview';
 import { TeamsComponent } from './pages/private/teams/teams.component';
 import { DialogTeamsComponent } from './pages/private/dialog/dialog-teams/dialog-teams.component';
 import { MyteamComponent } from './pages/private/myteam/myteam.component';
@@ -104,6 +105,7 @@ import { DialogRequestComponent } from './pages/private/dialog/dialog-request/di
     FileUploadModule,
     TabMenuModule,
     TabViewModule,
+    DataViewModule,
     CalendarModule,
     TableModule,
     FormsModule,

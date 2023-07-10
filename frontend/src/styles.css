@@ -19,3 +19,17 @@ html{
 .custom-dialog .p-dialog-header {
     background-color: #fab710;
 }
+
+p-button.custom-button > button {
+    text-transform: uppercase !important;
+    background-color: #fab710;
+    color: black;
+    border: none;
+    outline: none;
+    font-weight: 500;
+}
+
+p-button.custom-button > button:hover {
+    background-color: #e2ac21 !important;
+    color: black !important;
+}

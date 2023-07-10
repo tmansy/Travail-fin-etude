@@ -1,1 +1,57 @@
-<p>sponsors works!</p>
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <h2 class="fw-bolder">Les sponsors</h2>
+    <p-button label="Ajouter un sponsor" *ngIf="roleId.includes(2)" (onClick)="sponsorDialog()" class="custom-button"></p-button>
+</div>
+<hr class="title-line">
+
+<div class="container">
+    <div class="row justify-content-center text-center" *ngIf="loaded; else noloaded" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+        <div class="card">
+            <p-dataView #dv [value]="sponsors" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                <ng-template pTemplate="header">
+                    <div class="flex flex-column md:flex-row md-justify-content-between">
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+                <ng-template let-sponsor pTemplate="listItem">
+                    <div class="col-12">
+                        <div class="product-list-item">
+                            <img [src]="sponsor.logo" [alt]="sponsor.name" style="width: 200px; height: 200px;">
+                            <div class="product-list-detail">
+                                <div class="product-name">{{sponsor.name}}</div>
+                                <div class="product-description">{{sponsor.description}}</div>
+                                <div class="product-description">{{sponsor.website}}</div>
+                                <div class="product-description">{{sponsor.email}}</div>
+                                <div class="product-description">{{sponsor.phone}}</div>
+                                <p-button class="product-description" label="Modifier" (onClick)="sponsorManagement()" styleClass="p-button-warning" class="mx-3"></p-button>
+                                <p-button class="product-description" label="Supprimer" (onClick)="sponsorManagement()" styleClass="p-button-danger"></p-button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template let-sponsor pTemplate="gridItem">
+                    <div class="col-12 md:col-4">
+                        <div class="product-grid-item card">
+                            <div class="product-grid-item-content">
+                                <img [src]="sponsor.logo" [alt]="sponsor.name" style="width: 200px; height: 200px;">
+                                <div class="product-name">{{sponsor.name}}</div>
+                                <div class="product-description">{{sponsor.description}}</div>
+                                <div class="product-description">{{sponsor.website}}</div>
+                                <div class="product-description">{{sponsor.email}}</div>
+                                <div class="product-description">{{sponsor.phone}}</div>
+                                <p-button class="product-description" label="Modifier" (onClick)="sponsorManagement()" styleClass="p-button-warning" class="mx-3"></p-button>
+                                <p-button class="product-description" label="Supprimer" (onClick)="sponsorManagement()" styleClass="p-button-danger"></p-button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </div>
+</div>
+
+<ng-template #noloaded>
+    <div class="loader">
+        <img src="../../../../assets/img/loader.gif">
+    </div>
+</ng-template>
