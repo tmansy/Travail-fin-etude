@@ -72,17 +72,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        (callback) => {
-            db["MembershipRequests"].sync({
-                alter: true,
-                logging: console.log,
-            }).then(() => {
-                logger.log("Fini");
-                callback(null);
-            }).catch((err) => {
-                logger.error(err);
-            })
-        },
+        // (callback) => {
+        //     db["MembershipRequests"].sync({
+        //         alter: true,
+        //         logging: console.log,
+        //     }).then(() => {
+        //         logger.log("Fini");
+        //         callback(null);
+        //     }).catch((err) => {
+        //         logger.error(err);
+        //     })
+        // },
         // (callback) => {
         //     db["News"].sync({
         //         alter: true,
@@ -204,17 +204,17 @@ const db = new Database('db').scan(thepath);
         //         logger.error(err);
         //     })
         // },
-        // (callback) => {
-        //     db["Sponsors"].sync({
-        //         alter: true,
-        //         logging: console.log,
-        //     }).then(() => {
-        //         logger.log("Fini");
-        //         callback(null);
-        //     }).catch((err) => {
-        //         logger.error(err);
-        //     })
-        // },
+        (callback) => {
+            db["Sponsors"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
         // (callback) => {
         //     db["Teams_Tournaments"].sync({
         //         alter: true,

@@ -96,6 +96,18 @@ export class ApiService {
   putRequestManagement(requestId: any, data: any) {
     return this.request.put(`/membershiprequests/${requestId}`, data);
   }
+
+  deleteSponsor(sponsorId: any) {
+    return this.request.delete(`/sponsors/${sponsorId}`);
+  }
+
+  putSponsorData(sponsorId: any, data: any) {
+    return this.request.put(`/sponsors/${sponsorId}`, data);
+  }
+
+  postSponsor(data: any) {
+    return this.request.post('/sponsors', data);
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);

@@ -15,11 +15,11 @@ export default class Sponsors extends GenericModel implements SuperModel {
             comment: 'Nom du sponsor',
         },
         logo: {
-            type: DataTypes.TEXT,
+            type: DataTypes.TEXT('long'),
             comment: 'Logo du sponsor',
         },
         banner: {
-            type: DataTypes.TEXT,
+            type: DataTypes.TEXT('long'),
             comment: 'Bannière du sponsor',
         },
         description: {

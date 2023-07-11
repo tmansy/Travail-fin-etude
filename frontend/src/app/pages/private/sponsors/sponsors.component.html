@@ -23,8 +23,8 @@
                                 <div class="product-description">{{sponsor.website}}</div>
                                 <div class="product-description">{{sponsor.email}}</div>
                                 <div class="product-description">{{sponsor.phone}}</div>
-                                <p-button class="product-description" label="Modifier" (onClick)="sponsorManagement()" styleClass="p-button-warning" class="mx-3"></p-button>
-                                <p-button class="product-description" label="Supprimer" (onClick)="sponsorManagement()" styleClass="p-button-danger"></p-button>
+                                <p-button class="product-description" label="Modifier" (onClick)="sponsorManagement(sponsor, 'modify')" styleClass="p-button-warning" class="mx-3"></p-button>
+                                <p-button class="product-description" label="Supprimer" (onClick)="sponsorManagement(sponsor, 'delete')" styleClass="p-button-danger"></p-button>
                             </div>
                         </div>
                     </div>
@@ -39,8 +39,8 @@
                                 <div class="product-description">{{sponsor.website}}</div>
                                 <div class="product-description">{{sponsor.email}}</div>
                                 <div class="product-description">{{sponsor.phone}}</div>
-                                <p-button class="product-description" label="Modifier" (onClick)="sponsorManagement()" styleClass="p-button-warning" class="mx-3"></p-button>
-                                <p-button class="product-description" label="Supprimer" (onClick)="sponsorManagement()" styleClass="p-button-danger"></p-button>
+                                <p-button class="product-description" label="Modifier" (onClick)="sponsorManagement(sponsor, 'modify')" styleClass="p-button-warning" class="mx-3"></p-button>
+                                <p-button class="product-description" label="Supprimer" (onClick)="sponsorManagement(sponsor, 'delete')" styleClass="p-button-danger"></p-button>
                             </div>
                         </div>
                     </div>

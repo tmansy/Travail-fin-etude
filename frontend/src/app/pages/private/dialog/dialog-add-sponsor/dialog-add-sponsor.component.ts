@@ -4,16 +4,20 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
-  selector: 'app-dialog-teams',
-  templateUrl: './dialog-teams.component.html',
-  styleUrls: ['./dialog-teams.component.css']
+  selector: 'app-dialog-add-sponsor',
+  templateUrl: './dialog-add-sponsor.component.html',
+  styleUrls: ['./dialog-add-sponsor.component.css']
 })
-export class DialogTeamsComponent implements OnInit {
+export class DialogAddSponsorComponent implements OnInit {
   public formGroup = new FormGroup({
     name: new FormControl(),
-    logo: new FormControl(),
     description: new FormControl(),
-  })
+    website: new FormControl(),
+    email: new FormControl(),
+    phone: new FormControl(),
+    logo: new FormControl(),
+    banner: new FormControl(),
+  });
   public selectedImage: string | null = null;
 
   constructor(private api: ApiService, private ref: DynamicDialogRef) { }
@@ -21,11 +25,11 @@ export class DialogTeamsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public createTeam() {
+  public createSponsor() {
     if(this.formGroup.valid) {
-      this.api.postNewTeam(this.formGroup.value).then((res: any) => {
+      this.api.postSponsor(this.formGroup.value).then(() => {
         this.ref.close();
-        this.api.success('Une nouvelle équipe a bien été créée');
+        this.api.success('Un nouveau sponsor a été ajouté');
       }).catch((err) => {
         this.api.error(err);
       })
@@ -35,7 +39,7 @@ export class DialogTeamsComponent implements OnInit {
     }
   }
 
-  public handleImageUpload(event: any) {
+  public handleImageLogoUpload(event: any) {
     const file = event.files[0];
 
     const reader = new FileReader();
@@ -46,4 +50,17 @@ export class DialogTeamsComponent implements OnInit {
 
     reader.readAsDataURL(file); 
   }
+
+  public handleImageBannerUpload(event: any) {
+    const file = event.files[0];
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.selectedImage = reader.result as string;
+      this.formGroup.get('banner')?.setValue(this.selectedImage);
+    };
+
+    reader.readAsDataURL(file); 
+  }
+
 }

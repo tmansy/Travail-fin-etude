@@ -58,6 +58,9 @@ import { DialogDeleteStaffComponent } from './pages/private/dialog/dialog-delete
 import { SponsorsComponent } from './pages/private/sponsors/sponsors.component';
 import { DialogMembershipRequestsComponent } from './pages/private/dialog/dialog-membership-requests/dialog-membership-requests.component';
 import { DialogRequestComponent } from './pages/private/dialog/dialog-request/dialog-request.component';
+import { DialogDeleteSponsorComponent } from './pages/private/dialog/dialog-delete-sponsor/dialog-delete-sponsor.component';
+import { DialogUpdateSponsorComponent } from './pages/private/dialog/dialog-update-sponsor/dialog-update-sponsor.component';
+import { DialogAddSponsorComponent } from './pages/private/dialog/dialog-add-sponsor/dialog-add-sponsor.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +94,9 @@ import { DialogRequestComponent } from './pages/private/dialog/dialog-request/di
     SponsorsComponent,
     DialogMembershipRequestsComponent,
     DialogRequestComponent,
+    DialogDeleteSponsorComponent,
+    DialogUpdateSponsorComponent,
+    DialogAddSponsorComponent,
   ],
   imports: [
     BrowserModule,
