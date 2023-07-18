@@ -21,6 +21,12 @@
         <li *ngIf="roleId.includes(2)" class="nav-item">
           <a routerLink="/private/requests" routerLinkActive="active" class="nav-link"><i class="bi bi-hand-index px-2"></i>Les demandes d'affiliation</a>
         </li>
+        <li *ngIf="roleId.includes(2)" class="nav-item">
+          <a routerLink="/private/users" routerLinkActive="active" class="nav-link"><i class="bi bi-clipboard-fill px-2"></i>Liste des utilisateurs</a>
+        </li>
+        <li *ngIf="roleId.includes(2)" class="nav-item">
+          <a routerLink="/private/tournaments" routerLinkActive="active" class="nav-link"><i class="bi bi-clipboard-fill px-2"></i>Les tournois</a>
+        </li>
       </ul>
       <hr>
       <div class="dropdown">

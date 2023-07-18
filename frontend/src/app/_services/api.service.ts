@@ -108,6 +108,10 @@ export class ApiService {
   postSponsor(data: any) {
     return this.request.post('/sponsors', data);
   }
+
+  getUsersStatus() {
+    return this.request.get('/get_users_status');
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);

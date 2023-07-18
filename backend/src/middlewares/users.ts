@@ -419,6 +419,38 @@ export const UsersControllers = {
                 next();
             }
         })
-    }
+    },
+
+    getUsersStatus: (req: Request, res: Response, next: NextFunction) => {
+        const database = res.locals.database;
+
+        async.waterfall([
+            (callback) => {
+                database['Users'].findAll({
+                    attributes: ['username'],
+                    include: [
+                        { model: database['MembershipRequests'], attributes: ['status'] }
+                    ]
+                }).then((instances) => {
+                    if(instances) {
+                        res.locals.response = instances;
+                        callback();
+                    }
+                    else {
+                        callback();
+                    }
+                }).catch((err) => {
+                    callback(err);
+                })
+            }
+        ], (err) => {
+            if(err) {
+                next(new Error(err));
+            }
+            else {
+                next();
+            }
+        })
+    },
 
 }

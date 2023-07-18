@@ -110,6 +110,17 @@ export default [
         methods: [
             UsersControllers.deleteStaff,
         ]
+    },
+
+    {
+        name: 'GetAllUsersWithStatus',
+        description: 'get all users with status',
+        method: Methods.GET,
+        route: `/get_users_status`,
+        hasToken: true,
+        methods: [
+            UsersControllers.getUsersStatus,
+        ]
     }
 
 ]

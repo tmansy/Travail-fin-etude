@@ -33,3 +33,17 @@ p-button.custom-button > button:hover {
     background-color: #e2ac21 !important;
     color: black !important;
 }
+
+p-button.danger-button > button {
+    text-transform: uppercase !important;
+    background-color: #c02929;
+    color: white;
+    border: none;
+    outline: none;
+    font-weight: 500;
+}
+
+p-button.danger-button > button:hover {
+    background-color: #8d1e1e !important;
+    color: white !important;
+}
