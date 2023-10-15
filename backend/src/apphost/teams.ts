@@ -1,21 +1,23 @@
 import { Methods, Params } from '../constants/api';
+import { AuthControllers } from '../middlewares/auth';
 import { TeamsControllers } from '../middlewares/teams';
 
 export default [
     {
-        name: 'postNewTeam',
-        description: 'post team',
+        name: 'create_new_team',
+        description: 'create a new team',
         method: Methods.POST,
         route : `/create_team`,
         hasToken: true,
         methods: [
+            AuthControllers.checkIfAdmin,
             TeamsControllers.postNewTeam,
         ]
     },
 
     {
-        name: 'putTeamInfos',
-        description: 'put team infos',
+        name: 'update_team_informations',
+        description: 'Update team informations',
         method: Methods.PUT,
         route: `/teams/${Params.FOCUS}`,
         hasToken: true,

@@ -38,3 +38,9 @@ a:visited {
 .active:hover {
   background-color: #e2ac21 !important;
 }
+
+.custom-sidebar {
+  width: 280px;
+  height: 100vh;
+  background-color: #17161a !important;
+}

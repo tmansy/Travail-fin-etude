@@ -31,3 +31,4 @@ TO DO:
 - Déselection du staff
 - Vérifier les rôles dans son ensemble
 - Sponsors_Teams & Sponsors_Tournaments ?
+- Les capitaines
