@@ -112,6 +112,26 @@ export class ApiService {
   getUsersStatus() {
     return this.request.get('/get_users_status');
   }
+
+  postTournament(data: any) {
+    return this.request.post('/create_tournament', data);
+  }
+
+  getTournaments() {
+    return this.request.get('/tournaments');
+  }
+
+  getTournament(tournamentId: number | undefined) {
+    return this.request.get(`/tournaments/${tournamentId}`);
+  }
+
+  putTournament(tournamentId: any, data: any) {
+    return this.request.put(`/update_tournament/${tournamentId}`, data);
+  }
+
+  getTournamentWithTeam(tournamentId: any) {
+    return this.request.get(`/get_tournament/${tournamentId}`);
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);

@@ -22,6 +22,10 @@ import { RequestsComponent } from './pages/private/requests/requests.component';
 import { SponsorsComponent } from './pages/private/sponsors/sponsors.component';
 import { UsersComponent } from './pages/private/users/users.component';
 import { TournamentsComponent } from './pages/private/tournaments/tournaments.component';
+import { MytournamentComponent } from './pages/private/mytournament/mytournament.component';
+import { SettingsTournamentComponent } from './pages/private/mytournament/settings-tournament/settings-tournament.component';
+import { TeamsTournamentComponent } from './pages/private/mytournament/teams-tournament/teams-tournament.component';
+import { TreeTournamentComponent } from './pages/private/mytournament/tree-tournament/tree-tournament.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -110,6 +114,24 @@ const routes: Routes = [
       {
         path: 'trainings',
         component: TrainingsComponent,
+      }
+    ]
+  },
+  {
+    path: "mytournament/:tournamentId",
+    component: MytournamentComponent,
+    children: [
+      {
+        path: 'settings',
+        component: SettingsTournamentComponent,
+      },
+      {
+        path: 'teams_tournament',
+        component: TeamsTournamentComponent,
+      },
+      {
+        path: 'tree',
+        component: TreeTournamentComponent
       }
     ]
   },

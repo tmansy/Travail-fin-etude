@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap');
+
+.main__content {
+    padding-right: 30px !important;
+    padding-left: 15px !important;
+}
+
+.page-wrapper {
+    display: flex;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+.font{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.left-section {
+  flex: 1;
+}
+
+.right-section {
+  flex: 5;
+}
+
+.active {
+  background-color: #fab710 !important;
+  color: black !important;
+}
+
+.active:hover {
+  background-color: #e2ac21 !important;
+}

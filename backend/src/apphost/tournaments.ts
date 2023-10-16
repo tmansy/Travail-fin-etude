@@ -1,15 +1,37 @@
-import { Methods } from '../constants/api';
+import { Methods, Params } from '../constants/api';
 import { TournamentsControllers } from '../middlewares/tournaments';
 
 export default [
     {
-        name: 'generateTournament',
-        description: 'generate tournament',
+        name: 'createTournament',
+        description: 'create tournament',
         method: Methods.POST,
-        route : '/generate_tournament',
+        route : '/create_tournament',
         hasToken: true,
         methods: [
-            TournamentsControllers.generateTournament,
+            TournamentsControllers.createTournament,
         ]
-    }
+    },
+
+    {
+        name: 'updateTournament',
+        description: 'update tournament',
+        method: Methods.PUT,
+        route: `/update_tournament/${Params.FOCUS}`,
+        hasToken: true,
+        methods: [
+            TournamentsControllers.updateTournament,
+        ]
+    },
+
+    {
+        name: 'getTournamentWithTeam',
+        description: 'get tournament with team',
+        method: Methods.GET,
+        route: `/get_tournament/${Params.FOCUS}`,
+        hasToken: true,
+        methods: [
+            TournamentsControllers.getTournament,
+        ]
+    },
 ]
