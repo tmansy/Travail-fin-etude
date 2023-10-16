@@ -12,7 +12,6 @@ export default [
             UsersControllers.getUserInfos,
         ]
     },
-
     {
         name: 'putUserInfos',
         description: 'Put user infos with userId',
@@ -23,18 +22,6 @@ export default [
             UsersControllers.putUserInfos,
         ]
     },
-
-    {
-        name: 'getTFTPlayers',
-        description: 'Get all TFT players',
-        method: Methods.GET,
-        route : '/tftplayers',
-        hasToken: false,
-        methods: [
-            UsersControllers.getTFTPlayers,
-        ]
-    },
-
     {
         name: 'getTeamsByPlayerId',
         description: 'Get all teams by player id',
@@ -45,7 +32,6 @@ export default [
             UsersControllers.getTeamsByPlayerId,
         ]
     },
-
     {
         name: 'getAllPlayersInformationsByTeam',
         description: 'Get all players informations by team',
@@ -56,7 +42,6 @@ export default [
             UsersControllers.getAllPlayersInformationsByteam,
         ]
     },
-
     {
         name: 'putPlayerInfos',
         description: 'Put all player\'s infos',
@@ -67,7 +52,6 @@ export default [
             UsersControllers.putPlayerInfos,
         ]
     },
-
     {
         name: 'getUsers',
         description: 'Get all users',
@@ -78,7 +62,6 @@ export default [
             UsersControllers.getUsers,
         ]
     },
-
     {
         name: 'AddPlayerTeam',
         description: 'Add a user in a team',
@@ -89,7 +72,6 @@ export default [
             UsersControllers.postPlayer,
         ]
     },
-
     {
         name: 'AddNewStaffMember',
         description: 'Add new staff member',
@@ -100,7 +82,6 @@ export default [
             UsersControllers.postStaff,
         ]
     },
-
     {
         name: 'DeleteStaffMember',
         description: 'Delete staff member',
@@ -111,7 +92,6 @@ export default [
             UsersControllers.deleteStaff,
         ]
     },
-
     {
         name: 'GetAllUsersWithStatus',
         description: 'get all users with status',
@@ -122,5 +102,4 @@ export default [
             UsersControllers.getUsersStatus,
         ]
     }
-
 ]

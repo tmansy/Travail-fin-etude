@@ -59,7 +59,7 @@ export default class MembershipRequests extends GenericModel implements SuperMod
             comment: 'Message de la demande d\'affiliation',
         },
         status: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.TINYINT(),
             comment: 'Statut de la demande d\'affiliation',
         },
         modified_by: {

@@ -2,108 +2,51 @@ import { Request, Response, NextFunction } from "express";
 import async from 'async';
 import { User } from "../domain/user";
 import { Op } from "sequelize";
+import { colorConsole } from "tracer";
+
+const logger = colorConsole();
 
 export const UsersControllers = {
-    getUserInfos: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
-        const userId = res.locals.focus;
+    getUserInfos: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
+            const userId = res.locals.focus;
+            let user: User;
 
-        async.waterfall([
-            (callback) => {
-                database['Users'].findOne({
-                    where: {
-                        id: userId,
-                    }
-                }).then((instance: User) => {
-                    if(instance) {
-                        res.locals.response = instance;
-                        callback();
-                    }
-                    else {
-                        callback();
-                    }
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+            let userInstance = database['Users'].findOne({
+                where: {
+                    id: userId,
+                }
+            });
+
+            user = User.createFromDB(userInstance);
+
+            res.locals.response = user;
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
-    putUserInfos: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
-        const userId = res.locals.focus;
-        const body = req.body;
+    putUserInfos: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
+            const userId = res.locals.focus;
+            const user = User.createFromBody(req.body);
 
-        async.waterfall([
-            (callback) => {
-                database['Users'].update(body, {
-                    where: {
-                        id: userId,
-                    },
-                }).then(() => {
-                    callback();
-                }).catch((err) => {
-                    callback(err);
-                })
-            },
-            (callback) => {
-                database['Users'].findOne({
-                    where: {
-                        id: userId,
-                    },
-                }).then((instance) => {
-                    res.locals.response = instance;
-                    callback();
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
-    },
+            await database['Users'].update(user, {
+                where: {
+                    id: userId,
+                }
+            });
 
-    getTFTPlayers: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
-
-        async.waterfall([
-            (callback) => {
-                database['Users'].findAll({
-                    where: {
-                        game: 'TFT',
-                    },
-                }).then((instances) => {
-                    if(instances) {
-                        res.locals.response = instances;
-                        callback();
-                    }
-                    else {
-                        callback();
-                    }
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+            res.locals.response = "L'utilisateur a été crée";
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
     getTeamsByPlayerId: (req: Request, res: Response, next: NextFunction) => {

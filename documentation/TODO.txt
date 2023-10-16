@@ -32,3 +32,5 @@ TO DO:
 - Vérifier les rôles dans son ensemble
 - Sponsors_Teams & Sponsors_Tournaments ?
 - Les capitaines
+- Changer certains types en db
+- Vérifier si un user a déjà fait une request avant d'en refaire une
