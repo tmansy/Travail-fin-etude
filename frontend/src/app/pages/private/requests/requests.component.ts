@@ -42,8 +42,9 @@ export class RequestsComponent implements OnInit {
   }
 
   public onRowSelect(event: any) {
+    console.log(event.data);
     this.dialog.open(DialogRequestComponent, {
-      header: `Demande d'affiliation de ${event.data.username}`,
+      header: `Récapitulatif demande d'affiliation`,
       styleClass: 'custom-dialog',
       data: event.data,
     }).onClose.subscribe(() => {

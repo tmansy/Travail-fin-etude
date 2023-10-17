@@ -9,17 +9,17 @@
             <p-table [value]="pendingRequests" selectionMode="single" [(selection)]="selectedRequest" dataKey="user.username" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pSortableColumn="user.lastname">Nom<p-sortIcon field="request.lastname"></p-sortIcon></th>
-                        <th pSortableColumn="user.firstname">Prénom<p-sortIcon field="request.firstname"></p-sortIcon></th>
-                        <th pSortableColumn="user.username">Nom d'utilisateur<p-sortIcon field="request.username"></p-sortIcon></th>
+                        <th pSortableColumn="userDatas.lastname">Nom<p-sortIcon field="request.lastname"></p-sortIcon></th>
+                        <th pSortableColumn="userDatas.firstname">Prénom<p-sortIcon field="request.firstname"></p-sortIcon></th>
+                        <th pSortableColumn="userDatas.username">Nom d'utilisateur<p-sortIcon field="request.username"></p-sortIcon></th>
                         <th pSortableColumn="user.createdAt">Date de la demande d'affiliation<p-sortIcon field="request.createdAt"></p-sortIcon></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-request>
                     <tr [pSelectableRow]="request">
-                        <td>{{request.lastname}}</td>
-                        <td>{{request.firstname}}</td>
-                        <td>{{request.username}}</td>
+                        <td>{{request.userDatas.lastname}}</td>
+                        <td>{{request.userDatas.firstname}}</td>
+                        <td>{{request.userDatas.username}}</td>
                         <td>{{request.createdAt | date:'dd/MM/YYYY HH:mm:ss'}}</td>
                     </tr>
                 </ng-template>
@@ -40,9 +40,9 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-request>
                     <tr [pSelectableRow]="request">
-                        <td>{{request.lastname}}</td>
-                        <td>{{request.firstname}}</td>
-                        <td>{{request.username}}</td>
+                        <td>{{request.userDatas.lastname}}</td>
+                        <td>{{request.userDatas.firstname}}</td>
+                        <td>{{request.userDatas.username}}</td>
                         <td>{{request.createdAt | date:'dd/MM/YYYY à HH:mm:ss'}}</td>
                         <td>{{request.updatedAt | date:'dd/MM/YYYY à HH:mm:ss'}}</td>
                     </tr>
@@ -64,9 +64,9 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-request>
                     <tr [pSelectableRow]="request">
-                        <td>{{request.lastname}}</td>
-                        <td>{{request.firstname}}</td>
-                        <td>{{request.username}}</td>
+                        <td>{{request.userDatas.lastname}}</td>
+                        <td>{{request.userDatas.firstname}}</td>
+                        <td>{{request.userDatas.username}}</td>
                         <td>{{request.createdAt | date:'dd/MM/YYYY à HH:mm:ss'}}</td>
                         <td>{{request.updatedAt | date:'dd/MM/YYYY à HH:mm:ss'}}</td>
                     </tr>

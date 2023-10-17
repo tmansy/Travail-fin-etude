@@ -25,7 +25,7 @@ export default class Teams extends GenericModel implements SuperModel {
         display: {
             type: DataTypes.TINYINT(),
             defaultValue: 0,
-            Comment: 'Est-ce qu\'il faut afficher l\'équipe sur la page d\'accueil ?',
+            comment: 'Est-ce qu\'il faut afficher l\'équipe sur la page d\'accueil ?',
         }
     }
 }

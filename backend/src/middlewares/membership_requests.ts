@@ -14,7 +14,10 @@ export const MembershipRequestsControllers = {
             let membershipRequestInstance = await database['MembershipRequests'].findOne({
                 where: {
                     userId: userId,
-                }
+                },
+                include: [
+                    { model: database['Users'] },
+                ]
             });
  
             if(membershipRequestInstance) membership_request = Membership_request.createFromDB(membershipRequestInstance.toJSON());
@@ -43,4 +46,20 @@ export const MembershipRequestsControllers = {
             next(new Error(error));
         }
     },
+
+    getAllMembershipRequests: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            let allMembershipRequests = await res.locals.database['MembershipRequests'].findAll({
+                include: [
+                    { model: res.locals.database['Users'] },
+                ]
+            });
+
+            res.locals.response = allMembershipRequests.map(mr => Membership_request.createFromDB(mr.toJSON()));
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
+    }
 }
