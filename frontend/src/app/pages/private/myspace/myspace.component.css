@@ -23,3 +23,15 @@
     background-color: #e2ac21;
     color: black;
 }
+
+:host ::ng-deep .p-fieldset-legend a {
+    text-decoration: none;
+}
+
+:host ::ng-deep .p-fieldset-legend {
+    background-color: #c0c0c0;
+}
+
+:host ::ng-deep .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:focus {
+    box-shadow: 0 0 0 0.2rem #fab710;
+}

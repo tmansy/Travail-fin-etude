@@ -43,6 +43,7 @@ import { AuthInterceptor } from './_interceptor/auth.interceptor';
 import { PrivateComponent } from './pages/private/private.component';
 import { MyspaceComponent } from './pages/private/myspace/myspace.component';
 import { DataViewModule } from 'primeng/dataview';
+import { FieldsetModule } from 'primeng/fieldset';
 import { TeamsComponent } from './pages/private/teams/teams.component';
 import { DialogTeamsComponent } from './pages/private/dialog/dialog-teams/dialog-teams.component';
 import { MyteamComponent } from './pages/private/myteam/myteam.component';
@@ -115,6 +116,7 @@ import { TournamentsComponent } from './pages/private/tournaments/tournaments.co
     FileUploadModule,
     TabMenuModule,
     TabViewModule,
+    FieldsetModule,
     DataViewModule,
     CalendarModule,
     TableModule,
