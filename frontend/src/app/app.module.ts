@@ -63,25 +63,6 @@ import { DialogUpdateSponsorComponent } from './pages/private/dialog/dialog-upda
 import { DialogAddSponsorComponent } from './pages/private/dialog/dialog-add-sponsor/dialog-add-sponsor.component';
 import { UsersComponent } from './pages/private/users/users.component';
 import { TournamentsComponent } from './pages/private/tournaments/tournaments.component';
-import { DialogNewTournamentComponent } from './pages/private/dialog/dialog-new-tournament/dialog-new-tournament.component';
-import { MytournamentComponent } from './pages/private/mytournament/mytournament.component';
-import { SettingsTournamentComponent } from './pages/private/mytournament/settings-tournament/settings-tournament.component';
-import { TeamsTournamentComponent } from './pages/private/mytournament/teams-tournament/teams-tournament.component';
-import { TreeTournamentComponent } from './pages/private/mytournament/tree-tournament/tree-tournament.component';
-import { StageType } from 'brackets-model';
-import { DialogGenerateTournamentComponent } from './pages/private/dialog/dialog-generate-tournament/dialog-generate-tournament.component';
-
-declare global {
-  interface Window {
-    bracketsViewer?: any | undefined;
-  }
-  
-  interface Dataset {
-    title: string;
-    type: StageType;
-    roster: { id: number; name: string }[];
-  }
-}
 
 @NgModule({
   declarations: [
@@ -120,12 +101,6 @@ declare global {
     DialogAddSponsorComponent,
     UsersComponent,
     TournamentsComponent,
-    DialogNewTournamentComponent,
-    MytournamentComponent,
-    SettingsTournamentComponent,
-    TeamsTournamentComponent,
-    TreeTournamentComponent,
-    DialogGenerateTournamentComponent,
   ],
   imports: [
     BrowserModule,

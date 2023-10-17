@@ -62,13 +62,13 @@ export class SettingsComponent implements OnInit {
           checked: this.formGroup.get('checked')?.value ? 1 : 0,
         }
         this.api.putTeamInfos(this.teamId, formValues).then((res: any) => {
-          this.api.success('Les informations de l\'équipe ont bien été enregistrées');
+          this.api.success('Les informations de l\'équipe ont bien été enregistrées.');
         })
       }
       else {
         this.api.putTeamInfos(this.teamId, this.formGroup.value).then((res: any) => {
           this.ngOnInit();
-          this.api.success('Les informations de l\'équipe ont bien été enregistrées');
+          this.api.success('Les informations de l\'équipe ont bien été enregistrées.');
         })
       }
     } 

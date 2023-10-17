@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogNewTournamentComponent } from '../dialog/dialog-new-tournament/dialog-new-tournament.component';
-import { DialogService } from 'primeng/dynamicdialog';
-import { ApiService } from 'src/app/_services/api.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tournaments',
@@ -15,7 +11,7 @@ export class TournamentsComponent implements OnInit {
   public roleId: any;
   public tournaments: any;
 
-  constructor(public api: ApiService, public dialog: DialogService, public router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
     const userString = localStorage.getItem('user');
@@ -30,24 +26,15 @@ export class TournamentsComponent implements OnInit {
       this.roleId = roleId;
     }
 
-    this.api.getTournaments().then((res: any) =>{
-      this.tournaments = res;
-    })
-
     this.loaded = true;
   }
 
   public tournamentDialog() {
-    this.dialog.open(DialogNewTournamentComponent, {
-      header: "Création d'un nouveau tournoi",
-      styleClass: 'custom-dialog',
-    }).onClose.subscribe(() => {
-      this.ngOnInit();
-    })
+
   }
 
   public goTo(tournament: any) {
-    this.router.navigateByUrl(`/mytournament/${tournament.id}/settings`);
+
   }
 
 }

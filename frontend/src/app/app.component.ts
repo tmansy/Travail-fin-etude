@@ -19,7 +19,6 @@ export class AppComponent {
         this.hideNavbarFooter = currentUrl === '/private/myspace' || currentUrl === '/private/teams' || currentUrl === '/private/staff' || currentUrl === '/private/requests' || currentUrl === '/private/sponsors' || currentUrl === '/private/users' || currentUrl === '/private/tournaments';
         if(this.hideNavbarFooter == false) {
           this.hideNavbarFooter = currentUrl.includes('/myteam/');
-          this.hideNavbarFooter = currentUrl.includes('/mytournament/');
         }
       }
     });

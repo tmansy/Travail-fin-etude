@@ -36,7 +36,7 @@ export class DialogNewStaffComponent implements OnInit {
       })
     }
     else {
-      this.api.error('Formulaire invalide');
+      this.api.error('Formulaire invalide.');
     }
   }
 

@@ -27,18 +27,17 @@ export default class Tournaments extends GenericModel implements SuperModel {
             type: DataTypes.DATE(),
             comment: 'Date de fin du tournoi',
         },
-        type: {
+        format: {
             type: DataTypes.STRING(255),
             comment: 'Format du tournoi',
+        },
+        game: {
+            type: DataTypes.STRING(255),
+            comment: 'Jeu du tournoi',
         },
         prize: {
             type: DataTypes.INTEGER(),
             comment: 'Prix du tournoi',
         },
-        generated: {
-            type: DataTypes.TINYINT(),
-            defaultValue: 0,
-            comment: 'Est-ce que l\'arbre de tournoi a été généré ?',
-        }
     }
 }
