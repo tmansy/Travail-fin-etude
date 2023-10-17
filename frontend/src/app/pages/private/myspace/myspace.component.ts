@@ -15,23 +15,40 @@ export class MyspaceComponent implements OnInit {
   public membership_request: any;
   public loaded = false;
   public titleLabel = ['Monsieur', 'Madame'];
-  public gameLabel = ['League of Legends', 'Teamfight Tactics'];
   public roleGameLabel = ['Top', 'Jungle', 'Mid', 'Adc', 'Support'];
-  public rankLabel = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Master', 'Grand master', 'Challenger'];
+  public rankLabel = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Emerald', 'Diamond', 'Master', 'Grand master', 'Challenger'];
+  public rankEnum: { [key: string]: number } = {
+    'Iron': 0,
+    'Bronze': 1,
+    'Silver': 2,
+    'Gold': 3,
+    'Platinum': 4,
+    'Emerald': 5,
+    'Diamond': 6,
+    'Master': 7,
+    'Grand master': 8,
+    'Challenger': 9
+  }
+  public roleGameEnum: { [key: string]: number } = {
+    'Top': 0,
+    'Jungle': 1,
+    'Mid': 2,
+    'Adc': 3,
+    'Support': 4,
+  }
   public countryLabel = ['Belgique', 'France', 'Suisse', 'Canada'];
   public formGroup = new FormGroup({
     title: new FormControl(),
     lastname: new FormControl(),
     firstname: new FormControl(),
     username: new FormControl(),
-    game: new FormControl(),
     roleGame: new FormControl(),
     rank: new FormControl(),
     birthdate: new FormControl(),
     phone: new FormControl(),
     status: new FormControl(),
     street: new FormControl(),
-    house_number: new FormControl(),
+    houseNumber: new FormControl(),
     zip_code: new FormControl(),
     city: new FormControl(),
     country: new FormControl(),
@@ -52,12 +69,11 @@ export class MyspaceComponent implements OnInit {
       lastname: this.user.lastname,
       firstname: this.user.firstname,
       username: this.user.username,
-      game: this.user.game,
       roleGame: this.user.roleGame,
       rank: this.user.rank,
       phone: this.user.phone,
       street: this.user.street,
-      house_number: this.user.house_number,
+      houseNumber: this.user.house_number,
       zip_code: this.user.zip_code,
       city: this.user.city,
       country: this.user.country,
@@ -67,17 +83,25 @@ export class MyspaceComponent implements OnInit {
       formValues.birthdate = moment(this.user.birthdate).toDate()
     }
 
+    formValues.rank = this.mapRankToEnumName(formValues.rank);
+    formValues.roleGame = this.mapRoleGameToEnumName(formValues.roleGame);
+
     this.api.getRequest(this.user.id).then((res) => {
       this.membership_request = res;
-      if(this.membership_request.status == "Acceptée") {
+      console.log(res)
+      if (this.membership_request.status == 0) {
         formValues.status = "Affilié";
       }
-      else if (this.membership_request.status == "Refusée") {
+      else if (this.membership_request.status == 1) {
         formValues.status = "Refusé";
       }
-      else {
+      else if (this.membership_request.status == 2) {
         formValues.status = "En attente de validation";
       }
+      else {
+        formValues.status = "Non-affilié";
+      }
+
       this.formGroup.patchValue(formValues);
     }).catch(() => {
       formValues.status = "Non-affilié";
@@ -87,6 +111,10 @@ export class MyspaceComponent implements OnInit {
 
   public save() {
     if(this.formGroup.valid) {
+      const formValue = this.formGroup.value;
+      formValue.rank = this.mapRankToEnum(formValue.rank);
+      formValue.roleGame = this.mapRoleGameToEnum(formValue.roleGame);
+
       this.api.putUserInfos(this.user.id, this.formGroup.value).then((res: any) => {
         localStorage.setItem('user', JSON.stringify(res));
         this.api.success('Vos informations ont bien été modifiées.');
@@ -101,7 +129,7 @@ export class MyspaceComponent implements OnInit {
     if(this.formGroup.get('title')?.value && this.formGroup.get('lastname')?.value 
       && this.formGroup.get('firstname')?.value && this.formGroup.get('username')?.value 
       && this.formGroup.get('phone')?.value && this.formGroup.get('birthdate')?.value 
-      && this.formGroup.get('street')?.value && this.formGroup.get('house_number')?.value 
+      && this.formGroup.get('street')?.value && this.formGroup.get('houseNumber')?.value 
       && this.formGroup.get('zip_code')?.value && this.formGroup.get('city')?.value
       && this.formGroup.get('country')?.value) {
       this.dialog.open(DialogMembershipRequestsComponent, {
@@ -115,6 +143,31 @@ export class MyspaceComponent implements OnInit {
     else {
       this.api.error('Veuillez remplir vos informations.');
     }
-    
+  }
+
+  mapRankToEnum(rankValue: string) {
+    return this.rankEnum[rankValue];
+  }
+
+  mapRankToEnumName(rankValue: number) {
+    for(const key in this.rankEnum) {
+      if(this.rankEnum[key] === rankValue) {
+        return key;
+      }
+    }
+    return '';
+  }
+
+  mapRoleGameToEnum(roleGame: string) {
+    return this.roleGameEnum[roleGame];
+  }
+
+  mapRoleGameToEnumName(roleGameValue: number) {
+    for(const key in this.roleGameEnum) {
+      if(this.roleGameEnum[key] === roleGameValue) {
+        return key;
+      }
+    }
+    return '';
   }
 }

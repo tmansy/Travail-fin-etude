@@ -12,7 +12,6 @@ export default [
             MembershipRequestsControllers.getMembershipRequestByUserId,
         ]
     },
-
     {
         name: 'postMembershipRequest',
         description: 'post membership request',
@@ -23,16 +22,4 @@ export default [
             MembershipRequestsControllers.postMembershipRequest,
         ]
     },
-
-    {
-        name: 'putMembershipRequest',
-        description: 'put membership request',
-        method: Methods.POST,
-        route: `/membership_request`,
-        hasToken: true,
-        methods: [
-            MembershipRequestsControllers.putMembershipRequest,
-        ]
-    }
-
 ]

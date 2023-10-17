@@ -22,10 +22,6 @@ export default class Teams extends GenericModel implements SuperModel {
             type: DataTypes.STRING(255),
             comment: 'Description de la team',
         },
-        captain: {
-            type: DataTypes.STRING(255),
-            comment: 'Capitaine actuel de la team',
-        },
         display: {
             type: DataTypes.TINYINT(),
             defaultValue: 0,

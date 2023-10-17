@@ -17,7 +17,7 @@ export class SettingsComponent implements OnInit {
     name: new FormControl(),
     description: new FormControl(),
     logo: new FormControl(),
-    checked: new FormControl(),
+    display: new FormControl(),
   });
   public selectedImage: string | null = null;
   public roleId: any;
@@ -47,7 +47,7 @@ export class SettingsComponent implements OnInit {
       const formValues: any = {
         name: res.name,
         description: res.description,
-        checked: res.display == 1 ? true : false,
+        display: res.display == 1 ? true : false,
       }
       this.formGroup.patchValue(formValues);
     })
@@ -59,7 +59,7 @@ export class SettingsComponent implements OnInit {
         const formValues: any = {
           name: this.formGroup.get('name')?.value,
           description: this.formGroup.get('description')?.value,
-          checked: this.formGroup.get('checked')?.value ? 1 : 0,
+          checked: this.formGroup.get('display')?.value ? 1 : 0,
         }
         this.api.putTeamInfos(this.teamId, formValues).then((res: any) => {
           this.api.success('Les informations de l\'équipe ont bien été enregistrées.');

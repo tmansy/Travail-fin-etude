@@ -36,10 +36,7 @@ export class ConnectionComponent implements OnInit {
     if(this.formGroup.valid) {
       this.api.postLogin(this.formGroup.value).then((res: any) => {
         this.loading = false;
-        if(res === "false") {
-          this.api.error('Le login ou le mot de passe n\'est pas correct.');
-        }
-        else {
+        if(res) {
           this.authService.setToken(res.token);
           localStorage.setItem('userId', res.user.id);
           localStorage.setItem('user', JSON.stringify(res.user));
@@ -63,7 +60,7 @@ export class ConnectionComponent implements OnInit {
         }
       }).catch((err) => {
         this.loading = false;
-        this.api.error(err);
+        this.api.error('Le login ou le mot de passe est incorrect.');
       })
     }
     else {

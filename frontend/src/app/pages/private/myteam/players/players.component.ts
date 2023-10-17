@@ -17,6 +17,31 @@ export class PlayersComponent implements OnInit {
   public teamId: number | undefined;
   public selectedPlayer: any;
   public roleId: any;
+  public rankEnum: { [key: string]: number } = {
+    'Iron': 0,
+    'Bronze': 1,
+    'Silver': 2,
+    'Gold': 3,
+    'Platinum': 4,
+    'Emerald': 5,
+    'Diamond': 6,
+    'Master': 7,
+    'Grand master': 8,
+    'Challenger': 9
+  }
+  public roleGameEnum: { [key: string]: number } = {
+    'Top': 0,
+    'Jungle': 1,
+    'Mid': 2,
+    'Adc': 3,
+    'Support': 4,
+  }
+  public roleTeamEnum: { [key: string]: number } = {
+    'Administrateur': 0,
+    'Joueur': 1,
+    'Capitaine': 2,
+    'Remplaçant': 3,
+  }
 
   constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private dialog: DialogService) { }
 
@@ -38,7 +63,16 @@ export class PlayersComponent implements OnInit {
     })
 
     this.api.getPlayersByTeam(this.teamId).then((res: any) => {
-      this.players = res;
+      this.players = res.map((player: any) => ({
+        ...player,
+        roleTeam: this.mapRoleTeamToEnumName(player.roleTeam),
+        user: {
+          ...player.user,
+          rank: this.mapRankToEnumName(player.user.rank),
+          roleGame: this.mapRoleGameToEnumName(player.user.roleGame)
+        }
+      }));
+
     })
 
     this.loaded = true;
@@ -64,4 +98,42 @@ export class PlayersComponent implements OnInit {
     })
   }
 
+  mapRankToEnum(rankValue: string) {
+    return this.rankEnum[rankValue];
+  }
+
+  mapRankToEnumName(rankValue: number) {
+    for(const key in this.rankEnum) {
+      if(this.rankEnum[key] === rankValue) {
+        return key;
+      }
+    }
+    return '';
+  }
+
+  mapRoleGameToEnum(roleGame: string) {
+    return this.roleGameEnum[roleGame];
+  }
+
+  mapRoleGameToEnumName(roleGameValue: number) {
+    for(const key in this.roleGameEnum) {
+      if(this.roleGameEnum[key] === roleGameValue) {
+        return key;
+      }
+    }
+    return '';
+  }
+
+  mapRoleTeamToEnum(roleTeam: string) {
+    return this.roleTeamEnum[roleTeam];
+  }
+
+  mapRoleTeamToEnumName(roleTeamValue: number) {
+    for(const key in this.roleTeamEnum) {
+      if(this.roleTeamEnum[key] === roleTeamValue) {
+        return key;
+      }
+    }
+    return '';
+  }
 }

@@ -13,6 +13,7 @@ export class DialogRequestComponent implements OnInit {
   public user: any;
   public loaded = false;
   public request: any;
+  public roleId: any;
   public formGroup = new FormGroup({
     title: new FormControl(),
     lastname: new FormControl(),
@@ -39,6 +40,12 @@ export class DialogRequestComponent implements OnInit {
       this.user = user;
     }
 
+    const roleIdString = localStorage.getItem('roleId');
+    if (roleIdString !== null) {
+      const roleId = JSON.parse(roleIdString);
+      this.roleId = roleId;
+    }
+
     this.formGroup.patchValue({
       title: this.request.title,
       lastname: this.request.lastname,
@@ -61,7 +68,7 @@ export class DialogRequestComponent implements OnInit {
     if(status === "Validée") {
       this.data = {
         'modified_by': this.user.username,
-        'status': 'Acceptée',
+        'status': 0,
       }
 
       this.api.putRequestManagement(this.request.id, this.data).then((res: any) => {
@@ -72,7 +79,7 @@ export class DialogRequestComponent implements OnInit {
     else if(status === "Refusée") {
       this.data = {
         'modified_by': this.user.username,
-        'status': 'Refusée',
+        'status': 1,
       }
 
       this.api.putRequestManagement(this.request.id, this.data).then((res: any) => {

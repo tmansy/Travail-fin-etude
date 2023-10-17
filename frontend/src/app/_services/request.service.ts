@@ -123,7 +123,7 @@ export class RequestService {
                     resolve(res);
                 }, 
                 (res: any) => {
-                    this.showError(res, options);
+                    // this.showError(res, options);
                     reject(res);
                 }
             );

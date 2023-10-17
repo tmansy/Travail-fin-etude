@@ -42,16 +42,12 @@ export default class Users extends GenericModel implements SuperModel {
             type: DataTypes.DATE(),
             comment: 'Date d\'anniversaire de la personne',
         },
-        game: {
-            type: DataTypes.STRING(255),
-            comment: 'Jeu auquel le joueur joue',
-        },
         rank: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.TINYINT(),
             comment: 'Classement du joueur sur le jeu'
         },
         roleGame: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.TINYINT(),
             comment: 'Rôle de joueur dans le jeu',
         },
         img: {

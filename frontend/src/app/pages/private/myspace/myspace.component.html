@@ -7,7 +7,7 @@
     <div class="row mt-3 mb-3" [formGroup]="formGroup">
         <div class="col-6">
             <label class="input-label">Titre</label>
-            <p-dropdown [options]="titleLabel" styleClass="w-100" formControlName="title" placeholder="Sélectionnez un titre"></p-dropdown>
+            <p-dropdown [options]="titleLabel" styleClass="w-100" formControlName="title" placeholder="Sélectionner un titre"></p-dropdown>
         </div>
         <div class="col-6">
             <label class="input-label">Nom de famille</label>
@@ -26,16 +26,12 @@
             <input type="text" styleClass="w-100" class="w-100" [ngClass]="{'p-disabled': true}" formControlName="status" placeholder="Statut d'affiliation" pInputText>
         </div>
         <div class="col-6 pt-3">
-            <label class="input-label">Jeu</label>
-            <p-dropdown [options]="gameLabel" styleClass="w-100" formControlName="game" placeholder="Sélectionnez un jeu"></p-dropdown>
-        </div>
-        <div class="col-6 pt-3">
             <label class="input-label">Rôle dans l'équipe</label>
-            <p-dropdown [options]="roleGameLabel" styleClass="w-100" formControlName="roleGame" placeholder="Sélectionnez un rôle"></p-dropdown>
+            <p-dropdown [options]="roleGameLabel" styleClass="w-100" formControlName="roleGame" placeholder="Sélectionner un rôle"></p-dropdown>
         </div>
         <div class="col-6 pt-3">
             <label class="input-label">Classement</label>
-            <p-dropdown [options]="rankLabel" styleClass="w-100" formControlName="rank" placeholder="Sélectionnez un classement"></p-dropdown>
+            <p-dropdown [options]="rankLabel" styleClass="w-100" formControlName="rank" placeholder="Sélectionner un classement"></p-dropdown>
         </div>
         <div class="col-6 pt-3">
             <label class="input-label">Numéro de téléphone</label>
@@ -51,7 +47,7 @@
         </div>
         <div class="col-6 pt-3">
             <label class="input-label">Numéro de maison</label>
-            <input type="text" styleClass="w-100" class="w-100" formControlName="house_number" placeholder="Numéro de maison" pInputText>
+            <input type="text" styleClass="w-100" class="w-100" formControlName="houseNumber" placeholder="Numéro de maison" pInputText>
         </div>
         <div class="col-6 pt-3">
             <label class="input-label">Code postal</label>

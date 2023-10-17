@@ -11,7 +11,7 @@ export default class Users_Teams extends GenericModel implements SuperModel {
 
     attributes = {
         roleTeam: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.TINYINT(),
             comment: 'Rôle de l\'utilisateur dans l\'équipe',
         },
     }

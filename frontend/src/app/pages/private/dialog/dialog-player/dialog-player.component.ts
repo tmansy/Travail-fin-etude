@@ -18,9 +18,34 @@ export class DialogPlayerComponent implements OnInit {
     roleGame: new FormControl(),
     roleTeam: new FormControl(),
   })
-  public rankLabel = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Master', 'Grand master', 'Challenger'];
+  public rankLabel = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Emerald', 'Diamond', 'Master', 'Grand master', 'Challenger'];
   public roleGameLabel = ['Top', 'Jungle', 'Mid', 'Adc', 'Support'];
   public roleTeamLabel = ['Joueur', 'Remplacant', 'Coach', 'Capitaine', 'Analyste'];
+  public rankEnum: { [key: string]: number } = {
+    'Iron': 0,
+    'Bronze': 1,
+    'Silver': 2,
+    'Gold': 3,
+    'Platinum': 4,
+    'Emerald': 5,
+    'Diamond': 6,
+    'Master': 7,
+    'Grand master': 8,
+    'Challenger': 9
+  }
+  public roleGameEnum: { [key: string]: number } = {
+    'Top': 0,
+    'Jungle': 1,
+    'Mid': 2,
+    'Adc': 3,
+    'Support': 4,
+  }
+  public roleTeamEnum: { [key: string]: number } = {
+    'Administrateur': 0,
+    'Joueur': 1,
+    'Capitaine': 2,
+    'Remplaçant': 3,
+  }
 
   constructor(private config: DynamicDialogConfig, private api: ApiService, private ref: DynamicDialogRef) {
     this.players = this.config.data;
@@ -49,7 +74,12 @@ export class DialogPlayerComponent implements OnInit {
 
   public save() {
     if(this.formGroup.valid) {
-      this.api.putPlayerInfos(this.players.userId, this.formGroup.value).then((res: any) => {
+      const formValue = this.formGroup.value;
+      formValue.rank = this.mapRankToEnum(formValue.rank);
+      formValue.roleGame = this.mapRoleGameToEnum(formValue.roleGame);
+      formValue.roleTeam = this.mapRoleTeamToEnum(formValue.roleTeam);
+
+      this.api.putPlayerInfos(this.players.userId, formValue).then((res: any) => {
         this.ref.close();
         this.api.success('Les informations ont bien été mises à jour.')
       })
@@ -59,4 +89,42 @@ export class DialogPlayerComponent implements OnInit {
     }
   }
 
+  mapRankToEnum(rankValue: string) {
+    return this.rankEnum[rankValue];
+  }
+
+  mapRankToEnumName(rankValue: number) {
+    for(const key in this.rankEnum) {
+      if(this.rankEnum[key] === rankValue) {
+        return key;
+      }
+    }
+    return '';
+  }
+
+  mapRoleGameToEnum(roleGame: string) {
+    return this.roleGameEnum[roleGame];
+  }
+
+  mapRoleGameToEnumName(roleGameValue: number) {
+    for(const key in this.roleGameEnum) {
+      if(this.roleGameEnum[key] === roleGameValue) {
+        return key;
+      }
+    }
+    return '';
+  }
+
+  mapRoleTeamToEnum(roleTeam: string) {
+    return this.roleTeamEnum[roleTeam];
+  }
+
+  mapRoleTeamToEnumName(roleTeamValue: number) {
+    for(const key in this.roleTeamEnum) {
+      if(this.roleTeamEnum[key] === roleTeamValue) {
+        return key;
+      }
+    }
+    return '';
+  }
 }
