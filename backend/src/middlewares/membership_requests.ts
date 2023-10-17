@@ -16,8 +16,8 @@ export const MembershipRequestsControllers = {
                     userId: userId,
                 }
             });
-
-            membership_request = Membership_request.createFromDB(membershipRequestInstance.toJSON());
+ 
+            if(membershipRequestInstance) membership_request = Membership_request.createFromDB(membershipRequestInstance.toJSON());
 
             res.locals.response = membership_request;
             next();

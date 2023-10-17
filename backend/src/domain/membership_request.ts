@@ -47,11 +47,6 @@ export class Membership_request {
     public updatedAt: Date;
     public userId: number;
 
-    constructor(data?) {
-        Object.assign(data);
-        return this;
-    }
-
     private static getEnumFromValue<T extends EnumType>(value: number, _enum: T): T[keyof T] {
         const keys = Object.keys(_enum).filter((key) => isNaN(Number(key)));
         for (const key of keys) {

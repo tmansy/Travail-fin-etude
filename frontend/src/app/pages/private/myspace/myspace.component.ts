@@ -15,9 +15,27 @@ export class MyspaceComponent implements OnInit {
   public membership_request: any;
   public loaded = false;
   public titleLabel = ['Monsieur', 'Madame'];
-  public gameLabel = ['League of Legends', 'Teamfight Tactics'];
   public roleGameLabel = ['Top', 'Jungle', 'Mid', 'Adc', 'Support'];
-  public rankLabel = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Master', 'Grand master', 'Challenger'];
+  public rankLabel = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Emerald', 'Diamond', 'Master', 'Grand master', 'Challenger'];
+  public rankEnum: { [key: string]: number } = {
+    'Iron': 0,
+    'Bronze': 1,
+    'Silver': 2,
+    'Gold': 3,
+    'Platinum': 4,
+    'Emerald': 5,
+    'Diamond': 6,
+    'Master': 7,
+    'Grand master': 8,
+    'Challenger': 9
+  }
+  public roleGameEnum: { [key: string]: number } = {
+    'Top': 0,
+    'Jungle': 1,
+    'Mid': 2,
+    'Adc': 3,
+    'Support': 4,
+  }
   public countryLabel = ['Belgique', 'France', 'Suisse', 'Canada'];
   public formGroup = new FormGroup({
     title: new FormControl(),
@@ -46,6 +64,8 @@ export class MyspaceComponent implements OnInit {
       this.user = user;
     }
 
+    console.log(this.user)
+
     this.loaded = true;
     const formValues: any = {
       title: this.user.title,
@@ -67,6 +87,9 @@ export class MyspaceComponent implements OnInit {
       formValues.birthdate = moment(this.user.birthdate).toDate()
     }
 
+    formValues.rank = this.mapRankToEnumName(formValues.rank);
+    formValues.roleGame = this.mapRoleGameToEnumName(formValues.roleGame);
+
     this.api.getRequest(this.user.id).then((res) => {
       this.membership_request = res;
       if(this.membership_request.status == "Acceptée") {
@@ -78,6 +101,7 @@ export class MyspaceComponent implements OnInit {
       else {
         formValues.status = "En attente de validation";
       }
+
       this.formGroup.patchValue(formValues);
     }).catch(() => {
       formValues.status = "Non-affilié";
@@ -87,6 +111,10 @@ export class MyspaceComponent implements OnInit {
 
   public save() {
     if(this.formGroup.valid) {
+      const formValue = this.formGroup.value;
+      formValue.rank = this.mapRankToEnum(formValue.rank);
+      formValue.roleGame = this.mapRoleGameToEnum(formValue.roleGame);
+
       this.api.putUserInfos(this.user.id, this.formGroup.value).then((res: any) => {
         localStorage.setItem('user', JSON.stringify(res));
         this.api.success('Vos informations ont bien été modifiées.');
@@ -115,6 +143,31 @@ export class MyspaceComponent implements OnInit {
     else {
       this.api.error('Veuillez remplir vos informations.');
     }
-    
+  }
+
+  mapRankToEnum(rankValue: string) {
+    return this.rankEnum[rankValue];
+  }
+
+  mapRankToEnumName(rankValue: number) {
+    for(const key in this.rankEnum) {
+      if(this.rankEnum[key] === rankValue) {
+        return key;
+      }
+    }
+    return '';
+  }
+
+  mapRoleGameToEnum(roleGame: string) {
+    return this.roleGameEnum[roleGame];
+  }
+
+  mapRoleGameToEnumName(roleGameValue: number) {
+    for(const key in this.roleGameEnum) {
+      if(this.roleGameEnum[key] === roleGameValue) {
+        return key;
+      }
+    }
+    return '';
   }
 }

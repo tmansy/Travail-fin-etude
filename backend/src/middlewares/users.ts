@@ -41,7 +41,13 @@ export const UsersControllers = {
                 }
             });
 
-            res.locals.response = "L'utilisateur a été crée";
+            const _user = await database['Users'].findOne({
+                where: {
+                    id: userId,
+                }
+            })
+
+            res.locals.response = _user;
             next();
         } catch (error) {
             logger.error(error);

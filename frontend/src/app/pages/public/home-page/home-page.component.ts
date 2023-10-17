@@ -23,10 +23,6 @@ export class HomePageComponent implements OnInit {
     this.api.getTeams().then((res: any) => {
       this.teams = res;
     });
-
-    this.api.getTFTPlayers().then((res: any) => {
-      this.tftplayers = res;
-    });
   }
   
 }
