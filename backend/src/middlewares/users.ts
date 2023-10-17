@@ -3,6 +3,7 @@ import async from 'async';
 import { User } from "../domain/user";
 import { Op } from "sequelize";
 import { colorConsole } from "tracer";
+import { User_team } from "../domain/user_team";
 
 const logger = colorConsole();
 
@@ -55,83 +56,31 @@ export const UsersControllers = {
         }
     },
 
-    getTeamsByPlayerId: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
-        const userId = res.locals.focus;
+    getTeamsByPlayerId: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
+            const userId = res.locals.focus;
 
-        async.waterfall([
-            (callback) => {
-                database['Users'].findOne({
-                    where: {
-                        id: userId,
-                    },
-                    include: [
-                        { model: database['Users_Roles'] }
-                    ]
-                }).then((instance) => {
-                    const _instance = instance.toJSON();
-                    const hasRoleId2 = _instance.users_roles.some((userRole) => {
-                        return userRole.roleId == 2;
-                    })
-                    if(hasRoleId2) {
-                        database['Users_Teams'].findAll({
-                            where: {
-                                userId: userId,
-                                roleTeam: 'Admin',
-                            },
-                            include: [
-                                { model: database['Users'] },
-                                { model: database['Teams'] },
-                            ]
-                        }).then((instances) => {
-                            if(instances) {
-                                res.locals.response = instances;
-                                next();
-                            }
-                            else {
-                                callback();
-                            }
-                        }).catch((err) => {
-                            callback(err);
-                        })
-                    }
-                    else {
-                        callback();
-                    }
-                }).catch((err) => {
-                    callback(err);
-                })
-            },
-            (callback) => {
-                database['Users_Teams'].findAll({
-                    where: {
-                        userId: userId,
-                    },
-                    include: [
-                        { model: database['Users'] },
-                        { model: database['Teams'] },
-                    ]
-                }).then((instances) => {
-                    if(instances) {
-                        const players_teams = instances;
-                        res.locals.response = players_teams;
-                        callback();
-                    }
-                    else {
-                        callback();
-                    }
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+            let user_teams = await database['Users_Teams'].findAll({
+                where: {
+                    userId: userId,
+                },
+                include: [
+                    { model: database['Users'] },
+                    { model: database['Teams'] },
+                ],
+            });
+
+            user_teams = user_teams.map(ut => User_team.createFromDB(ut.toJSON()));
+
+            const filteredUserTeams = User_team.filterUniqueTeams(user_teams);
+
+            res.locals.response = filteredUserTeams;
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
     getAllPlayersInformationsByteam: (req: Request, res: Response, next: NextFunction) => {
@@ -214,36 +163,23 @@ export const UsersControllers = {
         })
     },
 
-    getUsers: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
+    getUsers: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
 
-        async.waterfall([
-            (callback) => {
-                database['Users'].findAll({
-                    attributes: ['id', 'title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'description'],
-                    include: [
-                        { model: database['Users_Roles'] }
-                    ]
-                }).then((instances) => {
-                    if(instances) {
-                        res.locals.response = instances;
-                        callback();
-                    }
-                    else {
-                        callback();
-                    }
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+            const allUsers = await database['Users'].findAll({
+                attributes: ['id', 'title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'rank', 'roleGame', 'description'],
+                include: [
+                    { model: database['Users_Roles'] }
+                ]
+            });
+
+            res.locals.response = allUsers.map(u => User.createFromDB(u.toJSON()));
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
     postPlayer: (req: Request, res: Response, next: NextFunction) => {

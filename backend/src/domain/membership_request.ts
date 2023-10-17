@@ -4,12 +4,14 @@ export enum Status {
     ACCEPTED,
     REFUSED,
     ONHOLD,
+    UNAFFILIATED,
 }
 
 type Membership_requestDAO = {
     id: number;
     title: string;
     lastname: string;
+    firstname: string;
     username: string;
     birthdate: string;
     phone: string;
@@ -32,6 +34,7 @@ export class Membership_request {
     public id: number;
     public title: string;
     public lastname: string;
+    public firstname: string;
     public username: string;
     public birthdate: string;
     public phone: string;
@@ -73,7 +76,7 @@ export class Membership_request {
         request.city = body.city;
         request.country = body.country;
         request.message = body.message;
-        request.status = Membership_request.getEnumFromValue(body.status, Status);
+        if(body.status) request.status = Membership_request.getEnumFromValue(body.status, Status);
         request.modified_by = body.modified_by;
         request.createdAt = body.createdAt;
         request.updatedAt = body.updatedAt;
@@ -88,6 +91,7 @@ export class Membership_request {
         request.id = body.id;
         request.title = body.title;
         request.lastname = body.lastname;
+        request.firstname = body.firstname;
         request.username = body.username;
         request.birthdate = body.birthdate;
         request.phone = body.phone;

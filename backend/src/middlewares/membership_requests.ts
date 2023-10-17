@@ -43,13 +43,4 @@ export const MembershipRequestsControllers = {
             next(new Error(error));
         }
     },
-
-    putMembershipRequest: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-
-        } catch (error) {
-            logger.error(error);
-            next(new Error(error));
-        }
-    }
 }

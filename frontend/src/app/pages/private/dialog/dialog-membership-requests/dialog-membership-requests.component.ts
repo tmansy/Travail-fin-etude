@@ -20,7 +20,7 @@ export class DialogMembershipRequestsComponent implements OnInit {
     birthdate: new FormControl(),
     phone: new FormControl(),
     street: new FormControl(),
-    house_number: new FormControl(),
+    houseNumber: new FormControl(),
     zip_code: new FormControl(),
     city: new FormControl(),
     country: new FormControl(),

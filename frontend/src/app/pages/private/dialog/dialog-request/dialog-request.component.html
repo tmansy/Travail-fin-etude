@@ -45,7 +45,7 @@
             <textarea [attr.disabled]="true" type="text" cols="5" rows="5" formControlName="message" class="w-100" pInputText></textarea>
         </div>
     </div>
-    <div *ngIf="request.status == 'En attente'" class="mt-3 d-flex justify-content-end">
+    <div *ngIf="roleId.includes(2)" class="mt-3 d-flex justify-content-end">
         <p-button label="Valider" (onClick)="requestManagement('Validée')" class="mx-3 custom-button"></p-button>
         <p-button label="Refuser" (onClick)="requestManagement('Refusée')" class="danger-button"></p-button>
     </div>

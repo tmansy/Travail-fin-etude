@@ -42,14 +42,13 @@ export class MyspaceComponent implements OnInit {
     lastname: new FormControl(),
     firstname: new FormControl(),
     username: new FormControl(),
-    game: new FormControl(),
     roleGame: new FormControl(),
     rank: new FormControl(),
     birthdate: new FormControl(),
     phone: new FormControl(),
     status: new FormControl(),
     street: new FormControl(),
-    house_number: new FormControl(),
+    houseNumber: new FormControl(),
     zip_code: new FormControl(),
     city: new FormControl(),
     country: new FormControl(),
@@ -64,20 +63,17 @@ export class MyspaceComponent implements OnInit {
       this.user = user;
     }
 
-    console.log(this.user)
-
     this.loaded = true;
     const formValues: any = {
       title: this.user.title,
       lastname: this.user.lastname,
       firstname: this.user.firstname,
       username: this.user.username,
-      game: this.user.game,
       roleGame: this.user.roleGame,
       rank: this.user.rank,
       phone: this.user.phone,
       street: this.user.street,
-      house_number: this.user.house_number,
+      houseNumber: this.user.house_number,
       zip_code: this.user.zip_code,
       city: this.user.city,
       country: this.user.country,
@@ -92,14 +88,17 @@ export class MyspaceComponent implements OnInit {
 
     this.api.getRequest(this.user.id).then((res) => {
       this.membership_request = res;
-      if(this.membership_request.status == "Acceptée") {
+      if (this.membership_request.status == 0) {
         formValues.status = "Affilié";
       }
-      else if (this.membership_request.status == "Refusée") {
+      else if (this.membership_request.status == 1) {
         formValues.status = "Refusé";
       }
-      else {
+      else if (this.membership_request.status == 2) {
         formValues.status = "En attente de validation";
+      }
+      else {
+        formValues.status = "Non-affilié";
       }
 
       this.formGroup.patchValue(formValues);
@@ -126,10 +125,11 @@ export class MyspaceComponent implements OnInit {
   }
 
   public openDialog() {
+    console.log(this.formGroup.value);
     if(this.formGroup.get('title')?.value && this.formGroup.get('lastname')?.value 
       && this.formGroup.get('firstname')?.value && this.formGroup.get('username')?.value 
       && this.formGroup.get('phone')?.value && this.formGroup.get('birthdate')?.value 
-      && this.formGroup.get('street')?.value && this.formGroup.get('house_number')?.value 
+      && this.formGroup.get('street')?.value && this.formGroup.get('houseNumber')?.value 
       && this.formGroup.get('zip_code')?.value && this.formGroup.get('city')?.value
       && this.formGroup.get('country')?.value) {
       this.dialog.open(DialogMembershipRequestsComponent, {

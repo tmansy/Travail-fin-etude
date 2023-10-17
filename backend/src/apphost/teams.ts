@@ -14,7 +14,6 @@ export default [
             TeamsControllers.postNewTeam,
         ]
     },
-
     {
         name: 'update_team_informations',
         description: 'Update team informations',
