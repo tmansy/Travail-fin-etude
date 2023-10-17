@@ -7,6 +7,8 @@ export enum roleTeam {
     PLAYER,
     CAPTAIN,
     SUBSTITUTE,
+    ANALYST,
+    COACH,
 }
 
 export type User_teamDAO = {

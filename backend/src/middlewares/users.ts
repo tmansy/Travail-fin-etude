@@ -83,84 +83,61 @@ export const UsersControllers = {
         }
     },
 
-    getAllPlayersInformationsByteam: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
-        const teamId = res.locals.focus;
+    getAllPlayersInformationsByteam: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
+            const teamId = res.locals.focus;
 
-        async.waterfall([
-            (callback) => {
-                database['Users_Teams'].findAll({
-                    where: {
-                        teamId: teamId,
-                        roleTeam: { [Op.ne]: 'Admin' }
-                    },
-                    include: [
-                        { model: database['Users'], attributes: ['title', 'firstname', 'lastname', 'email', 'username', 'phone', 'birthdate', 'game', 'rank', 'roleGame', 'img', 'description'] },
-                    ]
-                }).then((instances) => {
-                    if(instances) {
-                        res.locals.response = instances;
-                        callback();
-                    }
-                    else {
-                        callback();
-                    }
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+            const allPlayers = await database['Users_Teams'].findAll({
+                where: {
+                    teamId: teamId,
+                    roleTeam: { [Op.ne]: 0 }
+                },
+                include: [
+                    { model: database['Users'] },
+                ]
+            });
+
+            res.locals.response = allPlayers.map(p => User_team.createFromDB(p.toJSON()));
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
-    putPlayerInfos: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
-        const userId = res.locals.focus;
-        const body = req.body;
+    putPlayerInfos: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
+            const userId = res.locals.focus;
+            const body = req.body;
 
-        async.waterfall([
-            (callback) => {
-                database['Users'].update({
-                    rank: body.rank,
-                    roleGame: body.roleGame,
-                }, {
-                    where: {
-                        id: userId,
-                    }
-                }).then(() => {
-                    callback();
-                }).catch((err) => {
-                    callback(err);
-                })
+            await database['Users'].update({
+                rank: body.rank,
+                roleGame: body.roleGame,
             },
-            (callback) => {
-                database['Users_Teams'].update({
-                    roleTeam: body.roleTeam,
-                }, {
-                    where: {
-                        userId: userId,
-                        roleTeam: ['Joueur', 'Coach', 'Capitaine', 'Analyste'],
-                    }
-                }).then(() => {
-                    callback();
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+            {
+                where: {
+                    id: userId,
+                }
+            });
+
+            await database['Users_Teams'].update({
+                roleTeam: body.roleTeam,
+            },
+            {
+                where: {
+                    userId: userId,
+                    roleTeam: [1, 2, 3, 4, 5],
+                }
+            });
+
+            res.locals.response = "Le joueur a bien été update";
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
     getUsers: async (req: Request, res: Response, next: NextFunction) => {
@@ -182,160 +159,107 @@ export const UsersControllers = {
         }
     },
 
-    postPlayer: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
-        const body = req.body;
-        let userId;
+    postPlayer: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
+            const body = req.body;
 
-        async.waterfall([
-            (callback) => {
-                database['Users'].findOne({
-                    where: {
-                        username: body.username,
-                    }
-                }).then((instance) => {
-                    if(instance) {
-                        userId = instance.id;
-                        callback();
-                    }
-                }).catch((err) => {
-                    callback(err);
-                })
-            },
-            (callback) => {
-                database['Users_Teams'].create({
-                    roleTeam: body.roleTeam,
-                    userId: userId,
-                    teamId: body.teamId,
-                }).then((instance) => {
-                    res.locals.response = instance;
-                    callback();
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+            const user = await database['Users'].findOne({
+                where: {
+                    username: body.username
+                }
+            });
+
+            const user_team = await database['Users_Teams'].create({
+                roleTeam: body.roleTeam,
+                userId: user.id,
+                teamId: body.teamId,
+            });
+
+            res.locals.response = user_team;
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
-    postStaff: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
-        const body = req.body;
-        let userId;
-        let userRoleId;
+    postStaff: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
+            const body = req.body;
+            let userRoleId;
 
-        async.waterfall([
-            (callback) => {
-                database['Users'].findOne({
-                    where: {
-                        username: body.username
-                    }
-                }).then((instance) => {
-                    if(instance) {
-                        userId = instance.id;
-                        callback();
-                    }
-                    else {
-                        callback();
-                    }
-                }).catch((err) => {
-                    callback(err);
-                })
-            },
-            (callback) => {
-                if(body.roleAssos == "Président") userRoleId = 3;
-                if(body.roleAssos == "Vice-président") userRoleId = 4;
-                if(body.roleAssos == "Secrétaire général") userRoleId = 5;
-                if(body.roleAssos == "Trésorier") userRoleId = 6;
-                if(body.roleAssos == "Ressources humaines") userRoleId = 7;
-                if(body.roleAssos == "Responsable marketing") userRoleId = 8;
-                if(body.roleAssos == "Responsable partenariat") userRoleId = 9;
-                if(body.roleAssos == "Responsable des équipes") userRoleId = 10;
-                if(body.roleAssos == "Responsable régie") userRoleId = 11;
+            if(body.roleAssos == "Président") userRoleId = 3;
+            if(body.roleAssos == "Vice-président") userRoleId = 4;
+            if(body.roleAssos == "Secrétaire général") userRoleId = 5;
+            if(body.roleAssos == "Trésorier") userRoleId = 6;
+            if(body.roleAssos == "Ressources humaines") userRoleId = 7;
+            if(body.roleAssos == "Responsable marketing") userRoleId = 8;
+            if(body.roleAssos == "Responsable partenariat") userRoleId = 9;
+            if(body.roleAssos == "Responsable des équipes") userRoleId = 10;
+            if(body.roleAssos == "Responsable régie") userRoleId = 11;
 
-                database['Users_Roles'].create({
-                    roleId: userRoleId,
-                    userId: userId,
-                }).then((instance) => {
-                    res.locals.response = instance;
-                    callback();
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+            const user = await database['Users'].findOne({
+                where: {
+                    username: body.username,
+                },
+                attributes: ['id'],
+            });
+
+            await database['Users_Roles'].create({
+                roleId: userRoleId,
+                userId: user.id,
+            });
+
+            res.locals.response = "Le membre a été ajouté au staff";
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
-    deleteStaff: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
-        const body = req.body;
+    deleteStaff: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
+            const body = req.body;
 
-        async.waterfall([
-            (callback) => {
-                database['Users_Roles'].destroy({
-                    where: {
-                        roleId: body.tableRole,
-                        userId: body.id,
-                    }
-                }).then(() => {
-                    callback();
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+            await database['Users_Roles'].destroy({
+                where: {
+                    roleId: body.tableRole,
+                    userId: body.id,
+                }
+            });
+
+            res.locals.response = "Le membre a été retiré du staff";
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
-    getUsersStatus: (req: Request, res: Response, next: NextFunction) => {
-        const database = res.locals.database;
+    getUsersStatus: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const database = res.locals.database;
 
-        async.waterfall([
-            (callback) => {
-                database['Users'].findAll({
-                    attributes: ['username'],
-                    include: [
-                        { model: database['MembershipRequests'], attributes: ['status'] }
-                    ]
-                }).then((instances) => {
-                    if(instances) {
-                        res.locals.response = instances;
-                        callback();
+            const allUsers = await database['Users'].findAll({
+                attributes: ['username'],
+                include: [
+                    { 
+                        model: database['MembershipRequests'], 
+                        attributes: ['status'] 
                     }
-                    else {
-                        callback();
-                    }
-                }).catch((err) => {
-                    callback(err);
-                })
-            }
-        ], (err) => {
-            if(err) {
-                next(new Error(err));
-            }
-            else {
-                next();
-            }
-        })
+                ]
+            });
+
+            res.locals.response = allUsers.map(u => User.createFromDB(u.toJSON()));
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     },
 
 }

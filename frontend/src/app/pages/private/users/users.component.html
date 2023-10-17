@@ -18,9 +18,9 @@
                     <td>
                         <ng-container *ngIf="user.membershipRequests && user.membershipRequests.length > 0">
                             <ng-container [ngSwitch]="user.membershipRequests[0].status">
-                                <td *ngSwitchCase="'Acceptée'">Affilié</td>
-                                <td *ngSwitchCase="'Refusée'">Non-affilié</td>
-                                <td *ngSwitchCase="'En attente de validation'">En attente de validation</td>
+                                <td *ngSwitchCase="0">Affilié</td>
+                                <td *ngSwitchCase="1">Refusé</td>
+                                <td *ngSwitchCase="2">En attente de validation</td>
                             </ng-container>
                         </ng-container>
                         <ng-container *ngIf="!user.membershipRequests || user.membershipRequests.length === 0">Non-affilié</ng-container>

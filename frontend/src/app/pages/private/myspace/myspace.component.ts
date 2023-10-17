@@ -88,6 +88,7 @@ export class MyspaceComponent implements OnInit {
 
     this.api.getRequest(this.user.id).then((res) => {
       this.membership_request = res;
+      console.log(res)
       if (this.membership_request.status == 0) {
         formValues.status = "Affilié";
       }
@@ -125,7 +126,6 @@ export class MyspaceComponent implements OnInit {
   }
 
   public openDialog() {
-    console.log(this.formGroup.value);
     if(this.formGroup.get('title')?.value && this.formGroup.get('lastname')?.value 
       && this.formGroup.get('firstname')?.value && this.formGroup.get('username')?.value 
       && this.formGroup.get('phone')?.value && this.formGroup.get('birthdate')?.value 

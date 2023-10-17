@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { User_role, User_roleDAO } from './user_role';
+import { Membership_request, Membership_requestDAO } from './membership_request';
 
 export enum rank {
     IRON,
@@ -44,6 +45,7 @@ export type UserDAO = {
     createdAt: Date;
     updatedAt: Date;
     users_roles?: User_roleDAO[];
+    membershipRequests?: Membership_requestDAO[];
 }
 
 export class User {
@@ -68,6 +70,7 @@ export class User {
     public createdAt: Date;
     public updatedAt: Date;
     public users_roles?: User_roleDAO[];
+    public membershipRequests?: Membership_requestDAO[];
 
     public static createFromBody(body: UserDAO) {
         const user = new User();
@@ -120,6 +123,7 @@ export class User {
         user.country = body.country;
 
         if(body.users_roles) user.users_roles = body.users_roles.map(ur => User_role.createFromDB(ur));
+        if(body.membershipRequests) user.membershipRequests = body.membershipRequests.map(mr => Membership_request.createFromDB(mr));
 
         return user;
     }

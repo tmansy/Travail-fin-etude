@@ -7,7 +7,7 @@ export enum Status {
     UNAFFILIATED,
 }
 
-type Membership_requestDAO = {
+export type Membership_requestDAO = {
     id: number;
     title: string;
     lastname: string;
@@ -76,7 +76,7 @@ export class Membership_request {
         request.city = body.city;
         request.country = body.country;
         request.message = body.message;
-        if(body.status) request.status = Membership_request.getEnumFromValue(body.status, Status);
+        if(body.status != null) request.status = Membership_request.getEnumFromValue(body.status, Status);
         request.modified_by = body.modified_by;
         request.createdAt = body.createdAt;
         request.updatedAt = body.updatedAt;
