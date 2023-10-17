@@ -22,4 +22,14 @@ export default [
             MembershipRequestsControllers.postMembershipRequest,
         ]
     },
+    {
+        name: 'get_all_MembershipRequests',
+        description: 'Get all membershipRequests',
+        method: Methods.GET,
+        route: `/membershiprequests`,
+        hasToken: true,
+        methods: [
+            MembershipRequestsControllers.getAllMembershipRequests,
+        ]
+    }
 ]

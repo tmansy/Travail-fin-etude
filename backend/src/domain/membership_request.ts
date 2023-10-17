@@ -1,4 +1,5 @@
 import { ApiError, ErrorCodeAPi } from "../modules/errors/errors";
+import { User, UserDAO } from "./user";
 
 export enum Status {
     ACCEPTED,
@@ -26,6 +27,7 @@ export type Membership_requestDAO = {
     createdAt: Date;
     updatedAt: Date;
     userId: number;
+    user?: UserDAO;
 }
 
 type EnumType = typeof Status;
@@ -49,6 +51,7 @@ export class Membership_request {
     public createdAt: Date;
     public updatedAt: Date;
     public userId: number;
+    public userDatas?: UserDAO;
 
     private static getEnumFromValue<T extends EnumType>(value: number, _enum: T): T[keyof T] {
         const keys = Object.keys(_enum).filter((key) => isNaN(Number(key)));
@@ -81,6 +84,8 @@ export class Membership_request {
         request.createdAt = body.createdAt;
         request.updatedAt = body.updatedAt;
         request.userId = body.userId;
+
+        if(body.user) request.userDatas = User.createFromDB(body.user);
 
         return request;
     }

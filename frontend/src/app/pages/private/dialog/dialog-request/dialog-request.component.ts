@@ -47,17 +47,17 @@ export class DialogRequestComponent implements OnInit {
     }
 
     this.formGroup.patchValue({
-      title: this.request.title,
-      lastname: this.request.lastname,
-      firstname: this.request.firstname,
-      username: this.request.username,
-      birthdate: this.request.birthdate,
-      phone: this.request.phone,
-      street: this.request.street,
-      houseNumber: this.request.houseNumber,
-      zip_code: this.request.zip_code,
-      city: this.request.city,
-      country: this.request.country,
+      title: this.request.userDatas.title,
+      lastname: this.request.userDatas.lastname,
+      firstname: this.request.userDatas.firstname,
+      username: this.request.userDatas.username,
+      birthdate: this.request.userDatas.birthdate,
+      phone: this.request.userDatas.phone,
+      street: this.request.userDatas.street,
+      houseNumber: this.request.userDatas.house_number,
+      zip_code: this.request.userDatas.zip_code,
+      city: this.request.userDatas.city,
+      country: this.request.userDatas.country,
       message: this.request.message,
     });
 
