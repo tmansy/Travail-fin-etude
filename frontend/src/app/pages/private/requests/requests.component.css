@@ -2,3 +2,24 @@
     display: flex;
     justify-content: center;
 }
+
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    border-color: #fab710 !important;
+    color: #fab710 !important;
+}
+
+:host ::ng-deep .p-datatable .p-sortable-column.p-highlight {
+    color: #fab710 !important;
+}
+
+:host ::ng-deep .p-datatable .p-sortable-column.p-highlight .p-sortable-column-icon {
+    color: #fab710 !important;
+}
+
+:host ::ng-deep .p-datatable .p-sortable-column:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
+}
