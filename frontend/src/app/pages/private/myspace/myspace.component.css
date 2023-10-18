@@ -35,3 +35,12 @@
 :host ::ng-deep .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:focus {
     box-shadow: 0 0 0 0.2rem #fab710;
 }
+
+:host ::ng-deep .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:hover {
+    box-shadow: 0 0 0 0.2rem #fab710;
+    background-color: #dcd9d9;
+}
+
+:host ::ng-deep #p-fieldset-2-content > div > div > p-chip > div, :host ::ng-deep #p-fieldset-5-content > div > div > p-chip {
+    color: #fff !important;
+}

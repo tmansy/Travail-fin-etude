@@ -18,9 +18,9 @@ export default class MembershipRequests extends GenericModel implements SuperMod
             type: DataTypes.TINYINT(),
             comment: 'Statut de la demande d\'affiliation',
         },
-        modified_by: {
+        adminMessage: {
             type: DataTypes.STRING(255),
-            comment: 'Personne qui a accepté la demande',
-        },
+            comment: 'Message administrateur',
+        }
     }
 }

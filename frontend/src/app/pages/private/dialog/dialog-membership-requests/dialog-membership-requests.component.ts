@@ -20,12 +20,15 @@ export class DialogMembershipRequestsComponent implements OnInit {
     birthdate: new FormControl(),
     phone: new FormControl(),
     street: new FormControl(),
-    houseNumber: new FormControl(),
+    house_number: new FormControl(),
     zip_code: new FormControl(),
     city: new FormControl(),
     country: new FormControl(),
     message: new FormControl(),
-  })
+    rank: new FormControl(),
+    roleGame: new FormControl(),
+    usernameInGame: new FormControl(),
+  });
   
   constructor(private config: DynamicDialogConfig, private api: ApiService, private ref: DynamicDialogRef) {
     this.config.data.birthdate = moment(this.config.data.birthdate).format("DD-MM-YYYY");

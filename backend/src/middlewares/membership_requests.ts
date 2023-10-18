@@ -17,7 +17,8 @@ export const MembershipRequestsControllers = {
                 },
                 include: [
                     { model: database['Users'] },
-                ]
+                ],
+                order: [['createdAt', 'DESC']],
             });
  
             if(membershipRequestInstance) membership_request = Membership_request.createFromDB(membershipRequestInstance.toJSON());

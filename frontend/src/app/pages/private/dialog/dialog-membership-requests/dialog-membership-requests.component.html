@@ -1,53 +1,75 @@
-<div [formGroup]="formGroup">
-    <div class="p-field mt-3">
-        <label>Titre</label>
-        <input [attr.disabled]="true" type="text" formControlName="title" class="w-100" pInputText>
+<p-panel header="Mes informations personnelles" [toggleable]="true">
+    <div [formGroup]="formGroup">
+        <div class="p-field">
+            <label>Titre</label>
+            <input [attr.disabled]="true" type="text" formControlName="title" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Nom</label>
+            <input [attr.disabled]="true" type="text" formControlName="lastname" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Prénom</label>
+            <input [attr.disabled]="true" type="text" formControlName="firstname" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Nom d'utilisateur</label>
+            <input [attr.disabled]="true" type="text" formControlName="username" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Date d'anniversaire</label>
+            <input [attr.disabled]="true" type="text" formControlName="birthdate" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Numéro de téléphone</label>
+            <input [attr.disabled]="true" type="text" formControlName="phone" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Rue</label>
+            <input [attr.disabled]="true" type="text" formControlName="street" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Numéro de maison</label>
+            <input [attr.disabled]="true" type="text" formControlName="house_number" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Code postal</label>
+            <input [attr.disabled]="true" type="text" formControlName="zip_code" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Localité</label>
+            <input [attr.disabled]="true" type="text" formControlName="city" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Pays</label>
+            <input [attr.disabled]="true" type="text" formControlName="country" class="w-100" pInputText>
+        </div>
     </div>
-    <div class="p-field mt-3">
-        <label>Nom</label>
-        <input [attr.disabled]="true" type="text" formControlName="lastname" class="w-100" pInputText>
+</p-panel>
+<p-panel header="Mes informations en jeu" [toggleable]="true" [collapsed]="true">
+    <div [formGroup]="formGroup">
+        <div class="p-field">
+            <label>Nom d'utilisateur en jeu</label>
+            <input [attr.disabled]="true" type="text" formControlName="usernameInGame" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Mon rôle</label>
+            <input [attr.disabled]="true" type="text" formControlName="roleGame" class="w-100" pInputText>
+        </div>
+        <div class="p-field mt-2">
+            <label>Mon classement</label>
+            <input [attr.disabled]="true" type="text" formControlName="rank" class="w-100" pInputText>
+        </div>
     </div>
-    <div class="p-field mt-3">
-        <label>Prénom</label>
-        <input [attr.disabled]="true" type="text" formControlName="firstname" class="w-100" pInputText>
+</p-panel>
+<p-panel header="Message supplémentaire (facultatif)" [toggleable]="true" [collapsed]="true">
+    <div [formGroup]="formGroup">
+        <div class="p-field">
+            <label>Message pour appuyer votre demande (facultatif)</label>
+            <textarea class="w-100" cols="5" rows="5" type="text" formControlName="message" placeholder="Votre message" pInputText></textarea>
+        </div>
     </div>
-    <div class="p-field mt-3">
-        <label>Nom d'utilisateur</label>
-        <input [attr.disabled]="true" type="text" formControlName="username" class="w-100" pInputText>
-    </div>
-    <div class="p-field mt-3">
-        <label>Date d'anniversaire</label>
-        <input [attr.disabled]="true" type="text" formControlName="birthdate" class="w-100" pInputText>
-    </div>
-    <div class="p-field mt-3">
-        <label>Numéro de téléphone</label>
-        <input [attr.disabled]="true" type="text" formControlName="phone" class="w-100" pInputText>
-    </div>
-    <div class="p-field mt-3">
-        <label>Rue</label>
-        <input [attr.disabled]="true" type="text" formControlName="street" class="w-100" pInputText>
-    </div>
-    <div class="p-field mt-3">
-        <label>Numéro de maison</label>
-        <input [attr.disabled]="true" type="text" formControlName="houseNumber" class="w-100" pInputText>
-    </div>
-    <div class="p-field mt-3">
-        <label>Code postal</label>
-        <input [attr.disabled]="true" type="text" formControlName="zip_code" class="w-100" pInputText>
-    </div>
-    <div class="p-field mt-3">
-        <label>Localité</label>
-        <input [attr.disabled]="true" type="text" formControlName="city" class="w-100" pInputText>
-    </div>
-    <div class="p-field mt-3">
-        <label>Pays</label>
-        <input [attr.disabled]="true" type="text" formControlName="country" class="w-100" pInputText>
-    </div>
-    <div class="p-field mt-3">
-        <label>Message pour appuyer votre demande (facultatif)</label>
-        <textarea class="w-100" cols="5" rows="5" type="text" formControlName="message" placeholder="Votre message" pInputText></textarea>
-    </div>
-    <div class="mt-3 d-flex justify-content-end">
-        <p-button label="Confirmer" (onClick)="save()"></p-button>
-    </div>
+</p-panel>
+<div class="mt-3 d-flex justify-content-end">
+    <p-button label="Confirmer ma demande d'affiliation" (onClick)="save()"></p-button>
 </div>

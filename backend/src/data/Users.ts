@@ -50,6 +50,10 @@ export default class Users extends GenericModel implements SuperModel {
             type: DataTypes.TINYINT(),
             comment: 'Rôle de joueur dans le jeu',
         },
+        usernameInGame: {
+            type: DataTypes.STRING(255),
+            comment: 'Nom de l\'utilisateur en jeu',
+        },
         img: {
             type: DataTypes.TEXT('long'),
             comment: 'Image du joueur',

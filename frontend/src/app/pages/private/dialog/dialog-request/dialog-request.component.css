@@ -3,3 +3,27 @@
     justify-content: center;
     align-items: center;
 }
+
+:host ::ng-deep #p-panel-0 {
+    margin-top: 1rem !important;
+}
+
+:host ::ng-deep #p-panel-1-titlebar {
+    margin-top: 1rem !important;
+}
+
+:host ::ng-deep #p-panel-2 {
+    margin-top: 1rem !important;
+}
+
+:host ::ng-deep #p-panel-3-titlebar {
+    margin-top: 1rem !important;
+}
+
+:host ::ng-deep #p-panel-4 {
+    margin-top: 1rem !important;
+}
+
+:host ::ng-deep #p-panel-5-titlebar {
+    margin-top: 1rem !important;
+}

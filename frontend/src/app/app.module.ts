@@ -23,6 +23,7 @@ import { SponsorPageComponent } from './pages/public/sponsor-page/sponsor-page.c
 import { DialogModule } from 'primeng/dialog';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { TabViewModule } from 'primeng/tabview';
+import { SkeletonModule } from 'primeng/skeleton';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutUsComponent } from './pages/public/about-us/about-us.component';
@@ -44,6 +45,8 @@ import { PrivateComponent } from './pages/private/private.component';
 import { MyspaceComponent } from './pages/private/myspace/myspace.component';
 import { DataViewModule } from 'primeng/dataview';
 import { FieldsetModule } from 'primeng/fieldset';
+import { ChipModule } from 'primeng/chip';
+import { PanelModule } from 'primeng/panel';
 import { TeamsComponent } from './pages/private/teams/teams.component';
 import { DialogTeamsComponent } from './pages/private/dialog/dialog-teams/dialog-teams.component';
 import { MyteamComponent } from './pages/private/myteam/myteam.component';
@@ -115,9 +118,12 @@ import { TournamentsComponent } from './pages/private/tournaments/tournaments.co
     CheckboxModule,
     FileUploadModule,
     TabMenuModule,
+    PanelModule,
     TabViewModule,
     FieldsetModule,
     DataViewModule,
+    SkeletonModule,
+    ChipModule,
     CalendarModule,
     TableModule,
     FormsModule,

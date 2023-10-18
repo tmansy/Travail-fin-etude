@@ -23,10 +23,10 @@ export type Membership_requestDAO = {
     country: string;
     message: string;
     status: Status;
-    modified_by: string;
     createdAt: Date;
     updatedAt: Date;
     userId: number;
+    adminMessage: string;
     user?: UserDAO;
 }
 
@@ -47,10 +47,10 @@ export class Membership_request {
     public country: string;
     public message: string;
     public status: Status;
-    public modified_by: string;
     public createdAt: Date;
     public updatedAt: Date;
     public userId: number;
+    public adminMessage: string;
     public userDatas?: UserDAO;
 
     private static getEnumFromValue<T extends EnumType>(value: number, _enum: T): T[keyof T] {
@@ -80,10 +80,10 @@ export class Membership_request {
         request.country = body.country;
         request.message = body.message;
         if(body.status != null) request.status = Membership_request.getEnumFromValue(body.status, Status);
-        request.modified_by = body.modified_by;
         request.createdAt = body.createdAt;
         request.updatedAt = body.updatedAt;
         request.userId = body.userId;
+        request.adminMessage = body.adminMessage;
 
         if(body.user) request.userDatas = User.createFromDB(body.user);
 
@@ -107,10 +107,10 @@ export class Membership_request {
         request.country = body.country;
         request.message = body.message;
         request.status = Membership_request.getEnumFromValue(2, Status);
-        request.modified_by = body.modified_by;
         request.createdAt = body.createdAt;
         request.updatedAt = body.updatedAt;
         request.userId = body.userId;
+        request.adminMessage = body.adminMessage;
 
         return request;
     }
