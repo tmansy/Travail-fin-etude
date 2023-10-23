@@ -62,5 +62,27 @@ export const MembershipRequestsControllers = {
             logger.error(error);
             next(new Error(error));
         }
+    },
+
+    deleteRequest: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            await res.locals.database['MembershipRequests'].destroy({
+                where: {
+                    userId: res.locals.focus,
+                }
+            });
+
+            await res.locals.database['Users_Teams'].destroy({
+                where: {
+                    userId: res.locals.focus,
+                }
+            });
+
+            res.locals.response = "L'affiliation a été supprimée";
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error(error));
+        }
     }
 }

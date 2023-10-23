@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/_services/api.service';
 import * as moment from "moment";
 import { DialogService } from 'primeng/dynamicdialog';
 import { DialogMembershipRequestsComponent } from '../dialog/dialog-membership-requests/dialog-membership-requests.component';
+import { DialogDeleteRequestComponent } from '../dialog/dialog-delete-request/dialog-delete-request.component';
 
 @Component({
   selector: 'app-myspace',
@@ -144,24 +145,42 @@ export class MyspaceComponent implements OnInit {
     }
   }
 
-  public openDialog() {
-    if(this.formGroup.get('title')?.value && this.formGroup.get('lastname')?.value 
-      && this.formGroup.get('firstname')?.value && this.formGroup.get('username')?.value 
-      && this.formGroup.get('phone')?.value && this.formGroup.get('birthdate')?.value 
-      && this.formGroup.get('street')?.value && this.formGroup.get('house_number')?.value 
-      && this.formGroup.get('zip_code')?.value && this.formGroup.get('city')?.value
-      && this.formGroup.get('country')?.value && this.formGroup.get('rank')?.value
-      && this.formGroup.get('roleGame') && this.formGroup.get('usernameInGame')) {
-      this.dialog.open(DialogMembershipRequestsComponent, {
-        header: 'Récapatilatif de la demande',
+  public openDialog(action: number) {
+    if(action == 0) {
+      if(this.formGroup.get('title')?.value && this.formGroup.get('lastname')?.value 
+        && this.formGroup.get('firstname')?.value && this.formGroup.get('username')?.value 
+        && this.formGroup.get('phone')?.value && this.formGroup.get('birthdate')?.value 
+        && this.formGroup.get('street')?.value && this.formGroup.get('house_number')?.value
+        && this.formGroup.get('zip_code')?.value && this.formGroup.get('city')?.value
+        && this.formGroup.get('country')?.value && this.formGroup.get('rank')?.value
+        && this.formGroup.get('roleGame') && this.formGroup.get('usernameInGame')) {
+        this.dialog.open(DialogMembershipRequestsComponent, {
+          header: 'Récapatilatif de la demande',
+          styleClass: 'custom-dialog',
+          data: this.formGroup.value,
+        }).onClose.subscribe(() => {
+          this.ngOnInit();
+        })
+      }
+      else {
+        this.api.error('Veuillez remplir toutes vos informations.');
+      }
+    }
+    else if (action == 1) {
+      this.dialog.open(DialogDeleteRequestComponent, {
+        header: 'Annuler ma demande d\'affiliation',
         styleClass: 'custom-dialog',
-        data: this.formGroup.value,
       }).onClose.subscribe(() => {
         this.ngOnInit();
-      })
+      });
     }
-    else {
-      this.api.error('Veuillez remplir toutes vos informations.');
+    else if (action == 2) {
+      this.dialog.open(DialogDeleteRequestComponent, {
+        header: 'Supprimer mon affiliation',
+        styleClass: 'custom-dialog',
+      }).onClose.subscribe(() => {
+        this.ngOnInit();
+      });
     }
   }
 

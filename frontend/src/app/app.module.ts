@@ -67,6 +67,7 @@ import { DialogUpdateSponsorComponent } from './pages/private/dialog/dialog-upda
 import { DialogAddSponsorComponent } from './pages/private/dialog/dialog-add-sponsor/dialog-add-sponsor.component';
 import { UsersComponent } from './pages/private/users/users.component';
 import { TournamentsComponent } from './pages/private/tournaments/tournaments.component';
+import { DialogDeleteRequestComponent } from './pages/private/dialog/dialog-delete-request/dialog-delete-request.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { TournamentsComponent } from './pages/private/tournaments/tournaments.co
     DialogAddSponsorComponent,
     UsersComponent,
     TournamentsComponent,
+    DialogDeleteRequestComponent,
   ],
   imports: [
     BrowserModule,

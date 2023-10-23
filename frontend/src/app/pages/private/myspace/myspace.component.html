@@ -1,6 +1,10 @@
-<div class="d-flex justify-content-between align-items-center mt-3">
-    <h2 class="fw-bolder">Mon profil</h2>
-    <p-button [ngClass]="{'p-disabled': formGroup.get('status')?.value === 'Affilié' || formGroup.get('status')?.value === 'En attente de validation'}" label="Faire une demande d'affiliation" (click)="openDialog()"></p-button>
+<div class="row mt-3">
+    <h2 class="col-2 fw-bolder">Mon profil</h2>
+    <div class="col-10 text-end">
+        <p-button class="fw-bolder" *ngIf="formGroup.get('status')?.value === 'En attente de validation'" label="Supprimer ma demande d'affiliation" (click)="openDialog(1)"></p-button>
+        <p-button class="fw-bolder" *ngIf="formGroup.get('status')?.value === 'Affilié'" label="Annuler mon affiliation" (click)="openDialog(2)"></p-button>
+        <p-button class="fw-bolder" [ngClass]="{'p-disabled': formGroup.get('status')?.value === 'Affilié' || formGroup.get('status')?.value === 'En attente de validation'}" label="Faire une demande d'affiliation" (click)="openDialog(0)"></p-button>
+    </div>
 </div>
 <hr class="title-line">
 <div *ngIf="loaded; else noloaded;">

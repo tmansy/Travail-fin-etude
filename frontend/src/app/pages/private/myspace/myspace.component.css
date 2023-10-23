@@ -17,6 +17,7 @@
     outline: none;
     text-transform: uppercase;
     font-weight: 500;
+    margin-left: 1rem;
 }
 
 :host ::ng-deep .p-button:hover {

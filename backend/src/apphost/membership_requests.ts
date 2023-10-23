@@ -31,5 +31,15 @@ export default [
         methods: [
             MembershipRequestsControllers.getAllMembershipRequests,
         ]
+    },
+    {
+        name: 'delete_request',
+        description: 'Delete request',
+        method: Methods.DELETE,
+        route: `/membershiprequests/${Params.FOCUS}`,
+        hasToken: true,
+        methods: [
+            MembershipRequestsControllers.deleteRequest,
+        ]
     }
 ]
