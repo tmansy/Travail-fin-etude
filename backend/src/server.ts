@@ -66,8 +66,12 @@ io.use((socket, next) => {
 });
 
 io.on('connection', (socket) => {
-    socket.on('message', (data) => {
+    socket.on('sendMessage', (data) => {
         ChatControllers.sendMessage(data);
+    });
+
+    socket.on('getAllMessages', (data) => {
+        ChatControllers.getAllMessages(data);
     });
 });
 
