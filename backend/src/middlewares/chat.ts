@@ -11,12 +11,27 @@ export const ChatControllers = {
             const db = new Database().scan(path.join(__dirname, "dist/data/*.js"));
             const _message = Message.createFromBody(message);
 
-            await db['Messages'].create({
+            const newMessage = await db['Messages'].create({
                 messageText: _message.messageText,
                 userId: _message.userId,
                 teamId: _message.teamId,
             });
 
+            const messageToReturn = await db['Messages'].findOne({
+                where: {
+                    id: newMessage.id,
+                },
+                include: [
+                    { 
+                        model: db['Users'], 
+                    },
+                    { 
+                        model: db['Teams'],
+                    },
+                ]
+            });
+
+            return Message.createFromDB(messageToReturn.toJSON());
         } catch (error) {
             logger.error(error);
         }
@@ -28,10 +43,20 @@ export const ChatControllers = {
             const allMessages = await db['Messages'].findAll({
                 where: {
                     teamId: teamId,
-                }
+                },
+                include: [
+                    { 
+                        model: db['Users'], 
+                    },
+                    { 
+                        model: db['Teams'],
+                    },
+                ]
             });
 
             const messages = allMessages.map(m => Message.createFromDB(m.toJSON()));
+
+            return messages;
         } catch (error) {
             logger.error(error);
         }

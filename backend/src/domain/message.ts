@@ -1,3 +1,7 @@
+import { Team, TeamDAO } from "./team";
+import { User, UserDAO } from "./user";
+import { User_team, User_teamDAO } from "./user_team";
+
 export type MessageDAO = {
     id: number,
     messageText: string;
@@ -5,6 +9,8 @@ export type MessageDAO = {
     updatedAt: Date;
     userId: number;
     teamId: number;
+    user: UserDAO;
+    team: TeamDAO;
 }
 
 export class Message {
@@ -14,6 +20,9 @@ export class Message {
     public updatedAt: Date;
     public userId: number;
     public teamId: number;
+    public user: User;
+    public team: Team;
+
 
     public static createFromBody(body: MessageDAO): Message {
         const message = new Message();
@@ -37,6 +46,8 @@ export class Message {
         message.updatedAt = body.updatedAt;
         message.userId = body.userId;
         message.teamId = body.teamId;
+        message.user = User.createFromDB(body.user);
+        message.team = Team.createFromDB(body.team);
         
         return message;
     }

@@ -67,11 +67,16 @@ io.use((socket, next) => {
 
 io.on('connection', (socket) => {
     socket.on('sendMessage', (data) => {
-        ChatControllers.sendMessage(data);
+        ChatControllers.sendMessage(data).then((newMessage) => {
+            console.log(newMessage)
+            io.emit('newMessage', newMessage);
+        });
     });
 
-    socket.on('getAllMessages', (data) => {
-        ChatControllers.getAllMessages(data);
+    socket.on('getAllMessages', async (data) => {
+        const messages = await ChatControllers.getAllMessages(data);
+
+        io.emit('returnAllMessages', messages);
     });
 });
 
