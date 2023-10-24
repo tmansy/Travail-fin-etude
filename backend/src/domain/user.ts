@@ -71,8 +71,8 @@ export class User {
     public createdAt: Date;
     public updatedAt: Date;
     public usernameInGame: string;
-    public users_roles?: User_roleDAO[];
-    public membershipRequests?: Membership_requestDAO[];
+    public users_roles?: User_role[];
+    public membershipRequests?: Membership_request[];
 
     public static createFromBody(body: UserDAO) {
         const user = new User();

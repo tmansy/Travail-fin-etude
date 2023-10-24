@@ -9,13 +9,17 @@ import * as http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 import moment from 'moment';
+import jwt from "jsonwebtoken";
 import { program } from 'commander';
 import path from 'path';
 import { AuthControllers } from './middlewares/auth';
+import { ChatControllers } from './middlewares/chat';
 
 sourcemap.install();
 
 const logger = colorConsole();
+
+const connectedUsers = new Set();
 
 program
   .version('0.1.0')
@@ -30,13 +34,62 @@ app.use(SuperMiddlewares.setHeader('X-Powered-By', 'tmansy'));
 
 const server = http.createServer(app);
 const io = new Server(server, {
-    transports: ['websocket'],
+    cors: {
+        origin: 'http://localhost:4200',
+        methods: ['GET', 'POST'],
+    }
 });
 
 app.use(SuperMiddlewares.Bind({ io: io }));
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:4200'
+}));
 
 moment.locale('fr', momentLocaleFr);
+
+io.use((socket, next) => {
+    try {
+        let token = socket.handshake.auth.token;
+
+        if (!token) {
+            return next(new Error('Token non fourni'));
+        }
+        else if(token.startsWith("bearer") || token.startsWith("Bearer") ) {
+            token = token.substring(6).trim();
+        }
+
+        jwt.verify(token, `${process.env.SECRET_KEY}`, (err, decoded) => {
+            if (err) return next(new Error('Token invalide'));
+            return next();
+        });
+    } catch (error) {
+        return next(new Error('Impossible de vérifier le token'));
+    }
+});
+
+io.on('connection', (socket) => {
+    socket.on('sendMessage', (data) => {
+        ChatControllers.sendMessage(data).then((newMessage) => {
+            io.emit('newMessage', newMessage);
+        });
+    });
+
+    socket.on('getAllMessages', async (data) => {
+        const messages = await ChatControllers.getAllMessages(data);
+
+        io.emit('returnAllMessages', messages);
+    });
+
+    socket.on('userConnected', (userId) => {
+        connectedUsers.add(userId);
+        io.emit('returnConnectedUsers', Array.from(connectedUsers));
+    });
+
+    socket.on('userDisconnect', (userId) => {
+        connectedUsers.delete(userId);
+        io.emit('returnConnectedUsers', Array.from(connectedUsers));
+    });
+});
 
 // Démarrage serveur
 SuperConfiguration.root = path.join(__dirname, 'dist/'),

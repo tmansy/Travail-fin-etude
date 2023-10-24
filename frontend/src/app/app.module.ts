@@ -36,6 +36,7 @@ import { RequestService } from './_services/request.service';
 import { ApiService } from './_services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnectionComponent } from './pages/public/connection/connection.component';
 import { RegisterComponent } from './pages/public/register/register.component';
@@ -67,7 +68,10 @@ import { DialogUpdateSponsorComponent } from './pages/private/dialog/dialog-upda
 import { DialogAddSponsorComponent } from './pages/private/dialog/dialog-add-sponsor/dialog-add-sponsor.component';
 import { UsersComponent } from './pages/private/users/users.component';
 import { TournamentsComponent } from './pages/private/tournaments/tournaments.component';
+import { MessagingComponent } from './pages/private/myteam/messaging/messaging.component';
 import { DialogDeleteRequestComponent } from './pages/private/dialog/dialog-delete-request/dialog-delete-request.component';
+
+const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
 
 @NgModule({
   declarations: [
@@ -106,6 +110,7 @@ import { DialogDeleteRequestComponent } from './pages/private/dialog/dialog-dele
     DialogAddSponsorComponent,
     UsersComponent,
     TournamentsComponent,
+    MessagingComponent,
     DialogDeleteRequestComponent,
   ],
   imports: [
@@ -130,6 +135,7 @@ import { DialogDeleteRequestComponent } from './pages/private/dialog/dialog-dele
     TableModule,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    SocketIoModule.forRoot(config),
     CardModule,
     StyleClassModule,
     ImageModule,

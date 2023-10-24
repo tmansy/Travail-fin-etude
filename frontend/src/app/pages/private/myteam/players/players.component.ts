@@ -72,8 +72,7 @@ export class PlayersComponent implements OnInit {
           roleGame: this.mapRoleGameToEnumName(player.user.roleGame)
         }
       }));
-
-    })
+    });
 
     this.loaded = true;
   }
