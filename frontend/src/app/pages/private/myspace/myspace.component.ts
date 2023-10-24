@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/_services/api.service';
 import * as moment from "moment";
 import { DialogService } from 'primeng/dynamicdialog';
 import { DialogMembershipRequestsComponent } from '../dialog/dialog-membership-requests/dialog-membership-requests.component';
+import { DialogDeleteRequestComponent } from '../dialog/dialog-delete-request/dialog-delete-request.component';
 
 @Component({
   selector: 'app-myspace',
@@ -48,10 +49,14 @@ export class MyspaceComponent implements OnInit {
     phone: new FormControl(),
     status: new FormControl(),
     street: new FormControl(),
-    houseNumber: new FormControl(),
+    house_number: new FormControl(),
     zip_code: new FormControl(),
     city: new FormControl(),
     country: new FormControl(),
+    createdAt: new FormControl(),
+    updatedAt: new FormControl(),
+    usernameInGame: new FormControl(),
+    adminMessage: new FormControl(),
   });
 
   constructor(private api: ApiService, private dialog: DialogService) { }
@@ -73,7 +78,7 @@ export class MyspaceComponent implements OnInit {
       rank: this.user.rank,
       phone: this.user.phone,
       street: this.user.street,
-      houseNumber: this.user.house_number,
+      house_number: this.user.house_number,
       zip_code: this.user.zip_code,
       city: this.user.city,
       country: this.user.country,
@@ -88,7 +93,6 @@ export class MyspaceComponent implements OnInit {
 
     this.api.getRequest(this.user.id).then((res) => {
       this.membership_request = res;
-      console.log(res)
       if (this.membership_request.status == 0) {
         formValues.status = "Affilié";
       }
@@ -102,6 +106,11 @@ export class MyspaceComponent implements OnInit {
         formValues.status = "Non-affilié";
       }
 
+      formValues.createdAt = this.membership_request.createdAt;
+      formValues.updatedAt = this.membership_request.updatedAt;
+      formValues.adminMessage = this.membership_request.adminMessage;
+      formValues.usernameInGame = this.membership_request.userDatas.usernameInGame;
+      
       this.formGroup.patchValue(formValues);
     }).catch(() => {
       formValues.status = "Non-affilié";
@@ -111,37 +120,65 @@ export class MyspaceComponent implements OnInit {
 
   public save() {
     if(this.formGroup.valid) {
-      const formValue = this.formGroup.value;
-      formValue.rank = this.mapRankToEnum(formValue.rank);
-      formValue.roleGame = this.mapRoleGameToEnum(formValue.roleGame);
+      if(this.formGroup.get('status')?.value == 'En attente de validation') {
+        this.api.error('Vous ne pouvez pas modifier vos informations si une demande d\'affiliation a été introduite. Veuillez contacter le support.');
+      }
+      else if (this.formGroup.get('status')?.value == 'Affilié') {
+        this.api.error('Vous ne pouvez pas modifier vos informations si vous êtes affilié. Veuillez contacter le support.');
+      }
+      else {
+        const formValue = this.formGroup.value;
+        formValue.rank = this.mapRankToEnum(formValue.rank);
+        formValue.roleGame = this.mapRoleGameToEnum(formValue.roleGame);
+        formValue.usernameInGame = this.formGroup.get('usernameInGame')?.value;
 
-      this.api.putUserInfos(this.user.id, this.formGroup.value).then((res: any) => {
-        localStorage.setItem('user', JSON.stringify(res));
-        this.api.success('Vos informations ont bien été modifiées.');
-      })
+        this.api.putUserInfos(this.user.id, this.formGroup.value).then((res: any) => {
+          localStorage.setItem('user', JSON.stringify(res));
+          this.api.success('Vos informations ont bien été modifiées.');
+        })
+      };
     }
     else {
       this.api.error('Formulaire invalide.');
     }
   }
 
-  public openDialog() {
-    if(this.formGroup.get('title')?.value && this.formGroup.get('lastname')?.value 
-      && this.formGroup.get('firstname')?.value && this.formGroup.get('username')?.value 
-      && this.formGroup.get('phone')?.value && this.formGroup.get('birthdate')?.value 
-      && this.formGroup.get('street')?.value && this.formGroup.get('houseNumber')?.value 
-      && this.formGroup.get('zip_code')?.value && this.formGroup.get('city')?.value
-      && this.formGroup.get('country')?.value) {
-      this.dialog.open(DialogMembershipRequestsComponent, {
-        header: 'Résumé de la demande d\'affiliation',
+  public openDialog(action: number) {
+    if(action == 0) {
+      if(this.formGroup.get('title')?.value && this.formGroup.get('lastname')?.value 
+        && this.formGroup.get('firstname')?.value && this.formGroup.get('username')?.value 
+        && this.formGroup.get('phone')?.value && this.formGroup.get('birthdate')?.value 
+        && this.formGroup.get('street')?.value && this.formGroup.get('house_number')?.value
+        && this.formGroup.get('zip_code')?.value && this.formGroup.get('city')?.value
+        && this.formGroup.get('country')?.value && this.formGroup.get('rank')?.value
+        && this.formGroup.get('roleGame') && this.formGroup.get('usernameInGame')) {
+        this.dialog.open(DialogMembershipRequestsComponent, {
+          header: 'Récapatilatif de la demande',
+          styleClass: 'custom-dialog',
+          data: this.formGroup.value,
+        }).onClose.subscribe(() => {
+          this.ngOnInit();
+        })
+      }
+      else {
+        this.api.error('Veuillez remplir toutes vos informations.');
+      }
+    }
+    else if (action == 1) {
+      this.dialog.open(DialogDeleteRequestComponent, {
+        header: 'Annuler ma demande d\'affiliation',
         styleClass: 'custom-dialog',
-        data: this.formGroup.value,
       }).onClose.subscribe(() => {
         this.ngOnInit();
-      })
+      });
     }
-    else {
-      this.api.error('Veuillez remplir vos informations.');
+    else if (action == 2) {
+      this.dialog.open(DialogDeleteRequestComponent, {
+        header: 'Supprimer mon affiliation',
+        styleClass: 'custom-dialog',
+      }).onClose.subscribe(() => {
+        this.ngOnInit();
+      });
     }
   }
 
@@ -170,4 +207,38 @@ export class MyspaceComponent implements OnInit {
     }
     return '';
   }
+
+  getStatusColor(status: string): string {
+    if (status === 'En attente de validation') {
+      return '#7ac6ed';
+    } 
+    else if (status === "Affilié") {
+      return '#4e8857';
+    } 
+    else if (status === "Non-affilié") {
+      return "#ecc73c";
+    } 
+    else if (status === "Refusé") {
+      return "#bd3d4b";
+    }
+    else {
+      return '';
+    }
+  }
+
+  getChipIcon(status: string): string {
+    switch (status) {
+      case 'Affilié':
+        return 'pi pi-check';
+      case 'Non-affilié':
+        return 'pi pi-search';
+      case 'Refusé':
+        return 'pi pi-times';
+      case "En attente de validation":
+        return 'pi pi-question';
+      default:
+        return '';
+    }
+  }
+  
 }

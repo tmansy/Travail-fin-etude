@@ -112,6 +112,10 @@ export class ApiService {
   getUsersStatus() {
     return this.request.get('/get_users_status');
   }
+
+  deleteRequest(userId: number) {
+    return this.request.delete(`/membershiprequests/${userId}`);
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);

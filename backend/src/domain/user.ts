@@ -44,6 +44,7 @@ export type UserDAO = {
     country: string;
     createdAt: Date;
     updatedAt: Date;
+    usernameInGame: string;
     users_roles?: User_roleDAO[];
     membershipRequests?: Membership_requestDAO[];
 }
@@ -69,6 +70,7 @@ export class User {
     public country: string;
     public createdAt: Date;
     public updatedAt: Date;
+    public usernameInGame: string;
     public users_roles?: User_role[];
     public membershipRequests?: Membership_request[];
 
@@ -92,6 +94,7 @@ export class User {
         user.zip_code = body.zip_code;
         user.city = body.city;
         user.country = body.country;
+        user.usernameInGame = body.usernameInGame;
 
         if(body.password) {
             const hash = bcrypt.hashSync(body.password, 10);
@@ -121,6 +124,7 @@ export class User {
         user.zip_code = body.zip_code;
         user.city = body.city;
         user.country = body.country;
+        user.usernameInGame = body.usernameInGame;
 
         if(body.users_roles) user.users_roles = body.users_roles.map(ur => User_role.createFromDB(ur));
         if(body.membershipRequests) user.membershipRequests = body.membershipRequests.map(mr => Membership_request.createFromDB(mr));

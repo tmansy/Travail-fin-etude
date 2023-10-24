@@ -17,9 +17,31 @@
     outline: none;
     text-transform: uppercase;
     font-weight: 500;
+    margin-left: 1rem;
 }
 
 :host ::ng-deep .p-button:hover {
     background-color: #e2ac21;
     color: black;
+}
+
+:host ::ng-deep .p-fieldset-legend a {
+    text-decoration: none;
+}
+
+:host ::ng-deep .p-fieldset-legend {
+    background-color: #c0c0c0;
+}
+
+:host ::ng-deep .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:focus {
+    box-shadow: 0 0 0 0.2rem #fab710;
+}
+
+:host ::ng-deep .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:hover {
+    box-shadow: 0 0 0 0.2rem #fab710;
+    background-color: #dcd9d9;
+}
+
+:host ::ng-deep #p-fieldset-2-content > div > div > p-chip > div, :host ::ng-deep #p-fieldset-5-content > div > div > p-chip {
+    color: #fff !important;
 }

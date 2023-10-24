@@ -11,3 +11,15 @@
     background-color: #e2ac21;
     color: black;
 }
+
+:host ::ng-deep #p-panel-0 {
+    margin-top: 1rem !important;
+}
+
+:host ::ng-deep #p-panel-1-titlebar {
+    margin-top: 1rem !important;
+}
+
+:host ::ng-deep #p-panel-2-titlebar {
+    margin-top: 1rem !important;
+}
