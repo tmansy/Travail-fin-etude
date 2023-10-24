@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
+import { ApiService } from 'src/app/_services/api.service';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -9,8 +10,10 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./messaging.component.css']
 })
 export class MessagingComponent implements OnInit {
+  public players: any;
   public teamId: number | undefined;
   public userId: number | undefined;
+  public connectedUsers: number[] = [];
   public messages:  {
     id: number;
     messageText: string;
@@ -49,14 +52,25 @@ export class MessagingComponent implements OnInit {
   }[] = [];
   public newMessage: string = '';
 
-  constructor(private socket: Socket, private auth: AuthService, private activatedRoute: ActivatedRoute) {
+  constructor(private api: ApiService, private socket: Socket, private auth: AuthService, private activatedRoute: ActivatedRoute) {
     const token = this.auth.getToken();
     const config = { url: 'http://localhost:5555', options: { auth: { token } } };
     this.socket = new Socket(config);
 
     this.socket.on('newMessage', (newMessage: any) => {
       this.messages.push(newMessage);
-  });
+    });
+
+    this.socket.on('returnConnectedUsers', (users: number[]) => {
+      this.connectedUsers = [];
+      for(const user of users) {
+        if(!this.connectedUsers.includes(user)) {
+          this.connectedUsers.push(user);
+        }
+      }
+
+      console.log(this.connectedUsers);
+    });
    }
 
   ngOnInit(): void {
@@ -69,10 +83,23 @@ export class MessagingComponent implements OnInit {
       this.userId = parseInt(userIdString, 10);
     } 
 
+    this.socket.emit('userConnected', this.userId);
+
     this.socket.emit('getAllMessages', this.teamId);
 
     this.socket.on('returnAllMessages', (messages: any) => {
       this.messages = messages;
+    });
+
+    this.api.getPlayersByTeam(this.teamId).then((res: any) => {
+      this.players = res.map((player: any) => ({
+        id: player.user.id,
+        username: player.user.username,
+      }));
+    });
+
+    window.addEventListener('beforeunload', (event) => {
+      this.socket.emit('userDisconnect', this.userId);
     });
   }
 
@@ -90,4 +117,11 @@ export class MessagingComponent implements OnInit {
     }
   }
 
+  isUserConnected(userId: number): boolean {
+    return this.connectedUsers.includes(userId);
+  }
+
+  ngOnDestroy(): void {
+    this.socket.emit('userDisconnect', this.userId);
+  }
 }

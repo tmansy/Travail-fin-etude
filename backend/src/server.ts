@@ -19,6 +19,8 @@ sourcemap.install();
 
 const logger = colorConsole();
 
+const connectedUsers = new Set();
+
 program
   .version('0.1.0')
   .option('-p, --port [portNumber]', 'Define the port on which the server will listen', 'portNumber')
@@ -68,7 +70,6 @@ io.use((socket, next) => {
 io.on('connection', (socket) => {
     socket.on('sendMessage', (data) => {
         ChatControllers.sendMessage(data).then((newMessage) => {
-            console.log(newMessage)
             io.emit('newMessage', newMessage);
         });
     });
@@ -77,6 +78,16 @@ io.on('connection', (socket) => {
         const messages = await ChatControllers.getAllMessages(data);
 
         io.emit('returnAllMessages', messages);
+    });
+
+    socket.on('userConnected', (userId) => {
+        connectedUsers.add(userId);
+        io.emit('returnConnectedUsers', Array.from(connectedUsers));
+    });
+
+    socket.on('userDisconnect', (userId) => {
+        connectedUsers.delete(userId);
+        io.emit('returnConnectedUsers', Array.from(connectedUsers));
     });
 });
 
