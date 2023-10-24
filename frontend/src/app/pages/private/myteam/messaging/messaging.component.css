@@ -1,0 +1,91 @@
+.btn-primary {
+    background-color: #fab710 !important;
+    color: black;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #e2ac21 !important;
+    color: black;
+}
+
+.container {
+    border: solid 1px black;
+    border-radius: 10px;
+}
+
+.users-box {
+    min-height: 2vh;
+    font-weight: bold;
+}
+
+.chat-box {
+    min-height: 70vh;
+    max-height: 70vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    height: 85vh;
+}
+
+.input-group.message-box input.form-control:focus {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+  
+.message-bubble {
+    background-color: #e5e6eb;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 50%;
+}
+
+.message-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.user {
+    font-weight: bold;
+}
+
+.datetime {
+    margin-left: 10px;
+}
+
+.text {
+    font-size: 16px;
+    overflow-y: auto;
+}
+
+.message-box {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.my-message {
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 50%;
+    align-self: flex-end;
+}
+
+.green-circle {
+    color: green;
+  }
+  
+.red-circle {
+    color: red;
+}

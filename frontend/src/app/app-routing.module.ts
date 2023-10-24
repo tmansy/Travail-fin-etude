@@ -22,6 +22,7 @@ import { RequestsComponent } from './pages/private/requests/requests.component';
 import { SponsorsComponent } from './pages/private/sponsors/sponsors.component';
 import { UsersComponent } from './pages/private/users/users.component';
 import { TournamentsComponent } from './pages/private/tournaments/tournaments.component';
+import { MessagingComponent } from './pages/private/myteam/messaging/messaging.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -110,6 +111,10 @@ const routes: Routes = [
       {
         path: 'trainings',
         component: TrainingsComponent,
+      },
+      {
+        path: 'messaging',
+        component: MessagingComponent,
       }
     ]
   },
