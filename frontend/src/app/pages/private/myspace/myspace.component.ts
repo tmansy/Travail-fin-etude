@@ -82,7 +82,6 @@ export class MyspaceComponent implements OnInit {
       zip_code: this.user.zip_code,
       city: this.user.city,
       country: this.user.country,
-      usernameInGame: this.user.usernameInGame,
     }
 
     if(this.user.birthdate !== null) {
@@ -110,9 +109,8 @@ export class MyspaceComponent implements OnInit {
       formValues.createdAt = this.membership_request.createdAt;
       formValues.updatedAt = this.membership_request.updatedAt;
       formValues.adminMessage = this.membership_request.adminMessage;
-
-      console.log(formValues)
-
+      formValues.usernameInGame = this.membership_request.userDatas.usernameInGame;
+      
       this.formGroup.patchValue(formValues);
     }).catch(() => {
       formValues.status = "Non-affilié";
