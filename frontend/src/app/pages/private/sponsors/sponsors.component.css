@@ -3,6 +3,11 @@
         width: 14rem;
         font-weight: normal;
     }
+
+    .p-selectbutton .p-button.p-highlight {
+        background: #fab710 !important;
+        border-color: #fab710 !important;
+    }
     
     .product-name {
         font-size: 1.5rem;
