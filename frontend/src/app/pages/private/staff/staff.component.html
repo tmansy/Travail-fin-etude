@@ -11,7 +11,7 @@
         <div class="col-md-4">
             <div class="card card-style mb-4">
                 <p-table [value]="presidentUsers" selectionMode="single" [(selection)]="selectedPresident" dataKey="user" (onRowSelect)="onRowSelect($event, 3)" [tableStyle]="{ 'min-width': '10rem' }">
-                    <ng-template pTemplate="caption">Présidente<fa-icon class="mx-2" [icon]="faCrown"></fa-icon></ng-template>
+                    <ng-template pTemplate="caption">Président<fa-icon class="mx-2" [icon]="faCrown"></fa-icon></ng-template>
                     <ng-template pTemplate="body" let-user>
                         <tr *ngIf="showPresidentUsers" [pSelectableRow]="user">
                             <td>{{user.username}}</td>

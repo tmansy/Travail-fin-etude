@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row justify-content-center text-center" *ngIf="loaded; else noloaded" style="max-height: calc(100vh - 110px); overflow-y: auto;">
         <div class="card">
-            <p-dataView #dv [value]="sponsors" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+            <p-dataView #dv [value]="sponsors" [paginator]="true" [rows]="9" filterBy="name" layout="list">
                 <ng-template pTemplate="header">
                     <div class="flex flex-column md:flex-row md-justify-content-between">
                         <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
