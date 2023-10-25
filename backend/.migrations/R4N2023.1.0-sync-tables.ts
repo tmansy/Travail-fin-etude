@@ -51,6 +51,17 @@ const db = new Database('db').scan(thepath);
             })
         },
         (callback) => {
+            db["Trainings"].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
             db["MembershipRequests"].sync({
                 alter: true,
                 logging: console.log,
