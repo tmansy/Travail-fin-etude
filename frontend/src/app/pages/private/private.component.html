@@ -7,25 +7,25 @@
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a routerLink="/private/myspace" routerLinkActive="active" class="nav-link"><i class="bi bi-person px-2"></i>Mon compte</a>
+          <a routerLink="/private/myspace" routerLinkActive="active" class="nav-link"><i class="bi bi-person-circle px-2"></i>Mon compte</a>
         </li>
         <li class="nav-item">
           <a routerLink="/private/teams" routerLinkActive="active" class="nav-link"><i class="bi bi-people-fill px-2"></i>Mon équipe</a>
         </li>
         <li class="nav-item">
-          <a routerLink="/private/staff" routerLinkActive="active" class="nav-link"><i class="bi bi-clipboard-pulse px-2"></i>Le staff</a>
+          <a routerLink="/private/staff" routerLinkActive="active" class="nav-link"><i class="bi bi-suit-heart-fill px-2"></i>Le staff</a>
         </li>
         <li *ngIf="roleId.includes(2)" class="nav-item">
-          <a routerLink="/private/sponsors" routerLinkActive="active" class="nav-link"><i class="bi bi-cash px-2"></i>Les sponsors</a>
+          <a routerLink="/private/sponsors" routerLinkActive="active" class="nav-link"><i class="bi bi-currency-dollar px-2"></i>Les sponsors</a>
         </li>
         <li *ngIf="roleId.includes(2)" class="nav-item">
-          <a routerLink="/private/requests" routerLinkActive="active" class="nav-link"><i class="bi bi-hand-index px-2"></i>Les demandes d'affiliation</a>
+          <a routerLink="/private/requests" routerLinkActive="active" class="nav-link"><i class="bi bi-question-circle-fill px-2"></i>Les demandes d'affiliation</a>
         </li>
         <li *ngIf="roleId.includes(2)" class="nav-item">
-          <a routerLink="/private/users" routerLinkActive="active" class="nav-link"><i class="bi bi-clipboard-fill px-2"></i>Liste des utilisateurs</a>
+          <a routerLink="/private/users" routerLinkActive="active" class="nav-link"><i class="bi bi-list-ul px-2"></i>Liste des utilisateurs</a>
         </li>
         <li *ngIf="roleId.includes(2)" class="nav-item">
-          <a routerLink="/private/tournaments" routerLinkActive="active" class="nav-link"><i class="bi bi-clipboard-fill px-2"></i>Les tournois</a>
+          <a routerLink="/private/tournaments" routerLinkActive="active" class="nav-link"><i class="bi bi-trophy-fill px-2"></i>Les tournois</a>
         </li>
       </ul>
       <hr>
