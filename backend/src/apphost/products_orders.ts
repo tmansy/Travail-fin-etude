@@ -1,45 +1,45 @@
 import { Methods, Params } from '../constants/api';
-import { OrdersControllers } from '../middlewares/orders';
+import { ProductsOrdersControllers } from '../middlewares/products_orders';
 
 export default [
     {
         name: 'create_order',
-        description: 'Create a order',
+        description: 'Create an order',
         method: Methods.POST,
-        route : '/orders',
+        route : '/products_orders',
         hasToken: true,
         methods: [
-            OrdersControllers.createOrder,
+            ProductsOrdersControllers.createProductOrder,
         ]
     },
     {
         name: 'update_order',
         description: 'Update an order',
         method: Methods.PUT,
-        route : `/orders/${Params.FOCUS}`,
+        route : `/products_orders/${Params.FOCUS}`,
         hasToken: true,
         methods: [
-            OrdersControllers.updateOrder,
+            ProductsOrdersControllers.updateProductOrder,
         ]
     },
     {
         name: 'get_one_order',
         description: 'Get one order',
         method: Methods.GET,
-        route : `/orders/${Params.FOCUS}`,
+        route : `/products_orders/${Params.FOCUS}`,
         hasToken: true,
         methods: [
-            OrdersControllers.getOrder,
+            ProductsOrdersControllers.getProductOrder,
         ]
     },
     {
-        name: 'get_all_orders',
-        description: 'Get all orders',
+        name: 'get_all_products_orders',
+        description: 'Get all products_orders',
         method: Methods.GET,
-        route : '/orders',
+        route : '/products_orders',
         hasToken: true,
         methods: [
-            OrdersControllers.getAllOrders,
+            ProductsOrdersControllers.getAllProductOrders,
         ]
     }
 ]

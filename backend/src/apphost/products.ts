@@ -1,4 +1,5 @@
 import { Methods, Params } from '../constants/api';
+import { ProductsControllers } from '../middlewares/products';
 
 export default [
     {
@@ -8,6 +9,7 @@ export default [
         route : '/products',
         hasToken: true,
         methods: [
+            ProductsControllers.createProduct,
         ]
     },
     {
@@ -17,6 +19,7 @@ export default [
         route : `/products/${Params.FOCUS}`,
         hasToken: true,
         methods: [
+            ProductsControllers.updateProduct,
         ]
     },
     {
@@ -26,6 +29,7 @@ export default [
         route : `/products/${Params.FOCUS}`,
         hasToken: true,
         methods: [
+            ProductsControllers.getProduct,
         ]
     },
     {
@@ -35,6 +39,7 @@ export default [
         route : '/products',
         hasToken: true,
         methods: [
+            ProductsControllers.getAllProducts,
         ]
     }
 ]

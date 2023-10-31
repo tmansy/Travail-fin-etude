@@ -1,4 +1,5 @@
 import { Methods, Params } from '../constants/api';
+import { CartsControllers } from '../middlewares/carts';
 
 export default [
     {
@@ -8,6 +9,7 @@ export default [
         route : '/carts',
         hasToken: true,
         methods: [
+            CartsControllers.createCart,
         ]
     },
     {
@@ -17,6 +19,7 @@ export default [
         route : `/carts/${Params.FOCUS}`,
         hasToken: true,
         methods: [
+            CartsControllers.updateCart,
         ]
     },
     {
@@ -26,6 +29,7 @@ export default [
         route : `/carts/${Params.FOCUS}`,
         hasToken: true,
         methods: [
+            CartsControllers.getCart,
         ]
     },
     {
@@ -35,6 +39,7 @@ export default [
         route : '/carts',
         hasToken: true,
         methods: [
+            CartsControllers.getAllCarts,
         ]
     }
 ]
