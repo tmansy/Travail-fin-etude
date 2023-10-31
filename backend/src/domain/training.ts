@@ -1,5 +1,6 @@
 export type TrainingDAO = {
     id: number;
+    title: string;
     description: string;
     from: Date;
     to: Date;
@@ -11,6 +12,7 @@ export type TrainingDAO = {
 
 export class Training {
     public id: number;
+    public title: string;
     public description: string;
     public from: Date;
     public to: Date;
@@ -23,6 +25,7 @@ export class Training {
         const training = new Training();
 
         training.id = body.id;
+        training.title = body.title;
         training.description = body.description;
         training.from = body.from;
         training.to = body.to;
@@ -38,6 +41,7 @@ export class Training {
         const training = new Training();
 
         training.id = body.id;
+        training.title = body.title;
         training.description = body.description;
         training.from = body.from;
         training.to = body.to;

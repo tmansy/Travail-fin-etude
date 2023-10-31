@@ -120,6 +120,10 @@ export class ApiService {
   getTrainings() {
     return this.request.get(`/trainings`);
   }
+
+  postTraining(data: any) {
+    return this.request.post('/trainings', data);
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);

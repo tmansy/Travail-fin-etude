@@ -10,6 +10,10 @@ export default class Trainings extends GenericModel implements SuperModel {
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 
     attributes = {
+        title: {
+            type: DataTypes.STRING(),
+            comment: 'Nom de l\'entrainement',
+        },
         description: {
             type: DataTypes.STRING(255),
             comment: 'Description de l\'entraînement',

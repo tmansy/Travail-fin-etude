@@ -1,16 +1,70 @@
 <div class="d-flex justify-content-between align-items-center mt-3">
     <h2 class="fw-bolder">Les entraînements de l'équipe</h2>
+    <div class="col-8 text-end">
+        <p-button class="fw-bolder" label="Ajouter un entraînement" (click)="openDialog()"></p-button>
+    </div>
 </div>
 <hr class="title-line">
 
-<p-tabView class="">
+<p-tabView>
     <p-tabPanel header="A venir">
-        
+        <div class="card">
+            <p-table [value]="upcomingTrainings" selectionMode="single" [(selection)]="selectedTraining" dataKey="id" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="title">Intitulé<p-sortIcon field="title"></p-sortIcon></th>
+                        <th pSortableColumn="from">De<p-sortIcon field="from"></p-sortIcon></th>
+                        <th pSortableColumn="to">A<p-sortIcon field="to"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-training>
+                    <tr [pSelectableRow]="training">
+                        <td>{{training.title}}</td>
+                        <td>{{training.from | date: 'dd/MM/YYYY HH:mm:ss'}}</td>
+                        <td>{{training.to | date: 'dd/MM/YYYY HH:mm:ss'}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
     </p-tabPanel>
     <p-tabPanel header="En cours">
-        
+        <div class="card">
+            <p-table [value]="currentTrainings" selectionMode="single" [(selection)]="selectedTraining" dataKey="id" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="title">Intitulé<p-sortIcon field="title"></p-sortIcon></th>
+                        <th pSortableColumn="from">De<p-sortIcon field="from"></p-sortIcon></th>
+                        <th pSortableColumn="to">A<p-sortIcon field="to"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-training>
+                    <tr [pSelectableRow]="training">
+                        <td>{{training.title}}</td>
+                        <td>{{training.from | date: 'dd/MM/YYYY HH:mm:ss'}}</td>
+                        <td>{{training.to | date: 'dd/MM/YYYY HH:mm:ss'}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
     </p-tabPanel>
     <p-tabPanel header="Passé">
-        
+        <div class="card">
+            <p-table [value]="pastTrainings" selectionMode="single" [(selection)]="selectedTraining" dataKey="id" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="title">Intitulé<p-sortIcon field="title"></p-sortIcon></th>
+                        <th pSortableColumn="from">De<p-sortIcon field="from"></p-sortIcon></th>
+                        <th pSortableColumn="to">A<p-sortIcon field="to"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-training>
+                    <tr [pSelectableRow]="training">
+                        <td>{{training.title}}</td>
+                        <td>{{training.from | date: 'dd/MM/YYYY HH:mm:ss'}}</td>
+                        <td>{{training.to | date: 'dd/MM/YYYY HH:mm:ss'}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
     </p-tabPanel>
 </p-tabView>

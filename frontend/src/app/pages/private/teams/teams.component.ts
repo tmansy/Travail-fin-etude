@@ -47,6 +47,7 @@ export class TeamsComponent implements OnInit {
   }
 
   public goTo(team: any) {
+    this.api.team = team;
     this.router.navigateByUrl(`/myteam/${team.team.id}/settings`);
   }
   
