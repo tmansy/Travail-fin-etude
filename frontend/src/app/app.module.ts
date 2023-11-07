@@ -72,6 +72,7 @@ import { MessagingComponent } from './pages/private/myteam/messaging/messaging.c
 import { DialogDeleteRequestComponent } from './pages/private/dialog/dialog-delete-request/dialog-delete-request.component';
 import { DialogNewTrainingComponent } from './pages/private/dialog/dialog-new-training/dialog-new-training.component';
 import { DialogTrainingComponent } from './pages/private/dialog/dialog-training/dialog-training.component';
+import { DialogUserComponent } from './pages/private/dialog/dialog-user/dialog-user.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
 
@@ -116,6 +117,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     DialogDeleteRequestComponent,
     DialogNewTrainingComponent,
     DialogTrainingComponent,
+    DialogUserComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,6 @@
     </div>
     <div class="mt-3 d-flex justify-content-end">
         <p-button class="mx-3" label="Enregistrer" [ngClass]="{'p-disabled': roleId.includes(1), 'custom-color': true}" (onClick)="save()"></p-button>
-        <p-button class="delete-button" label="Supprimer" [ngClass]="{'p-disabled': roleId.includes(1), 'custom-color': true}" (onClick)="save()"></p-button>
+        <p-button class="delete-button" label="Supprimer" [ngClass]="{'p-disabled': roleId.includes(1), 'custom-color': true}" (onClick)="delete()"></p-button>
     </div>
 </div>

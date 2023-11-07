@@ -46,13 +46,38 @@ export class DialogTrainingComponent implements OnInit {
 
   public save() {
     if(this.formGroup.valid) {
-
+      const currentDate = new Date();
+      if(new Date(this.trainings.from) < currentDate) {
+        this.api.error('Impossible de modifier un entraînement déjà passé.');
+      }
+      else if (new Date(this.trainings.from) < currentDate && new Date(this.trainings.to) > currentDate) {
+        this.api.error('Impossible de modifier un entraînement en cours.');
+      }
+      else {
+        const formValue = this.formGroup.value;
+        this.api.putTraining(this.trainings.id, formValue).then((res: any) => {
+          this.ref.close();
+          this.api.success('Les informations de l\'entraînement ont bien été mises à jour.');
+        });
+      }
     } else {
       this.api.error('Formulaire invalide.');
     }
   }
 
   public delete() {
-
+    const currentDate = new Date();
+    if(new Date(this.trainings.from) < currentDate) {
+      this.api.error('Impossible de supprimer un entraînement déjà passé.');
+    }
+    else if (new Date(this.trainings.from) < currentDate && new Date(this.trainings.to) > currentDate) {
+      this.api.error('Impossible de supprimer un entraînement en cours.');
+    }
+    else {
+      this.api.deleteTraining(this.trainings.id).then(() => {
+        this.ref.close();
+        this.api.success('L\'entraînement a bien été supprimé.');
+      }); 
+    }
   }
 }
