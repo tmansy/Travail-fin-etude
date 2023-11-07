@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/_services/api.service';
+import { DialogUserComponent } from '../dialog/dialog-user/dialog-user.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-users',
@@ -11,7 +13,7 @@ export class UsersComponent implements OnInit {
   public users: any;
   public selectedUser: any;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private dialog: DialogService) { }
 
   ngOnInit(): void {
     this.api.getUsersStatus().then((res: any) => {
@@ -21,7 +23,13 @@ export class UsersComponent implements OnInit {
   }
 
   public onRowSelect(event: any) {
-
+    this.dialog.open(DialogUserComponent, {
+      header: "Informations sur l'utilisateur",
+      styleClass: "custom-dialog",
+      data: event.data,
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    })
   }
 
 }

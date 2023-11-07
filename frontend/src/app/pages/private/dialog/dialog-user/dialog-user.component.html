@@ -1,0 +1,33 @@
+<div [formGroup]="formGroup">
+    <div class="p-field mt-3">
+        <label>Nom d'utilisateur R4N</label>
+        <input [attr.disabled]="true" type="text" formControlName="username" class="w-100" pInputText>
+    </div>
+    <div class="p-field mt-3">
+        <label>Nom</label>
+        <input [attr.disabled]="true" type="text" formControlName="lastname" class="w-100" pInputText>
+    </div>
+    <div class="p-field mt-3">
+        <label>Prénom</label>
+        <input [attr.disabled]="true" type="text" formControlName="firstname" class="w-100" pInputText>
+    </div>
+    <div class="p-field mt-3">
+        <label>Email</label>
+        <input [attr.disabled]="true" type="text" formControlName="email" class="w-100" pInputText>
+    </div>
+    <div class="p-field mt-3">
+        <label>Nom d'utilisateur en jeu</label>
+        <input [attr.disabled]="true" type="text" formControlName="usernameInGame" class="w-100" pInputText>
+    </div>
+    <div class="p-field mt-3">
+        <label>Statut</label>
+        <input [attr.disabled]="true" type="text" formControlName="status" class="w-100" pInputText>
+    </div>
+    <div class="p-field mt-3">
+        <label>Inscrit depuis</label>
+        <input [attr.disabled]="true" type="text" formControlName="createdAt" class="w-100" pInputText>
+    </div>
+    <div class="mt-3 d-flex justify-content-end">
+        <p-button label="Bannir" [ngClass]="{'p-disabled': roleId.includes(1), 'custom-color': true}" (onClick)="ban()"></p-button>
+    </div>
+</div>

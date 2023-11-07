@@ -1,0 +1,22 @@
+<div [formGroup]="formGroup">
+    <div class="p-field mt-3">
+        <label>Intitulé</label>
+        <input type="text" formControlName="title" class="w-100" pInputText>
+    </div>
+    <div class="p-field mt-3">
+        <label>Description</label>
+        <textarea class="w-100" cols="5" rows="5" type="text" formControlName="description" pInputText></textarea>
+    </div>
+    <div class="p-field mt-3">
+        <label>De</label>
+        <p-calendar appendTo="body" formControlName="from" [showTime]="true" [showSeconds]="true" inputId="time" dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="p-field mt-3">
+        <label>A</label>
+        <p-calendar appendTo="body" formControlName="to" [showTime]="true" [showSeconds]="true" inputId="time" dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="mt-3 d-flex justify-content-end">
+        <p-button class="mx-3" label="Enregistrer" [ngClass]="{'p-disabled': roleId.includes(1), 'custom-color': true}" (onClick)="save()"></p-button>
+        <p-button class="delete-button" label="Supprimer" [ngClass]="{'p-disabled': roleId.includes(1), 'custom-color': true}" (onClick)="delete()"></p-button>
+    </div>
+</div>

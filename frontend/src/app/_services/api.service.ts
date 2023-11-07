@@ -116,6 +116,22 @@ export class ApiService {
   deleteRequest(userId: number) {
     return this.request.delete(`/membershiprequests/${userId}`);
   }
+
+  getTrainings() {
+    return this.request.get(`/trainings`);
+  }
+
+  postTraining(data: any) {
+    return this.request.post('/trainings', data);
+  }
+
+  putTraining(trainingId: number, data: any) {
+    return this.request.put(`/trainings/${trainingId}`, data);
+  }
+
+  deleteTraining(trainingId: number) {
+    return this.request.delete(`/trainings/${trainingId}`);
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);

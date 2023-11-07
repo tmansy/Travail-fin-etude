@@ -5,7 +5,7 @@
 
 <div *ngIf="loaded; else noloaded">
     <div class="card">
-        <p-table [value]="users" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" selectionMode="single" [(selection)]="selectedUser" dataKey="user.username" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
+        <p-table [value]="users" selectionMode="single" [(selection)]="selectedUser" dataKey="username" (onRowSelect)="onRowSelect($event)" [tableStyle]="{ 'min-width': '50rem' }">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Nom d'utilisateur</th>
