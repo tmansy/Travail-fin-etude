@@ -125,6 +125,7 @@ export class User {
         user.city = body.city;
         user.country = body.country;
         user.usernameInGame = body.usernameInGame;
+        user.createdAt = body.createdAt;
 
         if(body.users_roles) user.users_roles = body.users_roles.map(ur => User_role.createFromDB(ur));
         if(body.membershipRequests) user.membershipRequests = body.membershipRequests.map(mr => Membership_request.createFromDB(mr));

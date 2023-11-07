@@ -82,7 +82,7 @@ export class DialogPlayerComponent implements OnInit {
       this.api.putPlayerInfos(this.players.userId, formValue).then((res: any) => {
         this.ref.close();
         this.api.success('Les informations ont bien été mises à jour.')
-      })
+      });
     }
     else {
       this.api.error('Formulaire invalide.');
