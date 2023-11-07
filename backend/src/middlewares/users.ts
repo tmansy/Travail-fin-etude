@@ -245,7 +245,7 @@ export const UsersControllers = {
             const database = res.locals.database;
 
             const allUsers = await database['Users'].findAll({
-                attributes: ['username'],
+                attributes: ['username', 'firstname', 'lastname', 'email', 'usernameInGame', 'createdAt'],
                 include: [
                     { 
                         model: database['MembershipRequests'], 
