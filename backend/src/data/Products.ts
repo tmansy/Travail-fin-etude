@@ -27,7 +27,7 @@ export default class Products extends GenericModel implements SuperModel {
             comment: 'Stock restant du produit',
         },
         category: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.TINYINT(),
             comment: 'Catégorie du produit',
         },
         image_url: {

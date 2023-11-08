@@ -132,6 +132,10 @@ export class ApiService {
   deleteTraining(trainingId: number) {
     return this.request.delete(`/trainings/${trainingId}`);
   }
+
+  getProducts() {
+    return this.request.get('/products');
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);

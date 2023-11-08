@@ -11,7 +11,8 @@
 }
 
 .hover-effect:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 4px #fab710 solid;
 }
 
 .custom-dialog {
@@ -34,4 +35,11 @@
 .custom-color:hover {
     background-color: #e2ac21 !important;
     color: black !important;
+}
+
+:host ::ng-deep .p-card {
+    background: #ffffff;
+    color: #495057;
+    box-shadow: 0 2px 1px -1px rgba(255, 255, 255, 0), 0 1px 1px 0 rgba(55, 255, 255, 0), 0 1px 3px 0 rgba(55, 255, 255, 0) !important;
+    border-radius: 3px;
 }

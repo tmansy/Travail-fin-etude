@@ -6,7 +6,6 @@ import { SponsorPageComponent } from './pages/public/sponsor-page/sponsor-page.c
 import { TeamPresentationComponent } from './pages/public/team-presentation/team-presentation.component';
 import { NotFoundComponent } from './pages/public/not-found/not-found.component';
 import { TournamentComponent } from './pages/public/tournament/tournament.component';
-import { ShopComponent } from './pages/public/shop/shop.component';
 import { ContactPageComponent } from './pages/public/contact-page/contact-page.component';
 import { ConnectionComponent } from './pages/public/connection/connection.component';
 import { RegisterComponent } from './pages/public/register/register.component';
@@ -23,6 +22,7 @@ import { SponsorsComponent } from './pages/private/sponsors/sponsors.component';
 import { UsersComponent } from './pages/private/users/users.component';
 import { TournamentsComponent } from './pages/private/tournaments/tournaments.component';
 import { MessagingComponent } from './pages/private/myteam/messaging/messaging.component';
+import { ShopComponent } from './pages/private/shop/shop.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -41,10 +41,6 @@ const routes: Routes = [
   { 
     path: "team-presentation", 
     component: TeamPresentationComponent 
-  },
-  { 
-    path: "shop", 
-    component: ShopComponent 
   },
   { 
     path: "tournament", 
@@ -93,6 +89,10 @@ const routes: Routes = [
       {
         path: 'tournaments',
         component: TournamentsComponent,
+      },
+      {
+        path: 'shop',
+        component: ShopComponent,
       }
     ] 
   },

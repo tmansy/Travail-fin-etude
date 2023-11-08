@@ -30,7 +30,6 @@ import { AboutUsComponent } from './pages/public/about-us/about-us.component';
 import { TeamPresentationComponent } from './pages/public/team-presentation/team-presentation.component';
 import { NotFoundComponent } from './pages/public/not-found/not-found.component';
 import { TournamentComponent } from './pages/public/tournament/tournament.component';
-import { ShopComponent } from './pages/public/shop/shop.component';
 import { ContactPageComponent } from './pages/public/contact-page/contact-page.component';
 import { RequestService } from './_services/request.service';
 import { ApiService } from './_services/api.service';
@@ -73,6 +72,7 @@ import { DialogDeleteRequestComponent } from './pages/private/dialog/dialog-dele
 import { DialogNewTrainingComponent } from './pages/private/dialog/dialog-new-training/dialog-new-training.component';
 import { DialogTrainingComponent } from './pages/private/dialog/dialog-training/dialog-training.component';
 import { DialogUserComponent } from './pages/private/dialog/dialog-user/dialog-user.component';
+import { ShopComponent } from './pages/private/shop/shop.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
 
@@ -87,7 +87,6 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     TeamPresentationComponent,
     NotFoundComponent,
     TournamentComponent,
-    ShopComponent,
     ContactPageComponent,
     ConnectionComponent,
     RegisterComponent,
@@ -97,6 +96,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     DialogTeamsComponent,
     MyteamComponent,
     SettingsComponent,
+    ShopComponent,
     PlayersComponent,
     TrainingsComponent,
     DialogPlayerComponent,

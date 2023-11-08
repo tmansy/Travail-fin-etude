@@ -1,0 +1,165 @@
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <h2 class="fw-bolder">La boutique</h2>
+    <div class="ml-auto">
+        <p-button label="Mon panier" styleClass="custom-color mx-3"></p-button>
+    </div>
+</div>
+<hr class="title-line">
+
+<p-tabView>
+    <p-tabPanel header="Maillots">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Vestes">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Pulls">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="T-shirts">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Pantalons">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Joggings">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Chaussures">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Tapis de souris">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Claviers">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Casques">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Chaises">
+        <div class="row justify-content-center text-center" style="max-height: calc(100vh - 110px); overflow-y: auto;">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="hover-effect">
+                    <p-card header="{{product.label}}">
+                        <img src="product.image_url" alt="Image du produit">
+                        <ng-template>
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+</p-tabView>
+
