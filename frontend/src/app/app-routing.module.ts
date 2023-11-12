@@ -23,6 +23,8 @@ import { UsersComponent } from './pages/private/users/users.component';
 import { TournamentsComponent } from './pages/private/tournaments/tournaments.component';
 import { MessagingComponent } from './pages/private/myteam/messaging/messaging.component';
 import { ShopComponent } from './pages/private/shop/shop.component';
+import { CartComponent } from './pages/private/cart/cart.component';
+import { OrdersComponent } from './pages/private/orders/orders.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -93,6 +95,14 @@ const routes: Routes = [
       {
         path: 'shop',
         component: ShopComponent,
+      },
+      {
+        path: 'mycart/:cartId',
+        component: CartComponent,
+      },
+      {
+        path: 'mycart/:cartId/order',
+        component: OrdersComponent,
       }
     ] 
   },
@@ -126,7 +136,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

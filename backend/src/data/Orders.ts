@@ -15,9 +15,25 @@ export default class Orders extends GenericModel implements SuperModel {
             type: DataTypes.FLOAT(),
             comment: 'Prix total de la commande (quantity * unit_price)',
         },
-        delivery_address: {
+        delivery_house_number: {
             type: DataTypes.STRING(),
-            comment: 'Adresse à laquelle la commande doit être livrée',
+            comment: 'Numéro de maison de l\'adresse à laquelle la commande doit être livrée',
+        },
+        delivery_street: {
+            type: DataTypes.STRING(),
+            comment: 'Rue de l\'adresse à laquelle la commande doit être livrée',
+        },
+        delivery_zip_code: {
+            type: DataTypes.STRING(),
+            comment: 'Code postal de l\'adresse à laquelle la commande doit être livrée',
+        },
+        delivery_city: {
+            type: DataTypes.STRING(),
+            comment: 'Ville de l\'adresse à laquelle la commande doit être livrée',
+        },
+        delivery_country: {
+            type: DataTypes.STRING(),
+            comment: 'Pays de l\'adresse à laquelle la commande doit être livrée',
         },
         status: {
             type: DataTypes.INTEGER(),

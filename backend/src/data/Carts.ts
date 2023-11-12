@@ -19,5 +19,10 @@ export default class Carts extends GenericModel implements SuperModel {
             type: DataTypes.INTEGER(),
             comment: 'Ristourne en % sur le panier',
         },
+        validated: {
+            type: DataTypes.BOOLEAN(),
+            defaultValue: 0,
+            comment: 'Est-ce que le panier a été validé ?',
+        }
     }
 }

@@ -136,6 +136,18 @@ export class ApiService {
   getProducts() {
     return this.request.get('/products');
   }
+
+  postCartProduct(product: any) {
+    return this.request.post('/carts_products', product);
+  }
+
+  getMyCart(userId: number) {
+    return this.request.get(`/carts/${userId}`);
+  }
+
+  createPaymentIntent(data: any) {
+    return this.request.post('/paymentIntent', data);
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);

@@ -3,6 +3,7 @@ type CartDAO = {
     quantity: number;
     unit_price: number;
     total_price: number;
+    size: string;
     createdAt: Date;
     updatedAt: Date;
     cartId: number;
@@ -14,6 +15,7 @@ export class Cart_Product {
     public quantity: number;
     public unit_price: number;
     public total_price: number;
+    public size: string;
     public createdAt: Date;
     public updatedAt: Date;
     public cartId: number;
@@ -41,6 +43,7 @@ export class Cart_Product {
         cart_product.quantity = body.quantity;
         cart_product.unit_price = body.unit_price;
         cart_product.total_price = cart_product.quantity * cart_product.unit_price;
+        cart_product.size = body.size;
         cart_product.createdAt = body.createdAt;
         cart_product.updatedAt = body.updatedAt;
         cart_product.cartId = body.cartId;

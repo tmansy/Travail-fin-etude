@@ -1,6 +1,5 @@
 import { Team, TeamDAO } from "./team";
 import { User, UserDAO } from "./user";
-import { User_team, User_teamDAO } from "./user_team";
 
 export type MessageDAO = {
     id: number,

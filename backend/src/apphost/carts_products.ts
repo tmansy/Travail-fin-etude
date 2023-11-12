@@ -10,6 +10,7 @@ export default [
         hasToken: true,
         methods: [
             CartsProductsControllers.createCartProduct,
+            CartsProductsControllers.updateTotalPriceCart,
         ]
     },
     {

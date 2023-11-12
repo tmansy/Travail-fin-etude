@@ -22,5 +22,9 @@ export default class Carts_Products extends GenericModel implements SuperModel {
             type: DataTypes.FLOAT(),
             comment: 'Prix total du produit (quantity * unit_price)',
         },
+        size: {
+            type: DataTypes.STRING(),
+            comment: 'Taille du produit',
+        }
     }
 }

@@ -16,3 +16,7 @@
     border-radius: 10px;
     border: 4px #fab710 solid;
 }
+
+.bold-price {
+    font-weight: bold;
+}

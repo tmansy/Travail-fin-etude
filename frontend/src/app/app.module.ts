@@ -46,6 +46,7 @@ import { MyspaceComponent } from './pages/private/myspace/myspace.component';
 import { DataViewModule } from 'primeng/dataview';
 import { FieldsetModule } from 'primeng/fieldset';
 import { ChipModule } from 'primeng/chip';
+import { AccordionModule } from 'primeng/accordion';
 import { PanelModule } from 'primeng/panel';
 import { TeamsComponent } from './pages/private/teams/teams.component';
 import { DialogTeamsComponent } from './pages/private/dialog/dialog-teams/dialog-teams.component';
@@ -73,6 +74,9 @@ import { DialogNewTrainingComponent } from './pages/private/dialog/dialog-new-tr
 import { DialogTrainingComponent } from './pages/private/dialog/dialog-training/dialog-training.component';
 import { DialogUserComponent } from './pages/private/dialog/dialog-user/dialog-user.component';
 import { ShopComponent } from './pages/private/shop/shop.component';
+import { DialogProductComponent } from './pages/private/dialog/dialog-product/dialog-product.component';
+import { CartComponent } from './pages/private/cart/cart.component';
+import { OrdersComponent } from './pages/private/orders/orders.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
 
@@ -118,6 +122,9 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     DialogNewTrainingComponent,
     DialogTrainingComponent,
     DialogUserComponent,
+    DialogProductComponent,
+    CartComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -136,6 +143,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     FieldsetModule,
     DataViewModule,
     SkeletonModule,
+    AccordionModule,
     ChipModule,
     CalendarModule,
     TableModule,

@@ -13,7 +13,7 @@ export class DialogNewStaffComponent implements OnInit {
   public formGroup = new FormGroup({
     username: new FormControl(),
     roleAssos: new FormControl(),
-  })
+  });
 
   public roleAssociationLabel = ['Président', 'Vice-président', 'Secrétaire général', 'Trésorier', 'Ressources humaines', 'Responsable marketing', 'Responsable partenariat', 'Responsable des équipes', 'Responsable régie'];
 

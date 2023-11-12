@@ -3,16 +3,6 @@ import { CartsControllers } from '../middlewares/carts';
 
 export default [
     {
-        name: 'create_cart',
-        description: 'Create a cart',
-        method: Methods.POST,
-        route : '/carts',
-        hasToken: true,
-        methods: [
-            CartsControllers.createCart,
-        ]
-    },
-    {
         name: 'update_cart',
         description: 'Update a cart',
         method: Methods.PUT,
