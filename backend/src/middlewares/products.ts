@@ -21,7 +21,16 @@ export const ProductsControllers = {
 
     updateProduct: async (req: Request, res: Response, next: NextFunction) => {
         try {
+            const _product = Product.createFromBody(req.body);
 
+            const product = await res.locals.database['Products'].update(_product, {
+                where: {
+                    id: res.locals.focus,
+                }
+            });
+
+            res.locals.response = product;
+            next();
         } catch (error) {
             logger.error(error);
             next(new Error('Impossible de modifier le produit'));
@@ -49,5 +58,23 @@ export const ProductsControllers = {
             logger.error(error);
             next(new Error('Impossible de récupérer les produits'));
         }
-    }
+    },
+
+    deleteProduct: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const productId = res.locals.focus;
+
+            await res.locals.database['Products'].destroy({
+                where: {
+                    id: productId,
+                }
+            });
+
+            res.locals.response = "Le produit a été supprimé";
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error('Impossible de récupérer le produit'));
+        }
+    },
 }

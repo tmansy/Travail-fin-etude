@@ -1,4 +1,4 @@
-:host ::ng-deep .p-button {
+/* :host ::ng-deep .p-button {
     background-color: #fab710;
     color: black;
     border: none;
@@ -15,7 +15,7 @@
 .hover-effect:hover {
     border-radius: 10px;
     border: 4px #fab710 solid;
-}
+} */
 
 .bold-price {
     font-weight: bold;

@@ -41,5 +41,15 @@ export default [
         methods: [
             ProductsControllers.getAllProducts,
         ]
+    },
+    {
+        name: 'delete_product',
+        description: 'Delete one product',
+        method: Methods.GET,
+        route : `/products/${Params.FOCUS}`,
+        hasToken: true,
+        methods: [
+            ProductsControllers.deleteProduct,
+        ]
     }
 ]

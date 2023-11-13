@@ -4,6 +4,8 @@ import { ApiService } from 'src/app/_services/api.service';
 import { DialogProductComponent } from '../dialog/dialog-product/dialog-product.component';
 import { NavigationExtras, Router } from '@angular/router';
 import { DialogNewProductComponent } from '../dialog/dialog-new-product/dialog-new-product.component';
+import { DialogUpdateProductComponent } from '../dialog/dialog-update-product/dialog-update-product.component';
+import { DialogDeleteProductComponent } from '../dialog/dialog-delete-product/dialog-delete-product.component';
 
 @Component({
   selector: 'app-shop',
@@ -96,6 +98,26 @@ export class ShopComponent implements OnInit {
     this.dialog.open(DialogNewProductComponent, {
       header: 'Ajouter un produit',
       styleClass: 'custom-dialog',
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    });
+  }
+
+  public openUpdateDialog(product: any) {
+    this.dialog.open(DialogUpdateProductComponent, {
+      header: 'Modifier le produit',
+      styleClass: 'custom-dialog',
+      data: product,
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    });
+  }
+
+  public openDeleteDialog(product: any) {
+    this.dialog.open(DialogDeleteProductComponent, {
+      header: 'Modifier le produit',
+      styleClass: 'custom-dialog',
+      data: product,
     }).onClose.subscribe(() => {
       this.ngOnInit();
     });
