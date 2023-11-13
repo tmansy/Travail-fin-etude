@@ -1,0 +1,29 @@
+<div [formGroup]="formGroup">
+    <div class="p-field mt-3">
+        <label>Nom</label>
+        <input type="text" formControlName="label" class="w-100" pInputText />
+    </div>
+    <div class="p-field mt-3">
+        <label>Description</label>
+        <input type="text" formControlName="description" class="w-100" pInputText />
+    </div>
+    <div class="p-field mt-3">
+        <label>Prix</label>
+        <input type="number" formControlName="price" class="w-100" pInputText />
+    </div>
+    <div class="p-field mt-3">
+        <label>Stock</label>
+        <input type="number" formControlName="stock" class="w-100" pInputText />
+    </div>
+    <div class="p-field mt-3">
+        <label>Catégorie</label>
+        <p-dropdown appendTo="body" [options]="categories" styleClass="w-100" formControlName="category" placeholder="Sélectionner une catégorie"></p-dropdown>
+    </div>
+    <div class="p-field mt-3">
+        <label>Image de présentation</label>
+        <p-fileUpload mode="basic" chooseLabel="Choisir une image" accept="image/jpeg,image/png" (onSelect)="handleImageUpload($event)"></p-fileUpload>
+    </div>
+    <div class="mt-3 d-flex justify-content-end">
+        <p-button label="Enregistrer" class="custom-button" (onClick)="createProduct()"></p-button>
+    </div>
+</div>

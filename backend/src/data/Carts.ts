@@ -5,7 +5,7 @@ export default class Carts extends GenericModel implements SuperModel {
     name = 'carts';
     alias = 'Carts';
     public = true;
-    hasMany = ['Carts_Products'];
+    hasMany = ['Carts_Products', 'Payments'];
     belongsTo = ['Users'];
 
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];

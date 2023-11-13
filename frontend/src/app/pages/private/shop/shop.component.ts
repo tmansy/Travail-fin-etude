@@ -3,6 +3,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ApiService } from 'src/app/_services/api.service';
 import { DialogProductComponent } from '../dialog/dialog-product/dialog-product.component';
 import { NavigationExtras, Router } from '@angular/router';
+import { DialogNewProductComponent } from '../dialog/dialog-new-product/dialog-new-product.component';
 
 @Component({
   selector: 'app-shop',
@@ -11,6 +12,7 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class ShopComponent implements OnInit {
   public user: any;
+  public roleId: any;
   public products: any;
   public maillots: any;
   public vestes: any;
@@ -32,6 +34,12 @@ export class ShopComponent implements OnInit {
     if (userString !== null) {
       const user = JSON.parse(userString);
       this.user = user;
+    }
+
+    const roleIdString = localStorage.getItem('roleId');
+    if (roleIdString !== null) {
+      const roleId = JSON.parse(roleIdString);
+      this.roleId = roleId;
     }
 
     this.api.getProducts().then((res: any) => {
@@ -82,5 +90,14 @@ export class ShopComponent implements OnInit {
 
     this.router.navigate([`/private/mycart/${this.myCart.id}`], navigationExtras);
     }
+  }
+
+  public addProduct() {
+    this.dialog.open(DialogNewProductComponent, {
+      header: 'Ajouter un produit',
+      styleClass: 'custom-dialog',
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    });
   }
 }

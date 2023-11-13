@@ -22,7 +22,6 @@ export class Message {
     public user: User;
     public team: Team;
 
-
     public static createFromBody(body: MessageDAO): Message {
         const message = new Message();
 

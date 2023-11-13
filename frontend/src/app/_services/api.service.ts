@@ -148,6 +148,10 @@ export class ApiService {
   createPaymentIntent(data: any) {
     return this.request.post('/paymentIntent', data);
   }
+
+  createProduct(data: any) {
+    return this.request.post('/products', data);
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);

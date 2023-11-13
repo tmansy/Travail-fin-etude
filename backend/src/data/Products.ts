@@ -30,8 +30,8 @@ export default class Products extends GenericModel implements SuperModel {
             type: DataTypes.TINYINT(),
             comment: 'Catégorie du produit',
         },
-        image_url: {
-            type: DataTypes.TEXT(),
+        image: {
+            type: DataTypes.TEXT('long'),
             comment: 'Image du produit',
         },
     }

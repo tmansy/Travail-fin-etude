@@ -7,7 +7,12 @@ const logger = colorConsole();
 export const ProductsControllers = {
     createProduct: async (req: Request, res: Response, next: NextFunction) => {
         try {
+            const _product = Product.createFromBody(req.body);
 
+            const product = await res.locals.database['Products'].create(_product);
+
+            res.locals.response = product;
+            next();
         } catch (error) {
             logger.error(error);
             next(new Error('Impossible de créer le produit'));

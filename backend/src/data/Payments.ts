@@ -6,7 +6,7 @@ export default class Payments extends GenericModel implements SuperModel {
     alias = 'Payments';
     public = true;
     hasMany = ['Payments_PaymentStatus'];
-    belongsTo = ['Orders']
+    belongsTo = ['Orders', 'Carts']
     
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 

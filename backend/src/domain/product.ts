@@ -21,7 +21,7 @@ type ProductDAO = {
     price: number;
     stock: number;
     category: number;
-    image_url: string; 
+    image: string; 
     createdAt: Date;
     updatedAt: Date;
     product_orderId: number;
@@ -36,7 +36,7 @@ export class Product {
     public price: number;
     public stock: number;
     public category: number;
-    public image_url: string;
+    public image: string;
     public createdAt: Date;
     public updatedAt: Date;
     public product_orderId: number;
@@ -61,7 +61,7 @@ export class Product {
         product.price = body.price;
         product.stock = body.stock;
         product.category = Product.getEnumFromValue(body.category, Category);
-        product.image_url = body.image_url;
+        product.image = body.image;
         product.createdAt = body.createdAt;
         product.updatedAt = body.updatedAt;
         product.product_orderId = body.product_orderId;
@@ -78,7 +78,7 @@ export class Product {
         product.price = body.price;
         product.stock = body.stock;
         product.category = body.category;
-        product.image_url = body.image_url;
+        product.image = body.image;
         product.createdAt = body.createdAt;
         product.updatedAt = body.updatedAt;
         product.product_orderId = body.product_orderId;

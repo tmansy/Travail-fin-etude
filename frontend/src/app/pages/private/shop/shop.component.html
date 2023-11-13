@@ -1,7 +1,8 @@
 <div class="d-flex justify-content-between align-items-center mt-3">
     <h2 class="fw-bolder">La boutique</h2>
     <div class="ml-auto">
-        <p-button label="Mon panier" (onClick)="goToMyCart()" styleClass="custom-color mx-3"></p-button>
+        <p-button label="Mon panier" (onClick)="goToMyCart()" styleClass="custom-color mx-2"></p-button>
+        <p-button label="Ajouter un produit" *ngIf="roleId.includes(2)" (onClick)="addProduct()" styleClass="custom-color"></p-button>
     </div>
 </div>
 <hr class="title-line">
@@ -12,7 +13,7 @@
             <div *ngFor="let product of maillots" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -28,7 +29,7 @@
             <div *ngFor="let product of vestes" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -44,7 +45,7 @@
             <div *ngFor="let product of pulls" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -60,7 +61,7 @@
             <div *ngFor="let product of tShirts" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -76,7 +77,7 @@
             <div *ngFor="let product of pantalons" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -92,7 +93,7 @@
             <div *ngFor="let product of joggings" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -108,7 +109,7 @@
             <div *ngFor="let product of chaussures" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -124,7 +125,7 @@
             <div *ngFor="let product of tapisdesouris" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -140,7 +141,7 @@
             <div *ngFor="let product of claviers" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -156,7 +157,7 @@
             <div *ngFor="let product of casques" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">
@@ -172,7 +173,7 @@
             <div *ngFor="let product of chaises" class="col-md-4 mb-4">
                 <div class="hover-effect" [style]="{ width: '360px' }">
                     <p-card class="hover-effect" header="{{product.label}}">
-                        <img [src]="product.image_url" [alt]="product.label" style="width: 200px; height: 200px;">
+                        <img [src]="product.image" [alt]="product.label" style="width: 200px; height: 200px;">
                         <p><img src="../../../assets/img/nouveaute.png" alt="Nouveauté" style="width: 80px;"></p>    
                         <span class="bold-price">{{product.price}} €</span>
                         <ng-template pTemplate="footer">

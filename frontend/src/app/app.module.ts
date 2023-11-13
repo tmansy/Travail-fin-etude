@@ -77,6 +77,7 @@ import { ShopComponent } from './pages/private/shop/shop.component';
 import { DialogProductComponent } from './pages/private/dialog/dialog-product/dialog-product.component';
 import { CartComponent } from './pages/private/cart/cart.component';
 import { OrdersComponent } from './pages/private/orders/orders.component';
+import { DialogNewProductComponent } from './pages/private/dialog/dialog-new-product/dialog-new-product.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
 
@@ -125,6 +126,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     DialogProductComponent,
     CartComponent,
     OrdersComponent,
+    DialogNewProductComponent,
   ],
   imports: [
     BrowserModule,
