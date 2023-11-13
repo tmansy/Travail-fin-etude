@@ -40,13 +40,20 @@ export class DialogNewProductComponent {
 
   public createProduct() {
     if(this.formGroup.valid) {
-      const category = this.formGroup.get('category')?.value;
-      this.formGroup.get('category')?.setValue(this.mapCategoryToEnum(category));
+      if(this.formGroup.get('label')?.value && this.formGroup.get('description')?.value
+      && this.formGroup.get('price')?.value && this.formGroup.get('stock')?.value
+      && this.formGroup.get('category')?.value && this.formGroup.get('image')?.value) {
+        const category = this.formGroup.get('category')?.value;
+        this.formGroup.get('category')?.setValue(this.mapCategoryToEnum(category));
 
-      this.api.createProduct(this.formGroup.value).then(() => {
-        this.ref.close();
-        this.api.success('Le produit a été créé');
-      });
+        this.api.createProduct(this.formGroup.value).then(() => {
+          this.ref.close();
+          this.api.success('Le produit a été créé');
+        });
+      }
+      else {
+        this.api.error('Tous les champs ne sont pas remplis');
+      }
     }
     else {
       this.api.error('Données du formulaire invalide');

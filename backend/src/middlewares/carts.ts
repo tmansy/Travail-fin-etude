@@ -4,15 +4,6 @@ import { colorConsole } from "tracer";
 const logger = colorConsole();
 
 export const CartsControllers = {
-    updateCart: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-
-        } catch (error) {
-            logger.error(error);
-            next(new Error('Impossible de modifier le panier'));
-        }
-    },
-
     getCart: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const myCart = await res.locals.database['Carts'].findOne({
@@ -39,13 +30,4 @@ export const CartsControllers = {
             next(new Error('Impossible de récupérer le panier'));
         }
     },
-
-    getAllCarts: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-
-        } catch (error) {
-            logger.error(error);
-            next(new Error('Impossible de récupérer les paniers'));
-        }
-    }
 }

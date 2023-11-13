@@ -3,7 +3,7 @@
 </div>
 <hr class="title-line">
 
-<p-table [value]="myCart.carts_products" [tableStyle]="{'min-width': '60rem'}">
+<p-table *ngIf="isCartsProductsDefined()" [value]="myCart.carts_products" [tableStyle]="{'min-width': '60rem'}">
     <ng-template pTemplate="caption">
         <div>Résumé de votre panier</div>
     </ng-template>
@@ -14,15 +14,17 @@
             <th>Prix unitaire</th>
             <th>Quantité</th>
             <th>Sous-total</th>
+            <th>Actions</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-product>
         <tr>
             <td>{{product.product.label}}</td>
-            <td><img [src]="product.product.image_url" [alt]="product.product.label" width="100" /></td>
+            <td><img [src]="product.product.image" [alt]="product.product.label" width="100" /></td>
             <td>{{product.unit_price}} €</td>
             <td>{{product.quantity}}</td>
             <td>{{product.total_price}} €</td>
+            <td><p-button label="Supprimer" class="danger-button" (onClick)="deleteProductCart(product)"></p-button></td>
         </tr>
     </ng-template>
     <ng-template pTemplate="summary">
@@ -34,5 +36,5 @@
 </p-table>
 
 <div class="d-flex justify-content-end mt-3">
-    <p-button label="Passer la commande" (onClick)="placeOrder()" styleClass="custom-color"></p-button>
+    <p-button label="Passer la commande" (onClick)="placeOrder()" class="custom-button"></p-button>
 </div>

@@ -23,16 +23,6 @@ export default [
         ]
     },
     {
-        name: 'get_one_product',
-        description: 'Get one product',
-        method: Methods.GET,
-        route : `/products/${Params.FOCUS}`,
-        hasToken: true,
-        methods: [
-            ProductsControllers.getProduct,
-        ]
-    },
-    {
         name: 'get_all_products',
         description: 'Get all products',
         method: Methods.GET,

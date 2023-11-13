@@ -71,7 +71,7 @@ export class ShopComponent implements OnInit {
       styleClass: 'custom-dialog2',
       data: product,
       style: {
-        'min-width': '800px',
+        'min-width': '1000px',
         'min-height': '400px',
       }
     }).onClose.subscribe(() => {

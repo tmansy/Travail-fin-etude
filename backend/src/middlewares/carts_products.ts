@@ -38,30 +38,21 @@ export const CartsProductsControllers = {
         }
     },
 
-    updateCartProduct: async (req: Request, res: Response, next: NextFunction) => {
+    deleteCartProduct: async (req: Request, res: Response, next: NextFunction) => {
         try {
+            console.log(req.body)
+            const cartId = req.body.cartId;
+            const productId = req.body.productId;
 
+            await res.locals.database['Carts_Products'].destroy({
+                where: {
+                    cartId: cartId,
+                    productId: productId,
+                }
+            });
         } catch (error) {
             logger.error(error);
             next(new Error('Impossible de modifier le panier de produits'));
-        }
-    },
-
-    getCartProduct: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-
-        } catch (error) {
-            logger.error(error);
-            next(new Error('Impossible de récupérer le panier de produits'));
-        }
-    },
-
-    getAllCartsProducts: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-
-        } catch (error) {
-            logger.error(error);
-            next(new Error('Impossible de récupérer les paniers de produits'));
         }
     },
 

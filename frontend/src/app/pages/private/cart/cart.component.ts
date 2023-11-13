@@ -14,24 +14,34 @@ export class CartComponent {
 
   constructor(private route: ActivatedRoute, public api: ApiService, public router: Router) { }
   
-  ngOnInit() {
+  async ngOnInit() {
     const userString = localStorage.getItem('user');
     if (userString !== null) {
       const user = JSON.parse(userString);
       this.user = user;
     }
 
-    if(this.myCart == undefined) {
-      this.api.getMyCart(this.user.id).then((res: any) => {
+    if (this.myCart === undefined) {
+      try {
+        const res = await this.api.getMyCart(this.user.id);
         this.myCart = res;
+        this.cartTotalPrice = this.myCart.total_price;
+      } catch (error) {
+        console.error("Erreur lors de la récupération du panier :", error);
+      }
+    }
+    else {
+      this.route.paramMap.subscribe(params => {  
+        const state = window.history.state;
+        this.myCart = state.myCart;
+        this.cartTotalPrice = this.myCart.total_price;
+  
       });
     }
-    
-    this.route.paramMap.subscribe(params => {  
-      const state = window.history.state;
-      this.myCart = state.myCart;
-      this.cartTotalPrice = this.myCart.total_price;
-    });
+  }
+
+  isCartsProductsDefined() {
+    return this.myCart && this.myCart.carts_products;
   }
 
   public async placeOrder() {
@@ -67,5 +77,16 @@ export class CartComponent {
 
       this.router.navigate([`/private/mycart/${this.myCart.id}/order`], navigationExtras);
     }
+  }
+
+  public deleteProductCart(product: any){
+    const cart_product = {
+      productId: product.productId,
+      cartId: product.cartId,
+    }
+
+    this.api.deleteCartProduct(cart_product).then(() => {
+      this.ngOnInit();
+    });
   }
 }

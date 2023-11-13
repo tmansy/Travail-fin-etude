@@ -14,33 +14,13 @@ export default [
         ]
     },
     {
-        name: 'update_cart_product',
-        description: 'Update a cart_products',
-        method: Methods.PUT,
-        route : `/carts_products/${Params.FOCUS}`,
+        name: 'delete_cart_product',
+        description: 'Delete a cart_products',
+        method: Methods.DELETE,
+        route : `/carts_products`,
         hasToken: true,
         methods: [
-            CartsProductsControllers.updateCartProduct,
+            CartsProductsControllers.deleteCartProduct,
         ]
     },
-    {
-        name: 'get_one_carts_products',
-        description: 'Get one carts_products',
-        method: Methods.GET,
-        route : `/carts_products/${Params.FOCUS}`,
-        hasToken: true,
-        methods: [
-            CartsProductsControllers.getCartProduct,
-        ]
-    },
-    {
-        name: 'get_all_carts_products',
-        description: 'Get all carts_products',
-        method: Methods.GET,
-        route : '/carts_products',
-        hasToken: true,
-        methods: [
-            CartsProductsControllers.getAllCartsProducts,
-        ]
-    }
 ]
