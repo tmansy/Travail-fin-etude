@@ -12,14 +12,4 @@ export default [
             PaymentsControllers.createPaymentIntent,
         ]
     },
-    {
-        name: 'validate_payment',
-        description: 'Validate payment',
-        method: Methods.POST,
-        route: `/validatePayment`,
-        hasToken: true,
-        methods: [
-            PaymentsControllers.validatePayment,
-        ]
-    }
 ]

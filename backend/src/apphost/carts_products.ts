@@ -17,10 +17,22 @@ export default [
         name: 'delete_cart_product',
         description: 'Delete a cart_products',
         method: Methods.DELETE,
-        route : `/carts_products`,
+        route : `/carts_products/${Params.FOCUS}`,
         hasToken: true,
         methods: [
             CartsProductsControllers.deleteCartProduct,
+            CartsProductsControllers.updateTotalPriceCart,
         ]
     },
+    {
+        name: 'update_cart_product',
+        description: 'Update a cart_products',
+        method: Methods.PUT,
+        route : `/carts_products/${Params.FOCUS}`,
+        hasToken: true,
+        methods: [
+            CartsProductsControllers.updateCartProduct,
+            CartsProductsControllers.updateTotalPriceCart,
+        ]
+    }
 ]

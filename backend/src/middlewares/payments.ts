@@ -11,7 +11,13 @@ export const PaymentsControllers = {
             const _payment = Payment.createFromBody(req.body);
             let paymentIntent;
 
-            const payment = await res.locals.database['Payments'].create(_payment);
+            const payment = await res.locals.database['Payments'].create({
+                amount: _payment.amount,
+                cartId: req.body.cartId,
+                currency: _payment.currency,
+                description: _payment.description,
+                statement_descriptor: _payment.statement_descriptor,
+            });
 
             if(payment) {
                 await res.locals.database['Payments_PaymentStatus'].create({
@@ -30,6 +36,7 @@ export const PaymentsControllers = {
                 });
             }
 
+            paymentIntent.paymentId = payment.id;
             res.locals.response = paymentIntent;
             next();
         } catch (error) {
@@ -37,13 +44,4 @@ export const PaymentsControllers = {
             next(new Error('Impossible de créer l\'intention de paiement'));
         }
     },
-
-    validatePayment: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-
-        } catch (error) {
-            logger.error(error);
-            next(new Error('Impossible de valider le paiement'));
-        }
-    }
 }

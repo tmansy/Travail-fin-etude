@@ -161,8 +161,16 @@ export class ApiService {
     return this.request.put(`/products/${productId}`, data);
   }
 
-  deleteCartProduct(data: any) {
-    return this.request.delete('/carts_products', data);
+  deleteCartProduct(cart_productId: number) {
+    return this.request.delete(`/carts_products/${cart_productId}`);
+  }
+
+  updateCartProduct(cart_productId: number, data: any) {
+    return this.request.put(`/carts_products/${cart_productId}`, data);
+  }
+
+  createOrder(paymentData: any) {
+    return this.request.post(`/orders`, paymentData);
   }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);

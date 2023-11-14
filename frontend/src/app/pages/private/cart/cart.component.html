@@ -10,6 +10,7 @@
     <ng-template pTemplate="header">
         <tr>
             <th>Nom</th>
+            <th>Taille</th>
             <th>Image</th>
             <th>Prix unitaire</th>
             <th>Quantité</th>
@@ -20,11 +21,19 @@
     <ng-template pTemplate="body" let-product>
         <tr>
             <td>{{product.product.label}}</td>
+            <td *ngIf="product.size; else noSize">{{product.size}}</td>
+            <ng-template #noSize>
+                <td>/</td>
+            </ng-template>
             <td><img [src]="product.product.image" [alt]="product.product.label" width="100" /></td>
             <td>{{product.unit_price}} €</td>
             <td>{{product.quantity}}</td>
             <td>{{product.total_price}} €</td>
-            <td><p-button label="Supprimer" class="danger-button" (onClick)="deleteProductCart(product)"></p-button></td>
+            <td>
+                <p-button icon="pi pi-plus" class="custom-button mx-1" (onClick)="updateQuantity(product, 'plus')"></p-button>
+                <p-button icon="pi pi-minus" class="custom-button mx-1" (onClick)="updateQuantity(product, 'minus')"></p-button>
+                <p-button icon="pi pi-trash" class="danger-button mx-1" (onClick)="deleteProductCart(product)"></p-button>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="summary">

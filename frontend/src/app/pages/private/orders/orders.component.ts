@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { loadStripe } from '@stripe/stripe-js';
+import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
   selector: 'app-orders',
@@ -40,7 +41,7 @@ export class OrdersComponent implements OnInit {
   public myCart: any;
   public paymentIntent: any;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, public api: ApiService, public router: Router) {}
 
   async ngOnInit() {
     const userString = localStorage.getItem('user');
@@ -121,30 +122,63 @@ export class OrdersComponent implements OnInit {
 
   
   public async placeOrder() {
-    if(this.isButtonDisabled == false) {
-      this.isButtonDisabled = true;
-
-      const result = await this.stripe.confirmCardPayment(`${this.paymentIntent.client_secret}`, {
-        payment_method:  {
-          card: this.card,
-          billing_details: {
-            email: this.user.email,
+    if(this.addressCheckbox1Checked || this.addressCheckbox2Checked) {
+      if(this.visaCheckboxChecked || this.paypalCheckboxChecked || this.bancontactCheckboxChecked) {
+        if(this.isButtonDisabled == false) {
+          this.isButtonDisabled = true;
+    
+          const result = await this.stripe.confirmCardPayment(`${this.paymentIntent.client_secret}`, {
+            payment_method:  {
+              card: this.card,
+              billing_details: {
+                email: this.user.email,
+              }
+            }
+          });
+    
+          if(result.error) {
+            this.displayError.textContent = result.error.message;
           }
-        }
-      });
+          else {
+            if (result.paymentIntent.status === 'succeeded') {
+              let payment_method;
+    
+              if(this.paypalCheckboxChecked) payment_method = 0;
+              else if (this.visaCheckboxChecked) payment_method = 1;
+              else if (this.bancontactCheckboxChecked) payment_method = 2;
+    
+              const payment = {
+                total_price: this.myCart.total_price,
+                delivery_house_number: this.addressCheckbox2Checked ? this.formGroup.get('house_number')?.value : this.user.house_number,
+                delivery_street: this.addressCheckbox2Checked ? this.formGroup.get('street')?.value : this.user.street,
+                delivery_zip_code: this.addressCheckbox2Checked ? this.formGroup.get('zip_code')?.value : this.user.zip_code,
+                delivery_city: this.addressCheckbox2Checked ? this.formGroup.get('city')?.value : this.user.city,
+                delivery_country: this.addressCheckbox2Checked ? this.formGroup.get('country')?.value : this.user.country,
+                userId: this.user.id,
+                method: payment_method,
+                paymentId: this.paymentIntent.paymentId,
+                cartId: this.myCart.id,
+                cart_products: this.myCart.carts_products,
+              }
+              
+              this.form.reset();
+              this.card.clear();
 
-      if(result.error) {
-        this.displayError.textContent = result.error.message;
+              await this.api.createOrder(payment);
+              this.api.success('Votre commande a été effectuée, elle sera traitée dans les plus brefs délais.');
+              this.router.navigate(['private/shop']);
+            }
+          }
+    
+          this.isButtonDisabled = false;
+        }
       }
       else {
-        if (result.paymentIntent.status === 'succeeded') {
-          this.displaySuccess.textContent = "Paiement accepté";
-          this.form.reset();
-          this.card.clear();
-        }
+        this.api.error("Veuillez sélectionner votre moyen de paiement");
       }
-
-      this.isButtonDisabled = false;
+    }
+    else {
+      this.api.error("Veuillez sélectionner votre adresse");
     }
   }
 }

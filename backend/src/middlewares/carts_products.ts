@@ -40,16 +40,22 @@ export const CartsProductsControllers = {
 
     deleteCartProduct: async (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log(req.body)
-            const cartId = req.body.cartId;
-            const productId = req.body.productId;
+            let cartId = await res.locals.database['Carts_Products'].findOne({
+                where: {
+                    id: res.locals.focus,
+                },
+                attributes: ['cartId'],
+            });
 
             await res.locals.database['Carts_Products'].destroy({
                 where: {
-                    cartId: cartId,
-                    productId: productId,
+                    id: res.locals.focus,
                 }
             });
+
+            cartId = cartId.toJSON();
+            res.locals.response.cartId = cartId.cartId;
+            next();
         } catch (error) {
             logger.error(error);
             next(new Error('Impossible de modifier le panier de produits'));
@@ -87,6 +93,37 @@ export const CartsProductsControllers = {
         } catch (error) {
             logger.error(error);
             next(new Error('Impossible d\'update le prix total du panier'));
+        }
+    },
+
+    updateCartProduct: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const _cart_product = req.body;
+
+            await res.locals.database['Carts_Products'].update({
+                quantity: _cart_product.quantity,
+                unit_price: _cart_product.unit_price,
+                total_price: _cart_product.quantity * _cart_product.unit_price,
+            }, 
+            {
+                where: {
+                    id: res.locals.focus,
+                }
+            });
+
+            let cart_product = await res.locals.database['Carts_Products'].findOne({
+                where: {
+                    id: res.locals.focus,
+                }, 
+                attributes: ['cartId'],
+            });
+
+            cart_product = cart_product.toJSON();
+            res.locals.response.cartId = cart_product.cartId;
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error('Impossible de modifier le panier'));
         }
     }
 }

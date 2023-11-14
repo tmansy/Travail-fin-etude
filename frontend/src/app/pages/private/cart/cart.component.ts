@@ -45,7 +45,7 @@ export class CartComponent {
   }
 
   public async placeOrder() {
-    if(!this.myCart) {
+    if(this.myCart.carts_products.length == 0) {
       this.api.error('Votre panier est vide !');
     }
     else {
@@ -79,14 +79,43 @@ export class CartComponent {
     }
   }
 
-  public deleteProductCart(product: any){
-    const cart_product = {
-      productId: product.productId,
-      cartId: product.cartId,
+  public async deleteProductCart(product: any) {
+    try {
+      await this.api.deleteCartProduct(product.id);
+      this.refreshCartData();
+    } catch (error) {
+      console.error("Erreur lors de la suppression du produit du panier :", error);
     }
+  }
 
-    this.api.deleteCartProduct(cart_product).then(() => {
-      this.ngOnInit();
-    });
+  public async updateQuantity(product: any, action: string) {
+    try {
+      const newQuantity = action == "plus" ? product.quantity + 1 : product.quantity - 1;
+
+      if(newQuantity < 0) {
+        this.api.error('Impossible de mettre une quantité négative');
+      }
+      else if (newQuantity == 0) {
+        this.deleteProductCart(product);
+      }
+      else {
+        product.quantity = newQuantity;
+        
+        await this.api.updateCartProduct(product.id, product);
+        this.refreshCartData();
+      }
+    } catch (error) {
+      console.error('Erreur lors de la modification de la quantité');
+    }
+  }
+
+  private async refreshCartData() {
+    try {
+      const res = await this.api.getMyCart(this.user.id);
+      this.myCart = res;
+      this.cartTotalPrice = this.myCart.total_price;
+    } catch (error) {
+      console.error("Erreur lors de la récupération du panier après suppression du produit :", error);
+    }
   }
 }
