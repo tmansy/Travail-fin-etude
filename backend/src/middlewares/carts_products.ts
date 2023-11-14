@@ -12,6 +12,7 @@ export const CartsProductsControllers = {
             let userCart = await res.locals.database['Carts'].findOne({
                 where: {
                     userId: req.body.userId,
+                    validated: 0,
                 }
             });
 

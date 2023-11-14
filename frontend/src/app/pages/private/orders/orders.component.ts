@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { loadStripe } from '@stripe/stripe-js';
+import * as moment from 'moment';
 import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class OrdersComponent implements OnInit {
     email: new FormControl(),
   })
   public paypalCheckboxChecked: boolean = false;
-  public visaCheckboxChecked: boolean = false;
+  public visaCheckboxChecked: boolean = true;
   public bancontactCheckboxChecked: boolean = false;
   public showPaypalDiv: boolean = false;
   public showVisaDiv: boolean = false;
@@ -40,6 +41,7 @@ export class OrdersComponent implements OnInit {
   public isButtonDisabled: boolean = false;
   public myCart: any;
   public paymentIntent: any;
+  public deliveryDate: string = '';
 
   constructor(private route: ActivatedRoute, public api: ApiService, public router: Router) {}
 
@@ -72,6 +74,9 @@ export class OrdersComponent implements OnInit {
       this.myCart = state.myCart;
       this.paymentIntent = state.paymentIntent;
     });
+
+    this.deliveryDate = moment().add(7, 'days').format('DD/MM/YYYY');
+    this.visaCheckboxChecked = true;
   }
 
   public onAddressCheckbox1Change() {
