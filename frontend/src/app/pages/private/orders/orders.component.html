@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <h2 class="fw-bolder">Informations de la commande</h2>
+</div>
+<hr class="title-line">
+
+<p-accordion [activeIndex]="0">
+    <p-accordionTab header="1. Sélectionnez une adresse de livraison">
+        <div class="mb-3">
+            <p-checkbox name="address" value="address1" label="Utiliser mon adresse enregistrée" [(ngModel)]="addressCheckbox1Checked" (ngModelChange)="onAddressCheckbox1Change()"></p-checkbox>
+            <div *ngIf="showCurrentAddress" class="address-container mt-3">
+                <div>{{user.house_number}} {{user.street}}, {{user.zip_code}} {{user.city}} <br/>{{user.country}}</div>
+            </div>
+        </div>
+        <div>
+            <p-checkbox name="address" value="address2" label="Utilisez une autre adresse" [(ngModel)]="addressCheckbox2Checked" (ngModelChange)="onAddressCheckbox2Change()"></p-checkbox>
+            <div *ngIf="showNewAddress" class="address-container mt-3">
+                <div [formGroup]="formGroup">
+                    <div class="p-field mt-3">
+                        <label>Numéro de rue</label>
+                        <input type="text" formControlName="house_number" class="w-100" pInputText>
+                    </div>
+                    <div class="p-field mt-3">
+                        <label>Nom de rue</label>
+                        <input type="text" formControlName="street" class="w-100" pInputText>
+                    </div>
+                    <div class="p-field mt-3">
+                        <label>Code postal</label>
+                        <input type="text" formControlName="zip_code" class="w-100" pInputText>
+                    </div>
+                    <div class="p-field mt-3">
+                        <label>Ville</label>
+                        <input type="text" formControlName="city" class="w-100" pInputText>
+                    </div>
+                    <div class="p-field mt-3">
+                        <label>Pays</label>
+                        <input type="text" formControlName="country" class="w-100" pInputText>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-accordionTab>
+    <p-accordionTab header="2. Mode de paiement">
+        <div>
+            <label for="paymentMethod">
+                <p-checkbox id="paymentMethod" name="paymentMethod" value="paypal" [(ngModel)]="paypalCheckboxChecked" (ngModelChange)="onPaypalCheckboxChange()"></p-checkbox>
+                <img class="mx-3" src="../../../assets/img/paypal_logo.png" alt="Logo de Paypal" style="width: 100px; height: 100px;">
+            </label>
+            <div *ngIf="showPaypalDiv" class="address-container mt-3">
+                <div>Pas encore disponible</div>
+            </div>
+        </div>
+        <div class="mt-3">
+            <label for="paymentMethod">
+                <p-checkbox id="paymentMethod" name="paymentMethod" value="visa" [(ngModel)]="visaCheckboxChecked" (ngModelChange)="onVisaCheckboxChange()"></p-checkbox>
+                <img class="mx-3" src="../../../assets/img/visa_logo.png" alt="Logo de Visa" style="width: 130px; height: 100px;">
+            </label>
+            <div class="address-container mt-3">
+                <form>
+                    <label for="card-element">Informations de la carte</label>
+                    <div id="card-element" class="mt-3"></div>
+                    <div id="card-errors" role="alert" class="mt-3 text-danger"></div>
+                    <div id="card-success" role="alert"></div>
+                </form>
+            </div>
+        </div>
+        <div class="mt-3">
+            <label for="paymentMethod">
+                <p-checkbox id="paymentMethod" name="paymentMethod" value="bancontact" [(ngModel)]="bancontactCheckboxChecked" (ngModelChange)="onBancontactCheckboxChange()"></p-checkbox>
+                <img class="mx-3" src="../../../assets/img/bancontact_logo.png" alt="Logo de Bancontact" style="width: 150px; height: 100px;">
+            </label>
+            <div *ngIf="showBancontactDiv" class="address-container mt-3">
+                <div>Pas encore disponible</div>
+            </div>
+        </div>
+    </p-accordionTab>
+    <p-accordionTab header="3. Livraison">
+        <div class="address-container">
+            <div>
+                <h6>Date de livraison estimée :</h6>
+                {{deliveryDate}}
+            </div>
+        </div>
+    </p-accordionTab>
+</p-accordion>
+
+<div class="d-flex justify-content-end mt-3">
+    <button pButton type="button" label="Passer votre commande et payez" [disabled]="isButtonDisabled" (click)="placeOrder()" styleClass="custom-color"></button>
+</div>

@@ -21,6 +21,14 @@ html{
     background-color: #fab710;
 }
 
+.custom-dialog2 .p-dialog-header{
+    width: 1000px;
+}
+
+.custom-dialog2 .p-dialog-header {
+    background-color: #fab710;
+}
+
 p-button.custom-button > button {
     text-transform: uppercase !important;
     background-color: #fab710;

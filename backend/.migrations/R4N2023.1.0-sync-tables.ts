@@ -84,6 +84,61 @@ const db = new Database('db').scan(thepath);
             })
         },
         (callback) => {
+            db['Carts'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
+            db['Carts_Products'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
+            db['Orders'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
+            db['Products'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
+            db['Payments'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
             db.root_sequelize.query('SET FOREIGN_KEY_CHECKS = 1;')
             .then(() => {
                 callback(null)

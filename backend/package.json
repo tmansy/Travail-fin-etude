@@ -43,6 +43,7 @@
     "rxjs": "^7.8.0",
     "sequelize": "^6.31.0",
     "socket.io": "^4.6.1",
+    "stripe": "^14.4.0",
     "super-rest-api": "^4.35.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",

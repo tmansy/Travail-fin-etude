@@ -1,6 +1,5 @@
 import { Team, TeamDAO } from "./team";
 import { User, UserDAO } from "./user";
-import { User_team, User_teamDAO } from "./user_team";
 
 export type MessageDAO = {
     id: number,
@@ -22,7 +21,6 @@ export class Message {
     public teamId: number;
     public user: User;
     public team: Team;
-
 
     public static createFromBody(body: MessageDAO): Message {
         const message = new Message();

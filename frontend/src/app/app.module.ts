@@ -30,7 +30,6 @@ import { AboutUsComponent } from './pages/public/about-us/about-us.component';
 import { TeamPresentationComponent } from './pages/public/team-presentation/team-presentation.component';
 import { NotFoundComponent } from './pages/public/not-found/not-found.component';
 import { TournamentComponent } from './pages/public/tournament/tournament.component';
-import { ShopComponent } from './pages/public/shop/shop.component';
 import { ContactPageComponent } from './pages/public/contact-page/contact-page.component';
 import { RequestService } from './_services/request.service';
 import { ApiService } from './_services/api.service';
@@ -47,6 +46,7 @@ import { MyspaceComponent } from './pages/private/myspace/myspace.component';
 import { DataViewModule } from 'primeng/dataview';
 import { FieldsetModule } from 'primeng/fieldset';
 import { ChipModule } from 'primeng/chip';
+import { AccordionModule } from 'primeng/accordion';
 import { PanelModule } from 'primeng/panel';
 import { TeamsComponent } from './pages/private/teams/teams.component';
 import { DialogTeamsComponent } from './pages/private/dialog/dialog-teams/dialog-teams.component';
@@ -73,6 +73,13 @@ import { DialogDeleteRequestComponent } from './pages/private/dialog/dialog-dele
 import { DialogNewTrainingComponent } from './pages/private/dialog/dialog-new-training/dialog-new-training.component';
 import { DialogTrainingComponent } from './pages/private/dialog/dialog-training/dialog-training.component';
 import { DialogUserComponent } from './pages/private/dialog/dialog-user/dialog-user.component';
+import { ShopComponent } from './pages/private/shop/shop.component';
+import { DialogProductComponent } from './pages/private/dialog/dialog-product/dialog-product.component';
+import { CartComponent } from './pages/private/cart/cart.component';
+import { OrdersComponent } from './pages/private/orders/orders.component';
+import { DialogNewProductComponent } from './pages/private/dialog/dialog-new-product/dialog-new-product.component';
+import { DialogUpdateProductComponent } from './pages/private/dialog/dialog-update-product/dialog-update-product.component';
+import { DialogDeleteProductComponent } from './pages/private/dialog/dialog-delete-product/dialog-delete-product.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
 
@@ -87,7 +94,6 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     TeamPresentationComponent,
     NotFoundComponent,
     TournamentComponent,
-    ShopComponent,
     ContactPageComponent,
     ConnectionComponent,
     RegisterComponent,
@@ -97,6 +103,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     DialogTeamsComponent,
     MyteamComponent,
     SettingsComponent,
+    ShopComponent,
     PlayersComponent,
     TrainingsComponent,
     DialogPlayerComponent,
@@ -118,6 +125,12 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     DialogNewTrainingComponent,
     DialogTrainingComponent,
     DialogUserComponent,
+    DialogProductComponent,
+    CartComponent,
+    OrdersComponent,
+    DialogNewProductComponent,
+    DialogUpdateProductComponent,
+    DialogDeleteProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -136,6 +149,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     FieldsetModule,
     DataViewModule,
     SkeletonModule,
+    AccordionModule,
     ChipModule,
     CalendarModule,
     TableModule,

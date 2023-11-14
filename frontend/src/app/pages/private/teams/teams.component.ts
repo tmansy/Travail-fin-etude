@@ -43,7 +43,7 @@ export class TeamsComponent implements OnInit {
       styleClass: 'custom-dialog',
     }).onClose.subscribe(() => {
       this.ngOnInit();
-    })
+    });
   }
 
   public goTo(team: any) {

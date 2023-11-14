@@ -6,7 +6,7 @@ export default class Payments extends GenericModel implements SuperModel {
     alias = 'Payments';
     public = true;
     hasMany = ['Payments_PaymentStatus'];
-    belongsTo = ['Orders']
+    belongsTo = ['Orders', 'Carts']
     
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 
@@ -19,9 +19,17 @@ export default class Payments extends GenericModel implements SuperModel {
             type: DataTypes.INTEGER(),
             comment: 'Montant total du payement',
         },
-        details: {
-            type: DataTypes.TEXT(),
-            comment: 'Détails du payement',
+        currency: {
+            type: DataTypes.TINYINT(),
+            comment: 'Monnaie',
+        },
+        description: {
+            type: DataTypes.STRING(),
+            comment: 'Description du panier'
+        },
+        statement_descriptor: {
+            type: DataTypes.STRING(),
+            comment: 'Communication du paiement',
         },
     }
 }
