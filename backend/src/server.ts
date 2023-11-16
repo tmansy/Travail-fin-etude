@@ -18,8 +18,8 @@ import { ChatControllers } from './middlewares/chat';
 sourcemap.install();
 
 const logger = colorConsole();
-
 const connectedUsers = new Set();
+
 
 program
   .version('0.1.0')
