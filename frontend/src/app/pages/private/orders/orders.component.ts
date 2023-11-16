@@ -160,6 +160,7 @@ export class OrdersComponent implements OnInit {
                 delivery_city: this.addressCheckbox2Checked ? this.formGroup.get('city')?.value : this.user.city,
                 delivery_country: this.addressCheckbox2Checked ? this.formGroup.get('country')?.value : this.user.country,
                 userId: this.user.id,
+                username: this.user.username,
                 method: payment_method,
                 paymentId: this.paymentIntent.paymentId,
                 cartId: this.myCart.id,

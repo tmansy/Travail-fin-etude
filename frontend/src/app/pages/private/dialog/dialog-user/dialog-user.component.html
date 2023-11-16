@@ -28,6 +28,6 @@
         <input [attr.disabled]="true" type="text" formControlName="createdAt" class="w-100" pInputText>
     </div>
     <div class="mt-3 d-flex justify-content-end">
-        <p-button label="Bannir" [ngClass]="{'p-disabled': roleId.includes(1), 'custom-color': true}" (onClick)="ban()"></p-button>
+        <p-button label="Bannir" [ngClass]="{'p-disabled': roleId.includes(1)}" (onClick)="ban()" class="danger-button"></p-button>
     </div>
 </div>

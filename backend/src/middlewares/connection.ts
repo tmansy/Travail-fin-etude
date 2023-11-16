@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { Op } from "sequelize";
 import { colorConsole } from "tracer";
 import { User } from "../domain/user";
+import { sendDiscordNotification } from "../lib/sendDiscordNotification";
 
 const logger = colorConsole();
 

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { colorConsole } from "tracer";
 import { Membership_request } from "../domain/membership_request";
+import { sendDiscordNotification } from "../lib/sendDiscordNotification";
 
 const logger = colorConsole();
 
@@ -39,6 +40,9 @@ export const MembershipRequestsControllers = {
             const request = Membership_request.createFromBody(body);
 
             const _request = database['MembershipRequests'].create(request);
+
+            const mesage = `${body.username} s'est affilié. Bienvenue et merci !`;
+            sendDiscordNotification(mesage);
 
             res.locals.response = _request;
             next();
