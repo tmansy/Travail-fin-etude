@@ -82,6 +82,7 @@ export class MyspaceComponent implements OnInit {
       zip_code: this.user.zip_code,
       city: this.user.city,
       country: this.user.country,
+      usernameInGame: this.user.usernameInGame,
     }
 
     if(this.user.birthdate !== null) {
@@ -109,7 +110,6 @@ export class MyspaceComponent implements OnInit {
       formValues.createdAt = this.membership_request.createdAt;
       formValues.updatedAt = this.membership_request.updatedAt;
       formValues.adminMessage = this.membership_request.adminMessage;
-      formValues.usernameInGame = this.membership_request.userDatas.usernameInGame;
       
       this.formGroup.patchValue(formValues);
     }).catch(() => {
@@ -153,8 +153,8 @@ export class MyspaceComponent implements OnInit {
         && this.formGroup.get('country')?.value && this.formGroup.get('rank')?.value
         && this.formGroup.get('roleGame') && this.formGroup.get('usernameInGame')) {
         this.dialog.open(DialogMembershipRequestsComponent, {
-          header: 'Récapatilatif de la demande',
-          styleClass: 'custom-dialog',
+          header: 'Récapitilatif de la demande',
+          styleClass: 'custom-dialog3',
           data: this.formGroup.value,
         }).onClose.subscribe(() => {
           this.ngOnInit();

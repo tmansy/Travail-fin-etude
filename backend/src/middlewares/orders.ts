@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { colorConsole } from "tracer";
+import { sendDiscordNotification } from "../lib/sendDiscordNotification";
 
 const logger = colorConsole();
 
@@ -17,6 +18,9 @@ export const OrdersControllers = {
                 delivery_city: paymentData.delivery_city,
                 delivery_country: paymentData.delivery_country,
             });
+
+            const message = `Merci à ${paymentData.username} d'avoir valider son panier sur la boutique !`;
+            sendDiscordNotification(message);
 
             res.locals.order = order;
             next();

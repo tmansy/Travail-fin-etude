@@ -27,8 +27,6 @@ export const ConnectionControllers = {
                 ]
             });
 
-            sendDiscordNotification('Un utilisateur s\'est connecté');
-
             const hashedPassword = user ? user.password : "";
             const passwordMatch = bcrypt.compareSync(password, hashedPassword);
 
