@@ -8,7 +8,7 @@ const client = new Discord.Client({
     GatewayIntentBits.MessageContent,
   ],
 });
-client.login('MTE3NDAyNzUzNzg0OTAwNDA2NA.GTCKD-.mTl5ceSdKXwfMB9JIXpE604aXGqCeuf9hXHhV0');
+client.login(process.env.DISCORD_TOKEN);
 
 export function sendDiscordNotification(message: string) {
     const channelId = '1174027314598789160';

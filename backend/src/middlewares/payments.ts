@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { colorConsole } from "tracer";
 import { Payment } from "../domain/payment";
 
-const stripe = require('stripe')(`sk_test_51OBdckGIAsjLcmBQa0MSt4ADPixrgh5dXjs29FIP6tuAXxFiUXxCjH6z3ocWZH2RcOo1ZMFynS2pqySh0cQy1FLO00fFOrRiQb`);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const logger = colorConsole();
 
 export const PaymentsControllers = {
