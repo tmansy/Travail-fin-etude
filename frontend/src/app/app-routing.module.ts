@@ -25,6 +25,7 @@ import { MessagingComponent } from './pages/private/myteam/messaging/messaging.c
 import { ShopComponent } from './pages/private/shop/shop.component';
 import { CartComponent } from './pages/private/cart/cart.component';
 import { OrdersComponent } from './pages/private/orders/orders.component';
+import { PublicShopComponent } from './pages/public/public-shop/public-shop.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -59,6 +60,10 @@ const routes: Routes = [
   { 
     path: "register", 
     component: RegisterComponent 
+  },
+  {
+    path: "public-shop",
+    component: PublicShopComponent,
   },
   { 
     path: "private", 

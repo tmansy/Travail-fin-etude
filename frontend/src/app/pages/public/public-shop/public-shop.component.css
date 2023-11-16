@@ -1,0 +1,67 @@
+.content {
+    width: 100%;
+    height: 72.8vh;
+    margin-right: 200px;
+}
+
+:host ::ng-deep #p-tabpanel-0 > div {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-panels {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-0-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-1-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-2-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-3-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-4-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-5-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-6-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-7-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-8-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-9-label {
+    background-color: #C0C0C0 !important;
+}
+
+:host ::ng-deep #p-tabpanel-10-label {
+    background-color: #C0C0C0 !important;
+}
+
+@media screen and (max-height: 1000px) {
+    .content {
+        height: 65vh;
+    }
+}
