@@ -1,0 +1,44 @@
+<p-table *ngIf="isCartsProductsDefined()" [value]="myCart" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="caption">
+        <div>Résumé de votre panier</div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nom</th>
+            <th>Taille</th>
+            <th>Image</th>
+            <th>Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Sous-total</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{product.label}}</td>
+            <td *ngIf="product.size; else noSize">{{product.size}}</td>
+            <ng-template #noSize>
+                <td>/</td>
+            </ng-template>
+            <td><img [src]="product.image" [alt]="product.label" width="100" /></td>
+            <td>{{product.unit_price}} €</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.total_price}} €</td>
+            <td>
+                <p-button icon="pi pi-plus" class="custom-button mx-1" (onClick)="updateQuantity(product, 'plus')"></p-button>
+                <p-button icon="pi pi-minus" class="custom-button mx-1" (onClick)="updateQuantity(product, 'minus')"></p-button>
+                <p-button icon="pi pi-trash" class="danger-button mx-1" (onClick)="deleteProductCart(product)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div style="display: flex; justify-content: space-between;">
+            <div>Il y a {{myCart.carts_products ? myCart.carts_products.length : 0 }} produits différents dans votre panier</div>
+            <div>Total du panier : {{cartTotalPrice}} €</div>
+        </div>
+    </ng-template>
+</p-table>
+
+<div class="d-flex justify-content-end mt-3">
+    <p-button label="Valider mon panier" (onClick)="placeOrder()" class="custom-button"></p-button>
+</div>

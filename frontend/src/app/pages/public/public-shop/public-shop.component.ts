@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ApiService } from 'src/app/_services/api.service';
 import { DialogProductComponent } from '../../private/dialog/dialog-product/dialog-product.component';
+import { PublicCartComponent } from '../public-cart/public-cart.component';
 
 @Component({
   selector: 'app-public-shop',
@@ -43,6 +44,8 @@ export class PublicShopComponent {
   }
 
   public show(product: any) {
+    product.publicShop = true;
+
     this.dialog.open(DialogProductComponent, {
       header: `${product.label}`,
       styleClass: 'custom-dialog2',
@@ -54,5 +57,14 @@ export class PublicShopComponent {
     }).onClose.subscribe(() => {
       this.ngOnInit();
     });
+  }
+
+  public goToMyPublicCart() {
+    this.dialog.open(PublicCartComponent, {
+      header: `Mon panier`,
+      styleClass: 'custom-dialog2',
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    })
   }
 }

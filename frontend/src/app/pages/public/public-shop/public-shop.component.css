@@ -4,60 +4,53 @@
     margin-right: 200px;
 }
 
-:host ::ng-deep #p-tabpanel-0 > div {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-0-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
+}
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    color: #fab710;
+    border-color: #dfe2e6 !important;
 }
 
-:host ::ng-deep .p-tabview .p-tabview-panels {
-    background-color: #C0C0C0 !important;
+
+:host ::ng-deep #p-tabpanel-1-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
-:host ::ng-deep .p-tabview .p-tabview-nav {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-2-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
-:host ::ng-deep #p-tabpanel-0-label {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-3-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
-:host ::ng-deep #p-tabpanel-1-label {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-4-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
-:host ::ng-deep #p-tabpanel-2-label {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-5-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
-:host ::ng-deep #p-tabpanel-3-label {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-6-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
-:host ::ng-deep #p-tabpanel-4-label {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-7-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
-:host ::ng-deep #p-tabpanel-5-label {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-8-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
-:host ::ng-deep #p-tabpanel-6-label {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-9-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
-:host ::ng-deep #p-tabpanel-7-label {
-    background-color: #C0C0C0 !important;
-}
-
-:host ::ng-deep #p-tabpanel-8-label {
-    background-color: #C0C0C0 !important;
-}
-
-:host ::ng-deep #p-tabpanel-9-label {
-    background-color: #C0C0C0 !important;
-}
-
-:host ::ng-deep #p-tabpanel-10-label {
-    background-color: #C0C0C0 !important;
+:host ::ng-deep #p-tabpanel-10-label:focus {
+    box-shadow: inset 0 0 0 0.2rem #fab710 !important;
 }
 
 @media screen and (max-height: 1000px) {
