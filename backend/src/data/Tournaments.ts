@@ -31,9 +31,9 @@ export default class Tournaments extends GenericModel implements SuperModel {
             type: DataTypes.STRING(255),
             comment: 'Format du tournoi',
         },
-        game: {
-            type: DataTypes.STRING(255),
-            comment: 'Jeu du tournoi',
+        size: {
+            type: DataTypes.INTEGER(),
+            comment: 'Taille du tournoi',
         },
         prize: {
             type: DataTypes.INTEGER(),

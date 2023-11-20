@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
-  selector: 'app-myteam',
-  templateUrl: './myteam.component.html',
-  styleUrls: ['./myteam.component.css'],
+  selector: 'app-mytournament',
+  templateUrl: './mytournament.component.html',
+  styleUrls: ['./mytournament.component.css']
 })
-export class MyteamComponent implements OnInit {
-  public team: any;
+export class MytournamentComponent {
+  public tournament: any;
   public user: any;
-  public teamId: number | undefined;
+  public tournamentId: number | undefined;
 
   constructor(private router: Router, private api: ApiService, private activatedRoute: ActivatedRoute) { }
-
+  
   ngOnInit(): void {
     const userString = localStorage.getItem('user');
     if (userString !== null) {
@@ -22,11 +22,11 @@ export class MyteamComponent implements OnInit {
     }
 
     this.activatedRoute.params.subscribe((params) => {
-      this.teamId = +params['teamId'];
+      this.tournamentId = +params['tournamentId'];
     })
 
-    this.api.getTeam(this.teamId).then((res: any) => {
-      this.team = res;
+    this.api.getTournament(this.tournamentId).then((res: any) => {
+      this.tournament = res;
     })
   }
 
@@ -35,5 +35,4 @@ export class MyteamComponent implements OnInit {
     this.api.success('Vous vous êtes déconnecté.')
     this.router.navigateByUrl('/');
   }
-
 }

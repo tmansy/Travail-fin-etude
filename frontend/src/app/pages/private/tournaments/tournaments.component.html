@@ -7,8 +7,13 @@
 <div class="container">
     <div class="row justify-content-center text-center" *ngIf="loaded; else noloaded" style="max-height: calc(100vh - 110px); overflow-y: auto;">
         <div *ngFor="let tournament of tournaments" class="col-md-4 mb-4">
-            <div class="border border-1 border-dark hover-effect">
-                
+            <div class="hover-effect">
+                <p-card header="{{tournament.name}}">
+                    <img src="../../../../assets/img/r4n_logo_sm.png" alt="image r4n">
+                    <ng-template pTemplate="footer">
+                        <p-button label="Entrer" (onClick)="goTo(tournament)" styleClass="custom-color" class="custom-button"></p-button>
+                    </ng-template>
+                </p-card>
             </div> 
         </div>
     </div>

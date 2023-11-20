@@ -80,8 +80,26 @@ import { OrdersComponent } from './pages/private/orders/orders.component';
 import { DialogNewProductComponent } from './pages/private/dialog/dialog-new-product/dialog-new-product.component';
 import { DialogUpdateProductComponent } from './pages/private/dialog/dialog-update-product/dialog-update-product.component';
 import { DialogDeleteProductComponent } from './pages/private/dialog/dialog-delete-product/dialog-delete-product.component';
+import { DialogNewTournamentComponent } from './pages/private/dialog/dialog-new-tournament/dialog-new-tournament.component';
+import { StageType } from 'brackets-model';
+import { MytournamentComponent } from './pages/private/mytournament/mytournament.component';
+import { ResultsComponent } from './pages/private/mytournament/results/results.component';
+import { TournamentSettingsComponent } from './pages/private/mytournament/tournament-settings/tournament-settings.component';
+import { TournamentTeamsComponent } from './pages/private/mytournament/tournament-teams/tournament-teams.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
+
+declare global {
+  interface Window {
+    bracketsViewer?: any | undefined;
+  }
+
+  interface Dataset {
+    title: string;
+    type: StageType;
+    roster: { id: number; name: string }[];
+  }
+}
 
 @NgModule({
   declarations: [
@@ -131,6 +149,11 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     DialogNewProductComponent,
     DialogUpdateProductComponent,
     DialogDeleteProductComponent,
+    DialogNewTournamentComponent,
+    MytournamentComponent,
+    ResultsComponent,
+    TournamentSettingsComponent,
+    TournamentTeamsComponent,
   ],
   imports: [
     BrowserModule,

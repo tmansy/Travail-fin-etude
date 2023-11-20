@@ -1,0 +1,45 @@
+<div class="page-wrapper font">
+    <div class="left-section">
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white shadow-lg p-3 bg-body-tertiary custom-sidebar" style="width: 280px; height: 100vh; background-color: #17161a;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <span class="fs-5 fw-bold" *ngIf="tournament">{{tournament.name}}</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a routerLink="/mytournament/{{tournamentId}}/settings" routerLinkActive="active" class="nav-link"><i class="bi bi-people-fill px-2"></i>Paramètres du tournoi</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/mytournament/{{tournamentId}}/teams" routerLinkActive="active" class="nav-link"><i class="bi bi-controller px-2"></i>Equipes participantes</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/mytournament/{{tournamentId}}/results" routerLinkActive="active" class="nav-link"><i class="bi bi-calendar3 px-2"></i>Résultats</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/private/myspace" routerLinkActive="active" class="nav-link"><i class="bi bi-arrow-left px-2"></i>Retour</a>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://e7.pngegg.com/pngimages/717/24/png-clipart-computer-icons-user-profile-user-account-avatar-heroes-silhouette-thumbnail.png" alt="Image de profil" width="32" height="32" class="rounded-circle me-2">
+            <strong>{{user?.username}}</strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" (click)="signout()">Se déconnecter</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="right-section">
+      <main class="page-content h-100">
+        <div class="container-fluid h-100 pl-0">
+            <div class="row h-100">
+                <div class="col-12 main__content pl-0">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+      </main>
+    </div> 
+  </div>

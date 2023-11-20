@@ -3,13 +3,13 @@ import { TournamentsControllers } from '../middlewares/tournaments';
 
 export default [
     {
-        name: 'generateTournament',
-        description: 'generate tournament',
-        method: Methods.POST,
-        route : '/generate_tournament',
+        name: 'get_all_tournaments',
+        description: 'get all tournaments',
+        method: Methods.GET,
+        route: `/tournaments`,
         hasToken: true,
         methods: [
-            TournamentsControllers.generateTournament,
+            TournamentsControllers.getAllTournaments,
         ]
     }
 ]

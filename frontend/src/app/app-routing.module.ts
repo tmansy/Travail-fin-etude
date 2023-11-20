@@ -25,6 +25,9 @@ import { MessagingComponent } from './pages/private/myteam/messaging/messaging.c
 import { ShopComponent } from './pages/private/shop/shop.component';
 import { CartComponent } from './pages/private/cart/cart.component';
 import { OrdersComponent } from './pages/private/orders/orders.component';
+import { MytournamentComponent } from './pages/private/mytournament/mytournament.component';
+import { TournamentSettingsComponent } from './pages/private/mytournament/tournament-settings/tournament-settings.component';
+import { TournamentTeamsComponent } from './pages/private/mytournament/tournament-teams/tournament-teams.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -125,6 +128,20 @@ const routes: Routes = [
       {
         path: 'messaging',
         component: MessagingComponent,
+      }
+    ]
+  },
+    {
+    path: "mytournament/:tournamentId",
+    component: MytournamentComponent,
+    children: [
+      {
+        path: 'settings',
+        component: TournamentSettingsComponent,
+      },
+      {
+        path: 'teams',
+        component: TournamentTeamsComponent,
       }
     ]
   },

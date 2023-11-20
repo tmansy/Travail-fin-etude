@@ -172,6 +172,18 @@ export class ApiService {
   createOrder(paymentData: any) {
     return this.request.post(`/orders`, paymentData);
   }
+
+  getTournamentWithTeam(tournamentId: number) {
+    return this.request.get(`/tournaments/${tournamentId}`);
+  }
+
+  getTournament(tournamentId: any) {
+    return this.request.get(`/tournaments/${tournamentId}`);
+  }
+
+  getTournaments() {
+    return this.request.get(`/tournaments`);
+  }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);
   error = (txt: string, duration?: number) => this.request.error(txt, duration);
