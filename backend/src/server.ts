@@ -42,8 +42,9 @@ const io = new Server(server, {
 
 app.use(SuperMiddlewares.Bind({ io: io }));
 app.use(cors({
-    origin: 'http://localhost:4200'
+    origin: ['http://localhost:4200', 'http://requiemforanoob.be/'],
 }));
+
 
 moment.locale('fr', momentLocaleFr);
 
