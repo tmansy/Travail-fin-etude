@@ -23,7 +23,6 @@ export class DialogProductComponent {
     unit_price: number;
     userId: number;
     label: string;
-    image: string;
   } = {
     productId: 0,
     size: '',
@@ -31,7 +30,6 @@ export class DialogProductComponent {
     unit_price: 0,
     userId: 0,
     label: '',
-    image: '',
   };
   public user: any;
 
