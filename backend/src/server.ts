@@ -41,10 +41,7 @@ const io = new Server(server, {
 });
 
 app.use(SuperMiddlewares.Bind({ io: io }));
-app.use(cors({
-    origin: ['http://localhost:4200', 'http://requiemforanoob.be/'],
-}));
-
+app.use(cors());
 
 moment.locale('fr', momentLocaleFr);
 
@@ -102,8 +99,8 @@ new SuperRouter({
     description: "Documentation of the R4N's API",
     title: 'R4N API',
     database: 'r4n',
-    url_acc: 'https://api.r4n-acc.be',
-    url_prod: 'https://api.r4n.be',
+    url_acc: 'http://requiemforanoob.be',
+    url_prod: 'http://requiemforanoob.be',
     addMiddlewares: (route: any, middlewares) => {
         if(route.hasToken) {
             middlewares.unshift(AuthControllers.token);
