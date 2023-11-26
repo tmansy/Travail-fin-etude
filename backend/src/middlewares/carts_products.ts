@@ -65,7 +65,7 @@ export const CartsProductsControllers = {
 
     updateTotalPriceCart: async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const cartId = res.locals.response.cartId;
+            const cartId = res.locals.response.cartId || res.locals.cartId;
             let totalCartPrice = 0;
 
             let cart_products = await res.locals.database['Carts_Products'].findAll({
@@ -125,6 +125,42 @@ export const CartsProductsControllers = {
         } catch (error) {
             logger.error(error);
             next(new Error('Impossible de modifier le panier'));
+        }
+    },
+
+    createPublicCartProduct: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const cart_products = req.body.map((cart_product) => Cart_Product.createFromBody(cart_product));
+
+            let userCart = await res.locals.database['Carts'].findOne({
+                where: {
+                    userId: req.body[0].userId,
+                    validated: 0,
+                }
+            });
+
+            if(!userCart) {
+                userCart = await res.locals.database['Carts'].create({
+                    userId: req.body[0].userId,
+                });
+            }
+            
+            for(const cart_product of cart_products) {
+                await res.locals.database['Carts_Products'].create({
+                    quantity: cart_product.quantity,
+                    unit_price: cart_product.unit_price,
+                    total_price: cart_product.total_price,
+                    size: cart_product.size,
+                    cartId: userCart.id,
+                    productId: cart_product.productId,
+                });
+            }
+            
+            res.locals.cartId = userCart.id;
+            next();
+        } catch (error) {
+            logger.error(error);
+            next(new Error('Impossible de créer le panier'));
         }
     }
 }

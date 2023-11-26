@@ -86,6 +86,8 @@ import { MytournamentComponent } from './pages/private/mytournament/mytournament
 import { ResultsComponent } from './pages/private/mytournament/results/results.component';
 import { TournamentSettingsComponent } from './pages/private/mytournament/tournament-settings/tournament-settings.component';
 import { TournamentTeamsComponent } from './pages/private/mytournament/tournament-teams/tournament-teams.component';
+import { PublicShopComponent } from './pages/public/public-shop/public-shop.component';
+import { PublicCartComponent } from './pages/public/public-cart/public-cart.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
 
@@ -154,6 +156,8 @@ declare global {
     ResultsComponent,
     TournamentSettingsComponent,
     TournamentTeamsComponent,
+    PublicShopComponent,
+    PublicCartComponent,
   ],
   imports: [
     BrowserModule,

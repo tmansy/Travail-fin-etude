@@ -17,9 +17,10 @@ export class AppComponent {
       if(event instanceof NavigationEnd) {
         const currentUrl = event.url;
         this.hideNavbarFooter = currentUrl === '/private/myspace' || currentUrl === '/private/teams' || currentUrl === '/private/staff' || currentUrl === '/private/requests' || currentUrl === '/private/sponsors' || currentUrl === '/private/users' || currentUrl === '/private/tournaments' || currentUrl === '/private/shop';
-        if(this.hideNavbarFooter == false) {
-          this.hideNavbarFooter = currentUrl.includes('/myteam/');
-          this.hideNavbarFooter = currentUrl.includes('/mycart/');
+        if(currentUrl.includes('/myteam/')) {
+          this.hideNavbarFooter = true;
+        } else if(currentUrl.includes('/mycart/')) {
+          this.hideNavbarFooter = true;
         }
       }
     });

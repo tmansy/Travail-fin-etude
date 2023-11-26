@@ -141,6 +141,10 @@ export class ApiService {
     return this.request.post('/carts_products', product);
   }
 
+  postPublicCartProduct(product: any) {
+    return this.request.post('/carts_products/public', product);
+  }
+
   getMyCart(userId: number) {
     return this.request.get(`/carts/${userId}`);
   }

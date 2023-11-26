@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ApiService } from 'src/app/_services/api.service';
 
@@ -21,16 +22,18 @@ export class DialogProductComponent {
     quantity: number;
     unit_price: number;
     userId: number;
+    label: string;
   } = {
     productId: 0,
     size: '',
     quantity: 0,
     unit_price: 0,
     userId: 0,
+    label: '',
   };
   public user: any;
 
-  constructor(private config: DynamicDialogConfig, private api: ApiService, private ref: DynamicDialogRef) {
+  constructor(private config: DynamicDialogConfig, private api: ApiService, private ref: DynamicDialogRef, private cookieService: CookieService) {
     this.product = this.config.data;
   }
 
@@ -43,22 +46,35 @@ export class DialogProductComponent {
   }
 
   public addToCart() {
+    this.cart.productId = this.product.id;
+    this.cart.size = this.formGroup.get('taille')?.value;
+    this.cart.quantity = this.formGroup.get('quantity')?.value;
+    this.cart.unit_price = this.product.price;
+    this.cart.label = this.product.label;
+
     if(!this.formGroup.get('taille')?.value) {
       this.api.error('Veuillez sélectionner une taille');
-    }
-    else {
-      this.cart.productId = this.product.id;
-      this.cart.size = this.formGroup.get('taille')?.value;
-      this.cart.quantity = this.formGroup.get('quantity')?.value;
-      this.cart.unit_price = this.product.price;
-      this.cart.userId = this.user.id;
-
-      this.api.postCartProduct(this.cart).then((res) => {
+    } else if(!this.formGroup.get('quantity')?.value) {
+      this.api.error('Veuillez sélectionner une quantité');
+    } else {
+      if(this.product.publicShop) {
+        const currentCartString = this.cookieService.get('cart');
+        const currentCart = JSON.parse(currentCartString || '[]');        
+        currentCart.push(this.cart);
+        this.cookieService.set('cart', JSON.stringify(currentCart));
         this.ref.close();
-        this.api.success('L\'article a été ajouté au panier');
-      }).catch((err) => {
-        this.api.error('Erreur lors de l\'ajout de l\'article dans le panier');
-      })
+        this.api.success(`L'article a été ajouté à votre panier`);
+      }
+      else {
+        this.cart.userId = this.user.id;
+
+        this.api.postCartProduct(this.cart).then((res) => {
+          this.ref.close();
+          this.api.success('L\'article a été ajouté au panier');
+        }).catch((err) => {
+          this.api.error('Erreur lors de l\'ajout de l\'article dans le panier');
+        });
+      }
     }
   }
 }

@@ -5,5 +5,11 @@
 
 .custom-bg-dark {
     width: 100%;
-    height: 80vh;
+    height: 72.8vh;
+}
+
+@media screen and (max-height: 1000px) {
+    .custom-bg-dark {
+        height: 65vh;
+    }
 }

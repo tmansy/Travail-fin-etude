@@ -14,6 +14,17 @@ export default [
         ]
     },
     {
+        name: 'create_public_cart_products',
+        description: 'Create a public cart_products',
+        method: Methods.POST,
+        route : '/carts_products/public',
+        hasToken: true,
+        methods: [
+            CartsProductsControllers.createPublicCartProduct,
+            CartsProductsControllers.updateTotalPriceCart,
+        ]
+    },
+    {
         name: 'delete_cart_product',
         description: 'Delete a cart_products',
         method: Methods.DELETE,

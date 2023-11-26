@@ -28,6 +28,7 @@ import { OrdersComponent } from './pages/private/orders/orders.component';
 import { MytournamentComponent } from './pages/private/mytournament/mytournament.component';
 import { TournamentSettingsComponent } from './pages/private/mytournament/tournament-settings/tournament-settings.component';
 import { TournamentTeamsComponent } from './pages/private/mytournament/tournament-teams/tournament-teams.component';
+import { PublicShopComponent } from './pages/public/public-shop/public-shop.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -62,6 +63,10 @@ const routes: Routes = [
   { 
     path: "register", 
     component: RegisterComponent 
+  },
+  {
+    path: "public-shop",
+    component: PublicShopComponent,
   },
   { 
     path: "private", 

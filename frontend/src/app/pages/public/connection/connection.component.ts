@@ -45,6 +45,7 @@ export class ConnectionComponent implements OnInit {
           const checked = this.formGroup.get('checked')?.value;
           const username = this.formGroup.get('username')?.value;
           const password = this.formGroup.get('password')?.value;
+
           if(checked == true) {
             this.cookieService.set('checked', 'true');
             this.cookieService.set('username', username);
@@ -55,6 +56,32 @@ export class ConnectionComponent implements OnInit {
             this.cookieService.delete('username');
             this.cookieService.delete('password');
           }
+
+          if(this.cookieService.get('cart')) {
+            let cartString = this.cookieService.get('cart');
+
+            let publicCart: Array<{
+                productId: number;
+                label: string;
+                quantity: number;
+                size: string;
+                total_price: number;
+                unit_price: number;
+                userId?: number;
+            }> = JSON.parse(cartString);
+
+            if (!Array.isArray(publicCart)) {
+                console.error('Le contenu du panier n\'est pas un tableau valide.');
+            }
+
+            for (const product of publicCart) {
+                product.userId = res.user.id;
+            }
+
+            this.cookieService.delete('cart');
+            this.api.postPublicCartProduct(publicCart);
+          }
+
           this.api.success('Félications vous êtes connecté.');
           this.router.navigateByUrl('/private/myspace');
         }
