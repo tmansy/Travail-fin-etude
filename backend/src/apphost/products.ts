@@ -27,7 +27,7 @@ export default [
         description: 'Get all products',
         method: Methods.GET,
         route : '/products',
-        hasToken: true,
+        hasToken: false,
         methods: [
             ProductsControllers.getAllProducts,
         ]

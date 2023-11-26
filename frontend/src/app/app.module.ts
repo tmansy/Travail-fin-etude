@@ -80,6 +80,8 @@ import { OrdersComponent } from './pages/private/orders/orders.component';
 import { DialogNewProductComponent } from './pages/private/dialog/dialog-new-product/dialog-new-product.component';
 import { DialogUpdateProductComponent } from './pages/private/dialog/dialog-update-product/dialog-update-product.component';
 import { DialogDeleteProductComponent } from './pages/private/dialog/dialog-delete-product/dialog-delete-product.component';
+import { PublicShopComponent } from './pages/public/public-shop/public-shop.component';
+import { PublicCartComponent } from './pages/public/public-cart/public-cart.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
 
@@ -131,6 +133,8 @@ const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
     DialogNewProductComponent,
     DialogUpdateProductComponent,
     DialogDeleteProductComponent,
+    PublicShopComponent,
+    PublicCartComponent,
   ],
   imports: [
     BrowserModule,
