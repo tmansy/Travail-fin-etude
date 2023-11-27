@@ -9,10 +9,5 @@ export default class Teams_Tournaments extends GenericModel implements SuperMode
     
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 
-    attributes = {
-        rank: {
-            type: DataTypes.STRING(255),
-            comment: 'Classement de la team au tournoi',
-        },
-    }
+    attributes = {}
 }

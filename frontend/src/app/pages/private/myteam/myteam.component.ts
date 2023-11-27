@@ -22,7 +22,8 @@ export class MyteamComponent implements OnInit {
     }
 
     this.activatedRoute.params.subscribe((params) => {
-      this.teamId = +params['teamId'];
+      console.log(params)
+      // this.teamId = +params['teamId'];
     })
 
     this.api.getTeam(this.teamId).then((res: any) => {

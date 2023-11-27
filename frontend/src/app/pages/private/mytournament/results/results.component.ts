@@ -1,16 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InMemoryDatabase } from 'brackets-memory-db';
 import { BracketsManager } from 'brackets-manager';
 import { ApiService } from 'src/app/_services/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 function getNearestPowerOfTwo(input: number): number {
   return Math.pow(2, Math.ceil(Math.log2(input)));
 }
 
-async function process(dataset: Dataset, tournamentId: number) {
-  const storage = new InMemoryDatabase();
-  const manager = new BracketsManager(storage);
-
+async function process(dataset: Dataset, tournamentId: number, manager: BracketsManager, storage: InMemoryDatabase) {
   storage.setData({
     participant: dataset.roster.map((team: any) => ({
       ...team,
@@ -30,10 +28,10 @@ async function process(dataset: Dataset, tournamentId: number) {
     seeding: dataset.roster.map((team) => team.name),
     settings: {
       groupCount: 1,
-      seedOrdering: dataset.type === 'round_robin' ? ['groups.seed_optimized'] : ['inner_outer'],
+      seedOrdering: dataset.type === 'round_robin' ? ['groups.seed_optimized'] : ['natural'],
       size: getNearestPowerOfTwo(dataset.roster.length),
     }
-  })
+  });
 
   const data = await manager.get.stageData(0);
 
@@ -50,15 +48,20 @@ async function process(dataset: Dataset, tournamentId: number) {
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent {
+export class ResultsComponent implements OnInit {
   public loaded = false;
   public user: any;
   public roleId: any;
   public tournaments: any;
   public tournament: any;
   public tournamentId: any;
+  private manager: BracketsManager;
+  private storage: InMemoryDatabase;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private activatedRoute: ActivatedRoute) {
+    this.storage = new InMemoryDatabase();
+    this.manager = new BracketsManager(this.storage);
+  }
 
   async ngOnInit() {
     const userString = localStorage.getItem('user');
@@ -73,6 +76,10 @@ export class ResultsComponent {
       this.roleId = roleId;
     }
 
+    this.activatedRoute.parent?.params.subscribe((params) => {
+      this.tournamentId = +params['tournamentId'];
+    });
+
     window.bracketsViewer.addLocale('fr', {
       common: {
         'group-name-winner-bracket': '{{stage.name}}',
@@ -83,17 +90,71 @@ export class ResultsComponent {
         'winner-bracket-semi-final': 'Semi finale {{position}}',
         'winner-bracket-final': 'Finale',
         'consolation-final': 'Petite finale'
+      },
+      "match-status": {
+        "locked": "Bloqué",
+        "waiting": "En attente",
+        "ready": "Prêt",
+        "running": "En cours",
+        "completed": "Fini",
+        "archived": "Archivé",
       }
     });
 
-    this.api.getTournamentWithTeam(this.tournamentId).then((res) => {
-      this.tournament = res;
+    this.api.getTournamentWithTeam(this.tournamentId).then((res: any) => {
+      let type;
+      
+      if(res.type == 0) type = "single_elimination";
+      else if(res.type == 1) type = "double_elimination";
+      else if(res.type == 2) type = "round_robin";
 
-      process(this.tournament, this.tournamentId).then((data) => {
-        window.bracketsViewer.render(data);
-      })
+      this.tournament = {
+        title: res.title,
+        type: type,
+        roster: [],
+      };
+
+      res.teams_tournaments.forEach((teamTournament: any) => {
+        this.tournament.roster.push({
+          id: teamTournament.id,
+          name: teamTournament.team.name,
+        });
+      });
+
+      process(this.tournament, this.tournamentId, this.manager, this.storage).then((data) => {
+        const config = {
+          onMatchClick: (matchData: any) => {
+            this.updateMatch(matchData);
+          },
+        };
+  
+        window.bracketsViewer.render(data, config);
+      });
     });
     
     this.loaded = true;
+  }
+  
+  async updateMatch(matchData: any) {
+    await this.manager.update.match({
+      id: matchData.id,
+      opponent1: {
+        score: 1,
+        result: 'win',
+      },
+      opponent2: {
+        score: 0,
+        result: 'loss',
+      }
+    });
+
+    const data = await this.manager.get.stageData(0);
+    const _data = {
+      stages: data.stage,
+      matches: data.match,
+      matchGames: data.match_game,
+      participants: data.participant,
+    }
+    window.bracketsViewer.render(_data);
   }
 }

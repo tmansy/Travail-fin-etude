@@ -29,6 +29,7 @@ import { MytournamentComponent } from './pages/private/mytournament/mytournament
 import { TournamentSettingsComponent } from './pages/private/mytournament/tournament-settings/tournament-settings.component';
 import { TournamentTeamsComponent } from './pages/private/mytournament/tournament-teams/tournament-teams.component';
 import { PublicShopComponent } from './pages/public/public-shop/public-shop.component';
+import { ResultsComponent } from './pages/private/mytournament/results/results.component';
 // import { SSOGuard } from './_guards/sso.guard';
 
 const routes: Routes = [
@@ -147,6 +148,10 @@ const routes: Routes = [
       {
         path: 'teams',
         component: TournamentTeamsComponent,
+      },
+      {
+        path: 'results',
+        component: ResultsComponent,
       }
     ]
   },

@@ -117,6 +117,28 @@ const db = new Database('db').scan(thepath);
             })
         },
         (callback) => {
+            db['Teams_Tournaments'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
+            db['Tournaments'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
             db['Orders'].sync({
                 alter: true,
                 logging: console.log,

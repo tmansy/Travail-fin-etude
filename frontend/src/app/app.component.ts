@@ -21,6 +21,8 @@ export class AppComponent {
           this.hideNavbarFooter = true;
         } else if(currentUrl.includes('/mycart/')) {
           this.hideNavbarFooter = true;
+        } else if(currentUrl.includes('/mytournament/')) {
+          this.hideNavbarFooter = true;
         }
       }
     });

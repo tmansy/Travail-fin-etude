@@ -11,9 +11,13 @@ export default class Tournaments extends GenericModel implements SuperModel {
     public token: ('create' | 'findone' | 'findall' | 'update' | 'destroy' | 'historic')[] = ['create', 'findone', 'findall', 'update', 'destroy'];
 
     attributes = {
-        name: {
+        title: {
             type: DataTypes.STRING(255),
             comment: 'Nom du tournoi',
+        },
+        type: {
+            type: DataTypes.TINYINT(),
+            comment: 'Format du tournoi',
         },
         description: {
             type: DataTypes.STRING(255),
@@ -27,12 +31,8 @@ export default class Tournaments extends GenericModel implements SuperModel {
             type: DataTypes.DATE(),
             comment: 'Date de fin du tournoi',
         },
-        format: {
-            type: DataTypes.STRING(255),
-            comment: 'Format du tournoi',
-        },
         size: {
-            type: DataTypes.INTEGER(),
+            type: DataTypes.TINYINT(),
             comment: 'Taille du tournoi',
         },
         prize: {
