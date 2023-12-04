@@ -177,7 +177,7 @@ export class ApiService {
     return this.request.post(`/orders`, paymentData);
   }
 
-  getTournamentWithTeam(tournamentId: number) {
+  getTournamentWithTeam(tournamentId: any) {
     return this.request.get(`/tournaments/${tournamentId}`);
   }
 
@@ -187,6 +187,30 @@ export class ApiService {
 
   getTournaments() {
     return this.request.get(`/tournaments`);
+  }
+
+  getStageData(tournamentId: number) {
+    return this.request.get(`/stages/${tournamentId}`);
+  }
+
+  putTournament(tournamentId: any, data: any) {
+    return this.request.put(`/tournaments/${tournamentId}`, data);
+  }
+
+  getNotRegistredTeams(tournamentId: any) {
+    return this.request.get(`/tournaments/${tournamentId}/teams/not_registred`);
+  }
+
+  postTeamTournament(tournamentId: any, data: any) {
+    return this.request.post(`/tournaments/${tournamentId}/register_team`, data);
+  }
+
+  deleteTeamTournament(tournamentId: any) {
+    return this.request.delete(`/tournaments/${tournamentId}/delete`);
+  }
+
+  postTeamsTournament(tournamentId: any, data: any) {
+    return this.request.post(`/tournaments/${tournamentId}/teams`, data);
   }
  
   success = (txt: string, duration?: number) => this.request.success(txt, duration);

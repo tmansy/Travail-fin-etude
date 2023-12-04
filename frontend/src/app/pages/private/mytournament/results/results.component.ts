@@ -3,45 +3,9 @@ import { InMemoryDatabase } from 'brackets-memory-db';
 import { BracketsManager } from 'brackets-manager';
 import { ApiService } from 'src/app/_services/api.service';
 import { ActivatedRoute } from '@angular/router';
-
-function getNearestPowerOfTwo(input: number): number {
-  return Math.pow(2, Math.ceil(Math.log2(input)));
-}
-
-async function process(dataset: Dataset, tournamentId: number, manager: BracketsManager, storage: InMemoryDatabase) {
-  storage.setData({
-    participant: dataset.roster.map((team: any) => ({
-      ...team,
-      tournament_id: tournamentId,
-    })),
-    stage: [],
-    group: [],
-    round: [],
-    match: [],
-    match_game: [],
-  });
-
-  await manager.create.stage({
-    name: dataset.title,
-    tournamentId: tournamentId,
-    type: dataset.type,
-    seeding: dataset.roster.map((team) => team.name),
-    settings: {
-      groupCount: 1,
-      seedOrdering: dataset.type === 'round_robin' ? ['groups.seed_optimized'] : ['natural'],
-      size: getNearestPowerOfTwo(dataset.roster.length),
-    }
-  });
-
-  const data = await manager.get.stageData(0);
-
-  return {
-    stages: data.stage,
-    matches: data.match,
-    matchGames: data.match_game,
-    participants: data.participant,
-  }
-}
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogGenerateTournamentComponent } from '../../dialog/dialog-generate-tournament/dialog-generate-tournament.component';
+import { DialogUpdateMatchComponent } from '../../dialog/dialog-update-match/dialog-update-match.component';
 
 @Component({
   selector: 'app-results',
@@ -57,8 +21,9 @@ export class ResultsComponent implements OnInit {
   public tournamentId: any;
   private manager: BracketsManager;
   private storage: InMemoryDatabase;
+  public isTournamentGenerated: boolean = false;
 
-  constructor(private api: ApiService, private activatedRoute: ActivatedRoute) {
+  constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private dialog: DialogService) {
     this.storage = new InMemoryDatabase();
     this.manager = new BracketsManager(this.storage);
   }
@@ -80,6 +45,27 @@ export class ResultsComponent implements OnInit {
       this.tournamentId = +params['tournamentId'];
     });
 
+    this.api.getTournamentWithTeam(this.tournamentId).then((res: any) => {
+      this.isTournamentGenerated = res.generated == 1 ? true : false;
+
+      if(this.isTournamentGenerated) {
+        this.renderTournament();
+      }
+    });
+    
+    this.loaded = true;
+  }
+
+  public generateDialog() {
+    this.dialog.open(DialogGenerateTournamentComponent, {
+      header: 'Générer l\'arbre de tournoi',
+      styleClass: 'custom-dialog',
+    }).onClose.subscribe(() => {
+      this.ngOnInit();
+    })
+  }
+
+  public renderTournament() {
     window.bracketsViewer.addLocale('fr', {
       common: {
         'group-name-winner-bracket': '{{stage.name}}',
@@ -101,60 +87,26 @@ export class ResultsComponent implements OnInit {
       }
     });
 
-    this.api.getTournamentWithTeam(this.tournamentId).then((res: any) => {
-      let type;
-      
-      if(res.type == 0) type = "single_elimination";
-      else if(res.type == 1) type = "double_elimination";
-      else if(res.type == 2) type = "round_robin";
+    this.api.getStageData(this.tournamentId).then((res) => {
+      const config = {
+        onMatchClick: (matchData: any) => {
+          const data = {
+            ...matchData,
+            tournamentId: this.tournamentId,
+          };
 
-      this.tournament = {
-        title: res.title,
-        type: type,
-        roster: [],
+          this.dialog.open(DialogUpdateMatchComponent, {
+            header: "Résultat du match",
+            styleClass: 'custom-dialog',
+            data: data,
+          }).onClose.subscribe(() => {
+            this.ngOnInit();
+          })
+        },
+        clear: true,
       };
 
-      res.teams_tournaments.forEach((teamTournament: any) => {
-        this.tournament.roster.push({
-          id: teamTournament.id,
-          name: teamTournament.team.name,
-        });
-      });
-
-      process(this.tournament, this.tournamentId, this.manager, this.storage).then((data) => {
-        const config = {
-          onMatchClick: (matchData: any) => {
-            this.updateMatch(matchData);
-          },
-        };
-  
-        window.bracketsViewer.render(data, config);
-      });
+      window.bracketsViewer.render(res, config);
     });
-    
-    this.loaded = true;
-  }
-  
-  async updateMatch(matchData: any) {
-    await this.manager.update.match({
-      id: matchData.id,
-      opponent1: {
-        score: 1,
-        result: 'win',
-      },
-      opponent2: {
-        score: 0,
-        result: 'loss',
-      }
-    });
-
-    const data = await this.manager.get.stageData(0);
-    const _data = {
-      stages: data.stage,
-      matches: data.match,
-      matchGames: data.match_game,
-      participants: data.participant,
-    }
-    window.bracketsViewer.render(_data);
   }
 }

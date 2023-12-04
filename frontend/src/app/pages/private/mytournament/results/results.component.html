@@ -1,5 +1,8 @@
 <div class="d-flex justify-content-between align-items-center mt-3">
     <h2 class="fw-bolder">Résultats du tournoi</h2>
+    <div class="ml-auto">
+        <p-button label="Générer l'arbre de tournoi" *ngIf="roleId.includes(2)" (onClick)="generateDialog()" styleClass="custom-color mx-3"></p-button>
+    </div>
 </div>
 <hr class="title-line">
 

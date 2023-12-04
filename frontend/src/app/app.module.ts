@@ -88,6 +88,10 @@ import { TournamentSettingsComponent } from './pages/private/mytournament/tourna
 import { TournamentTeamsComponent } from './pages/private/mytournament/tournament-teams/tournament-teams.component';
 import { PublicShopComponent } from './pages/public/public-shop/public-shop.component';
 import { PublicCartComponent } from './pages/public/public-cart/public-cart.component';
+import { DialogGenerateTournamentComponent } from './pages/private/dialog/dialog-generate-tournament/dialog-generate-tournament.component';
+import { DialogAddTeamComponent } from './pages/private/dialog/dialog-add-team/dialog-add-team.component';
+import { DialogDeleteTeamTournamentComponent } from './pages/private/dialog/dialog-delete-team-tournament/dialog-delete-team-tournament.component';
+import { DialogUpdateMatchComponent } from './pages/private/dialog/dialog-update-match/dialog-update-match.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5555', options: {} };
 
@@ -158,6 +162,10 @@ declare global {
     TournamentTeamsComponent,
     PublicShopComponent,
     PublicCartComponent,
+    DialogGenerateTournamentComponent,
+    DialogAddTeamComponent,
+    DialogDeleteTeamTournamentComponent,
+    DialogUpdateMatchComponent,
   ],
   imports: [
     BrowserModule,

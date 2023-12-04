@@ -139,6 +139,39 @@ const db = new Database('db').scan(thepath);
             })
         },
         (callback) => {
+            db['Stages'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
+            db['Matches'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
+            db['Opponents'].sync({
+                alter: true,
+                logging: console.log,
+            }).then(() => {
+                logger.log("Fini");
+                callback(null);
+            }).catch((err) => {
+                logger.error(err);
+            })
+        },
+        (callback) => {
             db['Orders'].sync({
                 alter: true,
                 logging: console.log,

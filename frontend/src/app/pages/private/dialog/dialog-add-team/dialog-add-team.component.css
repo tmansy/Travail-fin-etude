@@ -1,13 +1,11 @@
-:host ::ng-deep .p-button {
+::ng-deep .p-fileupload .p-button {
     background-color: #fab710;
     color: black;
     border: none;
     outline: none;
-    text-transform: uppercase;
-    font-weight: 500;
 }
 
-:host ::ng-deep .p-button:hover {
+::ng-deep .p-fileupload .p-button:hover {
     background-color: #e2ac21;
     color: black;
 }

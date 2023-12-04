@@ -1,0 +1,21 @@
+<div [formGroup]="formGroup">
+    <div class="mt-3 alert alert-success" role="alert">Equipe gagnante</div>
+    <div class="p-field mt-3">
+        <p-dropdown appendTo="body" [options]="opponents" styleClass="w-100" formControlName="winner" placeholder="Sélectionner une équipe"></p-dropdown>
+    </div>
+    <div class="p-field mt-3">
+        <label>Score</label>
+        <input type="number" formControlName="winnerScore" class="w-100" pInputText />
+    </div>
+    <div class="mt-3 alert alert-danger" role="alert">Equipe perdante</div>
+    <div class="p-field mt-3">
+        <p-dropdown appendTo="body" [options]="opponents" styleClass="w-100" formControlName="loser" placeholder="Sélectionner une équipe"></p-dropdown>
+    </div>
+    <div class="p-field mt-3">
+        <label>Score</label>
+        <input type="number" formControlName="loserScore" class="w-100" pInputText />
+    </div>
+</div>
+<div class="mt-3 d-flex justify-content-end">
+    <p-button label="Confirmer" class="custom-button" (onClick)="save()"></p-button>
+</div>

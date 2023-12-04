@@ -39,5 +39,10 @@ export default class Tournaments extends GenericModel implements SuperModel {
             type: DataTypes.INTEGER(),
             comment: 'Prix du tournoi',
         },
+        generated: {
+            type: DataTypes.BOOLEAN(),
+            comment: 'Est-ce que le tournoi a été généré ou pas ?',
+            defaultValue: 0,
+        }
     }
 }
