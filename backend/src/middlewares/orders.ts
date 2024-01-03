@@ -44,11 +44,6 @@ export const OrdersControllers = {
                 }
             });
 
-            await res.locals.database['Payments_PaymentStatus'].create({
-                paymentId: paymentData.paymentId,
-                paymentStatusId: 2,
-            });
-
             next();
         } catch (error) {
             logger.error(error);

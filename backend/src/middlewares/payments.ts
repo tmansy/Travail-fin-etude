@@ -20,11 +20,6 @@ export const PaymentsControllers = {
             });
 
             if(payment) {
-                await res.locals.database['Payments_PaymentStatus'].create({
-                    paymentId: payment.id,
-                    paymentStatusId: 1,
-                });
-
                 paymentIntent = await stripe.paymentIntents.create({
                     amount: _payment.amount * 100,
                     currency: _payment.currency == 0 ? 'usd' : 'eur',

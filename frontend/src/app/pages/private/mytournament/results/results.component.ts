@@ -88,6 +88,7 @@ export class ResultsComponent implements OnInit {
     });
 
     this.api.getStageData(this.tournamentId).then((res) => {
+      console.log(res);
       const config = {
         onMatchClick: (matchData: any) => {
           const data = {
