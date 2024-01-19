@@ -164,6 +164,9 @@ export const UsersControllers = {
             const database = res.locals.database;
             const body = req.body;
 
+            if(body.roleTeam == "Capitaine") body.roleTeam = 2;
+            if(body.roleTeam == "Joueur") body.roleTeam = 1;
+
             const user = await database['Users'].findOne({
                 where: {
                     username: body.username

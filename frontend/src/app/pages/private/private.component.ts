@@ -25,6 +25,8 @@ export class PrivateComponent implements OnInit {
       const roleId = JSON.parse(roleIdString);
       this.roleId = roleId;
     }
+
+    console.log(this.roleId)
   }
 
   public signout() {

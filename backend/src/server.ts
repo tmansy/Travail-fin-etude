@@ -33,10 +33,17 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, type: 'applicatio
 
 app.use(SuperMiddlewares.setHeader('X-Powered-By', 'tmansy'));
 
-const server = http.createServer(app);
-const io = new Server(server, {
+var options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/api-r4n.requiemforanoob.be/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/api-r4n.requiemforanoob.be/fullchain.pem'),
+};
+
+const https_server = https.createServer(options, app);
+const http_server = http.createServer(app);
+
+const io = new Server(https_server, {
     cors: {
-        origin: 'http://localhost:4200',
+        origin: 'https://requiemforanoob.be:80',
         methods: ['GET', 'POST'],
     }
 });
@@ -117,9 +124,16 @@ new SuperRouter({
     description: 'it\'s an id',
 }).scan().build();
 
-const port = 5555;
-server.listen(port, () => {
-    logger.log('Server is listening on http://%s:%s', 'localhost', port);
+const http_port = 5555;
+http_server.listen(http_port, () => {
+    logger.log('Server is listening on http://%s:%s', 'localhost', http_port);
+    var environment = app.get('env');
+    logger.log('Your environment is : ' + environment);
+});
+
+const https_port = 5556;
+https_server.listen(https_port, () => {
+    logger.log('Server is listening on http://%s:%s', 'localhost', https_port);
     var environment = app.get('env');
     logger.log('Your environment is : ' + environment);
 });

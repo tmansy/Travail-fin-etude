@@ -32,7 +32,7 @@
                 <div class="mt-3" *ngIf="isLolTeamVisible">
                     <p-carousel [value]="teams" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="5000" styleClass="teamCarousel" [showIndicators]="false">
                         <ng-template let-teams pTemplate="item">
-                            <p-card header="{{teams.name}}" styleClass="teamCardStyle">
+                            <p-card *ngIf="teams.display == 1" header="{{teams.name}}" styleClass="teamCardStyle">
                                 <ng-template pTemplate="header">
                                     <img alt="Présentation des teams LoL" [src]="teams.logo" style="width: 100%;">
                                 </ng-template> 
