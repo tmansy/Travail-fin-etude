@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   root: "http://localhost:5555/api/v1"
+  // root: "https://162.19.230.222:5555/api/v1"
 };
 
 /*

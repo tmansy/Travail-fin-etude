@@ -14,12 +14,13 @@ import { program } from 'commander';
 import path from 'path';
 import { AuthControllers } from './middlewares/auth';
 import { ChatControllers } from './middlewares/chat';
+const https = require('https');
+const fs = require('fs');
 
 sourcemap.install();
 
 const logger = colorConsole();
 const connectedUsers = new Set();
-
 
 program
   .version('0.1.0')
